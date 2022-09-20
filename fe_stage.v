@@ -67,7 +67,7 @@ module FE_STAGE(
 
 
   // **TODO: Complete the rest of the pipeline 
-   assign stall_pipe_FE = 1;  // you need to modify this line for your design 
+   assign stall_pipe_FE = from_DE_to_FE;  // you need to modify this line for your design 
 
   always @ (posedge clk) begin
   /* you need to extend this always block */
@@ -75,7 +75,7 @@ module FE_STAGE(
       PC_FE_latch <= `STARTPC;
       inst_count_FE <= 1;  /* inst_count starts from 1 for easy human reading. 1st fetch instructions can have 1 */ 
       end 
-     else if (!stall_pipe_FE) begin 
+    else if (!stall_pipe_FE) begin 
       PC_FE_latch <= pcplus_FE;
       inst_count_FE <= inst_count_FE + 1; 
       end 

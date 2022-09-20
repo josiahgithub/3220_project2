@@ -193,10 +193,10 @@ module DE_STAGE(
       sxt_imm_DE = {{21{inst_DE[31]}}, inst_DE[30:25], inst_DE[24:21], inst_DE[20]}; 
       /*
     `S_immediate: 
-      sxt_imm_DE =  ... 
+      sxt_imm_DE =  ... */
     `B_immediate: 
-      sxt_imm_DE = ... 
-    `U_immediate: 
+      sxt_imm_DE = {{20{inst_DE[31]}}, inst_DE[7], inst_DE[30:25], inst_DE[11:8], 1'b0}; 
+    /*`U_immediate: 
       sxt_imm_DE = ... 
     `J_immediate: 
       sxt_imm_DE = ... 
@@ -205,7 +205,6 @@ module DE_STAGE(
       sxt_imm_DE = 32'b0; 
     endcase  
   end 
-   wire wr_reg_WB; 
  
  /* this signal is passed from WB stage */ 
   wire wr_reg_WB; // is this instruction writing into a register file? 
@@ -219,7 +218,7 @@ module DE_STAGE(
 
 
   wire pipeline_stall_DE; 
-  assign from_DE_to_FE = {pipeline_stall_DE}; // pass the DE stage stall signal to FE stage 
+  assign from_DE_to_FE = {pipeline_stall_DE || type_immediate_DE == `B_immediate}; // pass the DE stage stall signal to FE stage 
 
 
   // decoding the contents of FE latch out. the order should be matched with the fe_stage.v 
@@ -232,6 +231,16 @@ module DE_STAGE(
   }  = from_FE_latch;  // based on the contents of the latch, you can decode the content 
 
 
+  wire reg_dest;
+  assign reg_dest = inst_DE[11:7];
+  reg [`DBITS-1:0] reg_1_val;
+  reg [`DBITS-1:0] reg_2_val;
+
+  always @ (posedge clk) begin 
+    reg_1_val = regs[inst_DE[19:15]];
+    reg_2_val = regs[inst_DE[24:20]];
+  end
+
 // assign wire to send the contents of DE latch to other pipeline stages  
   assign DE_latch_out = DE_latch; 
 
@@ -241,6 +250,10 @@ module DE_STAGE(
                                   pcplus_DE,
                                   op_I_DE,
                                   inst_count_DE, 
+                                  reg_1_val,
+                                  reg_2_val,
+                                  reg_dest,
+                                  sxt_imm_DE,
                                   // more signals might need
                                    bus_canary_DE 
                                   }; 
