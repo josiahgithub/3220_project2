@@ -70,7 +70,7 @@ int main(int argc, char** argv, char** env) {
         // Evaluate model
         dut->eval();
 
-    #ifdef DPRINTF 
+    //#ifdef DPRINTF 
     // verilator allows to access verilator public data structure 
 
     /* writeback stage*/ 
@@ -93,7 +93,7 @@ int main(int argc, char** argv, char** env) {
         last_print_inst_count_WB = inst_count_WB; 
         }
 
-    #endif 
+    //#endif 
 
 
     #ifdef VCD_OUTPUT

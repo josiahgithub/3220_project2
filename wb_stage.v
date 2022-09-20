@@ -26,23 +26,35 @@ module WB_STAGE(
   wire [`CSRNOBITS-1:0] wcsrno_WB;  // desitnation CSR register ID 
   wire wr_csr_WB; // is this instruction writing into CSR ? 
 
-
   // **TODO: Complete the rest of the pipeline**
- 
+  wire [4:0] reg_dest;
+  wire [`DBITS-1:0] result;
     
    assign {
                                 inst_WB,
                                 PC_WB,
                                 op_I_WB,
-                                inst_count_WB, 
+                                inst_count_WB,
+                                reg_dest,
+                                result,
                                 // more signals might need                        
                                  bus_canary_WB 
                                  } = from_MEM_latch; 
         
         // write register by sending data to the DE stage 
-        
 
+assign wregno_WB = reg_dest;
+assign regval_WB = result;
 
+reg write_reg;
+assign wr_reg_WB = write_reg;
+always @(*) begin 
+  case (op_I_WB)
+    `ADD_I: write_reg = 1;
+    `ADDI_I: write_reg = 1;
+    default: write_reg = 0;
+  endcase
+end
 
 // we send register write (and CSR register) information to DE stage 
 assign from_WB_to_DE = {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB} ;  

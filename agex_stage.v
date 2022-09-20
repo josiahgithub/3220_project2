@@ -50,25 +50,29 @@ module AGEX_STAGE(
 
 
   // compute ALU operations  (alu out or memory addresses)
- 
+  reg [`DBITS-1:0] result;
   always @ (*) begin
   
-    /*case (op_I_AGEX)
-      `ADD_I: 
+    case (op_I_AGEX)
+      `ADD_I: result = reg_1_val + reg_2_val;
+      `ADDI_I: result = reg_1_val + imm_val;
        
 
-	  endcase */
+	  endcase 
    
   end 
 
   // branch target needs to be computed here 
   // computed branch target needs to send to other pipeline stages (pctarget_AGEX)
 
+  reg [`DBITS:0] br_target;
   always @(*)begin  
-  /*
-    if (op_I_AGEX == `JAL_I) 
-    ... 
-    */
+  
+    case (op_I_AGEX)
+      `BEQ_I: br_target = reg_1_val + imm_val;
+
+	  endcase 
+
   end 
 
 
@@ -91,6 +95,8 @@ module AGEX_STAGE(
     PC_AGEX,
     op_I_AGEX,
     inst_count_AGEX, 
+    reg_dest,
+    result,
             // more signals might need
     bus_canary_AGEX     
   }; 

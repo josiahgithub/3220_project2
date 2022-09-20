@@ -8,10 +8,6 @@ verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim
 -- COMPILE -----------------
 make -j 4 -C obj_dir -f Vpipeline.mk
 make[1]: Entering directory '/home/joe/Documents/3220/3220_project2/obj_dir'
-g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part1/test1.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o sim_main.o ../sim_main.cpp
-g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part1/test1.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o verilated.o /usr/share/verilator/include/verilated.cpp
-g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part1/test1.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o verilated_dpi.o /usr/share/verilator/include/verilated_dpi.cpp
-g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part1/test1.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o verilated_vcd_c.o /usr/share/verilator/include/verilated_vcd_c.cpp
 /usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALL.cpp
 g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part1/test1.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
 ar -cr Vpipeline__ALL.a Vpipeline__ALL.o
@@ -20,7 +16,7 @@ g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a
 make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
 -- RUN ---------------------
 obj_dir/Vpipeline
-[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100193 Op_I:12
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
 [112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x0 Op_I:37
 [114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x0 Op_I:37
 [116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x0 Op_I:37
@@ -421,7 +417,7 @@ obj_dir/Vpipeline
 [994]  inst_count_WB: 399 PC_WB: 0x838 Inst_WB: 0x0 Op_I:37
 [996]  inst_count_WB: 400 PC_WB: 0x83c Inst_WB: 0x0 Op_I:37
 [998]  inst_count_WB: 401 PC_WB: 0x840 Inst_WB: 0x0 Op_I:37
-Failed. exitcode: 0
+Passed!
 -- DONE --------------------
 
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part1/test2.mem
@@ -441,9 +437,9 @@ g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a
 make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
 -- RUN ---------------------
 obj_dir/Vpipeline
-[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100093 Op_I:12
-[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x108093 Op_I:12
-[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0xfff08193 Op_I:12
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100093 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x108093 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:1
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0xfff08193 Op_I:12 wr_reg_WB:1 regval_WB:-1 wregno_WB:3
 [116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x4 Op_I:37
 [118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x8 Op_I:37
 [121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0xa Op_I:37
@@ -842,7 +838,7 @@ obj_dir/Vpipeline
 [994]  inst_count_WB: 399 PC_WB: 0x838 Inst_WB: 0x0 Op_I:37
 [996]  inst_count_WB: 400 PC_WB: 0x83c Inst_WB: 0x0 Op_I:37
 [998]  inst_count_WB: 401 PC_WB: 0x840 Inst_WB: 0x0 Op_I:37
-Failed. exitcode: 0
+Failed. exitcode: -1
 -- DONE --------------------
 
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part1/test3.mem
@@ -862,10 +858,10 @@ g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a
 make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
 -- RUN ---------------------
 obj_dir/Vpipeline
-[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100093 Op_I:12
-[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0xfff00113 Op_I:12
-[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x108093 Op_I:12
-[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x2081b3 Op_I:1
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100093 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0xfff00113 Op_I:12 wr_reg_WB:1 regval_WB:-1 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x108093 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:1
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x2081b3 Op_I:1 wr_reg_WB:1 regval_WB:1 wregno_WB:3
 [118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x4 Op_I:37
 [121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x8 Op_I:37
 [123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0xa Op_I:37
@@ -1263,7 +1259,7 @@ obj_dir/Vpipeline
 [994]  inst_count_WB: 399 PC_WB: 0x838 Inst_WB: 0x0 Op_I:37
 [996]  inst_count_WB: 400 PC_WB: 0x83c Inst_WB: 0x0 Op_I:37
 [998]  inst_count_WB: 401 PC_WB: 0x840 Inst_WB: 0x0 Op_I:37
-Failed. exitcode: 0
+Passed!
 -- DONE --------------------
 
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part1/test4.mem
@@ -1283,11 +1279,11 @@ g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a
 make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
 -- RUN ---------------------
 obj_dir/Vpipeline
-[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100313 Op_I:12
-[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x100393 Op_I:12
-[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x100193 Op_I:12
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100313 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:6
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x100393 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:7
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
 [116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x730863 Op_I:28
-Failed. exitcode: 0
+Passed!
 -- DONE --------------------
 
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part1/test5.mem
@@ -1307,8 +1303,8 @@ g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a
 make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
 -- RUN ---------------------
 obj_dir/Vpipeline
-[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100313 Op_I:12
-[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x100393 Op_I:12
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100313 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:6
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x100393 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:7
 [114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x730463 Op_I:28
 Failed. exitcode: 0
 -- DONE --------------------
