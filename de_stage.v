@@ -231,7 +231,7 @@ module DE_STAGE(
   }  = from_FE_latch;  // based on the contents of the latch, you can decode the content 
 
 
-  wire reg_dest;
+  wire [4:0] reg_dest;
   assign reg_dest = inst_DE[11:7];
   reg [`DBITS-1:0] reg_1_val;
   reg [`DBITS-1:0] reg_2_val;

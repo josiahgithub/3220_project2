@@ -37,12 +37,12 @@ module AGEX_STAGE(
   
   always @ (*) begin
     case (op_I_AGEX)
-      `BEQ_I : br_cond_AGEX = 28; // write correct code to check the branch condition. 
-      `BNE_I : br_cond_AGEX = 29;
+      `BEQ_I : br_cond_AGEX = reg_1_val == reg_2_val; // write correct code to check the branch condition. 
+      /*`BNE_I : br_cond_AGEX = 29;
       `BLT_I : br_cond_AGEX = 30;
       `BGE_I : br_cond_AGEX = 31;
       `BLTU_I: br_cond_AGEX = 32;
-      `BGEU_I : br_cond_AGEX = 33;
+      `BGEU_I : br_cond_AGEX = 33;*/
     
       default : br_cond_AGEX = 1'b0;
     endcase
