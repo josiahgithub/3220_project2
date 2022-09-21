@@ -40,7 +40,7 @@ module FE_STAGE(
   wire [`FE_latch_WIDTH-1:0] FE_latch_contents;  // the signals that will be FE latch contents 
   
   // reading instruction from imem 
-  assign inst_FE = imem[PC_FE_latch[`IMEMADDRBITS-1:`IMEMWORDBITS]];  // this code works. imem is stored 4B together 
+  assign inst_FE = is_branch ? imem[br_target[`IMEMADDRBITS-1:`IMEMWORDBITS]] : imem[PC_FE_latch[`IMEMADDRBITS-1:`IMEMWORDBITS]];  // this code works. imem is stored 4B together 
   
   // wire to send the FE latch contents to the DE stage 
   assign FE_latch_out = FE_latch; 
@@ -50,11 +50,18 @@ module FE_STAGE(
   wire [`DBITS-1:0] inst_count_AGEX; /* for debugging purpose. resent the instruction counter */ 
 
   // This is the value of "incremented PC", computed in the FE stage
-  assign pcplus_FE = PC_FE_latch + `INSTSIZE;
+  assign pcplus_FE = is_branch ? br_target + `INSTSIZE : PC_FE_latch + `INSTSIZE;
   
    
    // the order of latch contents should be matched in the decode stage when we extract the contents. 
-  assign FE_latch_contents = {
+  assign FE_latch_contents = is_branch ? {
+                                inst_FE, 
+                                br_target, 
+                                pcplus_FE, // please feel free to add more signals such as valid bits etc. 
+                                inst_count_FE, 
+                                // if you add more bits here, please increase the width of latch in define.vh 
+                                `BUS_CANARY_VALUE // for an error checking of bus encoding/decoding  
+                                } : {
                                 inst_FE, 
                                 PC_FE_latch, 
                                 pcplus_FE, // please feel free to add more signals such as valid bits etc. 
@@ -64,10 +71,13 @@ module FE_STAGE(
                                 };
 
 
-
-
   // **TODO: Complete the rest of the pipeline 
    assign stall_pipe_FE = from_DE_to_FE;  // you need to modify this line for your design 
+
+  wire [`DBITS-1 : 0] br_target;
+  wire is_branch;
+
+  assign {is_branch, br_target} = from_AGEX_to_FE;
 
   always @ (posedge clk) begin
   /* you need to extend this always block */
@@ -75,7 +85,7 @@ module FE_STAGE(
       PC_FE_latch <= `STARTPC;
       inst_count_FE <= 1;  /* inst_count starts from 1 for easy human reading. 1st fetch instructions can have 1 */ 
       end 
-    else if (!stall_pipe_FE) begin 
+    else if (!stall_pipe_FE || is_branch) begin 
       PC_FE_latch <= pcplus_FE;
       inst_count_FE <= inst_count_FE + 1; 
       end 
@@ -93,10 +103,11 @@ module FE_STAGE(
      else  
         begin 
          // this is just an example. you need to expand the contents of if/else
-         if  (stall_pipe_FE)
-            FE_latch <= FE_latch; 
-          else 
+         if  (!stall_pipe_FE || is_branch)
             FE_latch <= FE_latch_contents; 
+         else
+            FE_latch <= FE_latch; 
+          
         end  
   end
 

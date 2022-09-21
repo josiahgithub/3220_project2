@@ -37,18 +37,29 @@ module AGEX_STAGE(
   
   always @ (*) begin
     case (op_I_AGEX)
-      `BEQ_I : br_cond_AGEX = reg_1_val == reg_2_val; // write correct code to check the branch condition. 
+      `BEQ_I : begin
+        br_cond_AGEX = reg_1_val == reg_2_val; // write correct code to check the branch condition. 
+        is_branch = 1;
+      end
       /*`BNE_I : br_cond_AGEX = 29;
       `BLT_I : br_cond_AGEX = 30;
       `BGE_I : br_cond_AGEX = 31;
       `BLTU_I: br_cond_AGEX = 32;
       `BGEU_I : br_cond_AGEX = 33;*/
     
-      default : br_cond_AGEX = 1'b0;
+      default : begin 
+        br_cond_AGEX = 1'b0;
+        is_branch = 0;
+      end
     endcase
   end
+  reg is_branch;
+  wire stall_de;
 
+  assign stall_de = is_branch;
+  assign from_AGEX_to_DE = stall_de;
 
+  assign from_AGEX_to_FE = {br_cond_AGEX, br_target};
   // compute ALU operations  (alu out or memory addresses)
   reg [`DBITS-1:0] result;
   always @ (*) begin
@@ -65,11 +76,11 @@ module AGEX_STAGE(
   // branch target needs to be computed here 
   // computed branch target needs to send to other pipeline stages (pctarget_AGEX)
 
-  reg [`DBITS:0] br_target;
+  reg [`DBITS-1:0] br_target;
   always @(*)begin  
   
     case (op_I_AGEX)
-      `BEQ_I: br_target = reg_1_val + imm_val;
+      `BEQ_I: br_target = PC_AGEX + imm_val;
 
 	  endcase 
 

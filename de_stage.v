@@ -218,6 +218,7 @@ module DE_STAGE(
 
 
   wire pipeline_stall_DE; 
+  assign pipeline_stall_DE = from_AGEX_to_DE;
   assign from_DE_to_FE = {pipeline_stall_DE || type_immediate_DE == `B_immediate}; // pass the DE stage stall signal to FE stage 
 
 

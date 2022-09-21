@@ -75,6 +75,7 @@ int main(int argc, char** argv, char** env) {
 
     /* writeback stage*/ 
         static int last_print_inst_count_WB = 0; 
+        //std::cout <<" PC: " <<  std::dec << (int)dut->pipeline->my_FE_stage->PC_FE_latch;
         int inst_count_WB = (int)dut->pipeline->my_WB_stage->WB_counters[5]; 
         if (inst_count_WB > last_print_inst_count_WB)  { 
             std::cout <<"[" << (int)(timestamp) << "] "; 
