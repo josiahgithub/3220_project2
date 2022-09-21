@@ -29,7 +29,7 @@ module WB_STAGE(
   // **TODO: Complete the rest of the pipeline**
   wire [4:0] reg_dest;
   wire [`DBITS-1:0] result;
-    
+  wire wr_reg;
    assign {
                                 inst_WB,
                                 PC_WB,
@@ -37,6 +37,7 @@ module WB_STAGE(
                                 inst_count_WB,
                                 reg_dest,
                                 result,
+                                wr_reg,
                                 // more signals might need                        
                                  bus_canary_WB 
                                  } = from_MEM_latch; 
@@ -46,15 +47,7 @@ module WB_STAGE(
 assign wregno_WB = reg_dest;
 assign regval_WB = result;
 
-reg write_reg;
-assign wr_reg_WB = write_reg;
-always @(*) begin 
-  case (op_I_WB)
-    `ADD_I: write_reg = 1;
-    `ADDI_I: write_reg = 1;
-    default: write_reg = 0;
-  endcase
-end
+assign wr_reg_WB = wr_reg;
 
 // we send register write (and CSR register) information to DE stage 
 assign from_WB_to_DE = {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB} ;  

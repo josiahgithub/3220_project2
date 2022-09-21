@@ -57,7 +57,7 @@ module AGEX_STAGE(
   wire stall_de;
 
   assign stall_de = is_branch;
-  assign from_AGEX_to_DE = stall_de;
+  assign from_AGEX_to_DE = {stall_de, reg_dest, wr_reg};
 
   assign from_AGEX_to_FE = {br_cond_AGEX, br_target};
   // compute ALU operations  (alu out or memory addresses)
@@ -86,7 +86,7 @@ module AGEX_STAGE(
 
   end 
 
-
+  wire wr_reg;
   assign  {
     inst_AGEX,
     PC_AGEX,
@@ -97,6 +97,7 @@ module AGEX_STAGE(
     reg_2_val,
     reg_dest,
     imm_val,
+    wr_reg,
             // more signals might need
     bus_canary_AGEX
   } = from_DE_latch;    
@@ -108,6 +109,7 @@ module AGEX_STAGE(
     inst_count_AGEX, 
     reg_dest,
     result,
+    wr_reg,
             // more signals might need
     bus_canary_AGEX     
   }; 

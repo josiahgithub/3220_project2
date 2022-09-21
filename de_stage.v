@@ -216,9 +216,19 @@ module DE_STAGE(
   // signals come from WB stage for register WB 
   assign { wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB} = from_WB_to_DE;  
 
-
+  wire agex_stall_command;
   wire pipeline_stall_DE; 
-  assign pipeline_stall_DE = from_AGEX_to_DE;
+  wire [4:0] agex_reg_dest;
+  wire [4:0] mem_reg_dest;
+  wire [4:0] wb_reg_dest;
+  wire is_agex_wr;
+  wire is_mem_wr;
+  assign {agex_stall_command, agex_reg_dest, is_agex_wr} = from_AGEX_to_DE;
+  assign {mem_reg_dest, is_mem_wr} = from_MEM_to_DE;
+  assign wb_reg_dest = wregno_WB;
+
+  assign pipeline_stall_DE = agex_stall_command || ((agex_reg_dest == reg_1_num || agex_reg_dest == reg_2_num) && is_agex_wr)
+    || ((mem_reg_dest == reg_1_num || mem_reg_dest == reg_2_num) && is_mem_wr) || ((wb_reg_dest == reg_1_num || wb_reg_dest == reg_2_num) && wr_reg_WB);
   assign from_DE_to_FE = {pipeline_stall_DE || type_immediate_DE == `B_immediate}; // pass the DE stage stall signal to FE stage 
 
 
@@ -236,12 +246,18 @@ module DE_STAGE(
   assign reg_dest = inst_DE[11:7];
   reg [`DBITS-1:0] reg_1_val;
   reg [`DBITS-1:0] reg_2_val;
+  reg [4:0] reg_1_num;
+  reg [4:0] reg_2_num;
 
   always @ (posedge clk) begin 
-    reg_1_val = regs[inst_DE[19:15]];
-    reg_2_val = regs[inst_DE[24:20]];
+    reg_1_num = inst_DE[19:15];
+    reg_2_num = inst_DE[24:20];
+    reg_1_val = regs[reg_1_num];
+    reg_2_val = regs[reg_2_num];
   end
 
+  wire wr_reg;
+  assign wr_reg = type_I_DE == `R_Type || type_I_DE == `I_Type;
 // assign wire to send the contents of DE latch to other pipeline stages  
   assign DE_latch_out = DE_latch; 
 
@@ -255,6 +271,7 @@ module DE_STAGE(
                                   reg_2_val,
                                   reg_dest,
                                   sxt_imm_DE,
+                                  wr_reg,
                                   // more signals might need
                                    bus_canary_DE 
                                   }; 
