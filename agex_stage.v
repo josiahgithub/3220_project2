@@ -49,7 +49,7 @@ module AGEX_STAGE(
       `BNE_I : begin 
         br_cond_AGEX = reg_1_val != reg_2_val;
         is_branch = 1; 
-        $display("pc %x, reg1 %d, reg2%d", PC_AGEX, reg_1_val, reg_1_val);
+        //$display("pc %x, reg1 %d, reg2%d", PC_AGEX, reg_1_val, reg_1_val);
       end
       `BLT_I : begin
         br_cond_AGEX = signed_reg_1_val < signed_reg_2_val; 
@@ -74,7 +74,7 @@ module AGEX_STAGE(
       `JALR_I : begin
         br_cond_AGEX = 1;
         is_branch = 1;
-        $display("pc %x, br_cond_AGEX %d, is_branch %d br_target %x", PC_AGEX, br_cond_AGEX, is_branch, br_target);
+        //$display("pc %x, br_cond_AGEX %d, is_branch %d br_target %x", PC_AGEX, br_cond_AGEX, is_branch, br_target);
       end
       default : begin 
         br_cond_AGEX = 1'b0;
