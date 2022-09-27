@@ -46,7 +46,7 @@ module AGEX_STAGE(
         br_cond_AGEX = reg_1_val == reg_2_val; // write correct code to check the branch condition. 
         is_branch = 1;
       end
-      BNE_I : begin 
+      `BNE_I : begin 
         br_cond_AGEX = reg_1_val != reg_2_val;
         is_branch = 1; 
       end
