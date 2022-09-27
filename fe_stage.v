@@ -54,7 +54,7 @@ module FE_STAGE(
   
    
    // the order of latch contents should be matched in the decode stage when we extract the contents. 
-  assign FE_latch_contents = is_branch ? {
+  assign FE_latch_contents =  is_branch ? {
                                 inst_FE, 
                                 br_target, 
                                 pcplus_FE, // please feel free to add more signals such as valid bits etc. 
@@ -76,8 +76,9 @@ module FE_STAGE(
 
   wire [`DBITS-1 : 0] br_target;
   wire is_branch;
+  wire move_on;
 
-  assign {is_branch, br_target} = from_AGEX_to_FE;
+  assign {is_branch, br_target, move_on} = from_AGEX_to_FE;
 
   always @ (posedge clk) begin
   /* you need to extend this always block */
@@ -85,7 +86,7 @@ module FE_STAGE(
       PC_FE_latch <= `STARTPC;
       inst_count_FE <= 1;  /* inst_count starts from 1 for easy human reading. 1st fetch instructions can have 1 */ 
       end 
-    else if (!stall_pipe_FE || is_branch) begin 
+    else if (!stall_pipe_FE || is_branch || move_on) begin 
       PC_FE_latch <= pcplus_FE;
       inst_count_FE <= inst_count_FE + 1; 
       end 
@@ -93,8 +94,8 @@ module FE_STAGE(
       PC_FE_latch <= PC_FE_latch;
   end
 
-
   always @ (posedge clk) begin
+    //$display("PC %x isbranch %d stall %d br_target %x", PC_FE_latch, is_branch, stall_pipe_FE, br_target);
     if (reset) 
         begin 
             FE_latch <= {`FE_latch_WIDTH{1'b0}}; 
@@ -103,11 +104,10 @@ module FE_STAGE(
      else  
         begin 
          // this is just an example. you need to expand the contents of if/else
-         if  (!stall_pipe_FE || is_branch)
+         if  (!stall_pipe_FE || is_branch || move_on)
             FE_latch <= FE_latch_contents; 
          else
             FE_latch <= FE_latch; 
-          
         end  
   end
 

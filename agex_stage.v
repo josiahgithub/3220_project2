@@ -39,7 +39,7 @@ module AGEX_STAGE(
  reg signed [`DBITS-1:0] signed_reg_2_val;
  assign signed_reg_1_val = reg_1_val;
  assign signed_reg_2_val = reg_2_val;
-  
+
   always @ (*) begin
     case (op_I_AGEX)
       `BEQ_I : begin
@@ -49,6 +49,7 @@ module AGEX_STAGE(
       `BNE_I : begin 
         br_cond_AGEX = reg_1_val != reg_2_val;
         is_branch = 1; 
+        $display("pc %x, reg1 %d, reg2%d", PC_AGEX, reg_1_val, reg_1_val);
       end
       `BLT_I : begin
         br_cond_AGEX = signed_reg_1_val < signed_reg_2_val; 
@@ -66,7 +67,15 @@ module AGEX_STAGE(
         br_cond_AGEX = reg_1_val >= reg_2_val;
         is_branch = 1;
       end
-    
+      `JAL_I : begin
+        br_cond_AGEX = 1;
+        is_branch = 1;
+      end
+      `JALR_I : begin
+        br_cond_AGEX = 1;
+        is_branch = 1;
+        $display("pc %x, br_cond_AGEX %d, is_branch %d br_target %x", PC_AGEX, br_cond_AGEX, is_branch, br_target);
+      end
       default : begin 
         br_cond_AGEX = 1'b0;
         is_branch = 0;
@@ -75,11 +84,14 @@ module AGEX_STAGE(
   end
   reg is_branch;
   wire stall_de;
+  wire move_on_fetch;
+
+  assign move_on_fetch = !br_cond_AGEX && is_branch;
 
   assign stall_de = is_branch;
   assign from_AGEX_to_DE = {stall_de, reg_dest, wr_reg};
 
-  assign from_AGEX_to_FE = {br_cond_AGEX, br_target};
+  assign from_AGEX_to_FE = {br_cond_AGEX, br_target, move_on_fetch};
   // compute ALU operations  (alu out or memory addresses)
   reg [`DBITS-1:0] result;
   always @ (*) begin
@@ -87,11 +99,11 @@ module AGEX_STAGE(
     case (op_I_AGEX)
       `ADD_I: result = reg_1_val + reg_2_val;
       `ADDI_I: result = reg_1_val + imm_val;
-      `AUIPC_I: result = imm_val << 12 + PC_AGEX;
+      `AUIPC_I: result = imm_val + PC_AGEX;
       `SUB_I: result = reg_1_val - reg_2_val;
       `JAL_I: result = PC_AGEX + 4;
-      `JALR_I: result = reg_1_val + imm_val;
-      `LUI_I: result = imm_val << 12;
+      `JALR_I: result = PC_AGEX + 4;
+      `LUI_I: result = imm_val;
        
 
 	  endcase 
@@ -112,7 +124,7 @@ module AGEX_STAGE(
       `BLTU_I: br_target = PC_AGEX + imm_val;
       `BGEU_I: br_target = PC_AGEX + imm_val;
       `JAL_I: br_target = PC_AGEX + imm_val;
-      `JALR_I: br_target = PC_AGEX + 4; 
+      `JALR_I: br_target = reg_1_val + imm_val; 
 
 	  endcase 
 
