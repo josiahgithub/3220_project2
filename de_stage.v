@@ -162,10 +162,6 @@ module DE_STAGE(
             type_I_DE = `S_Type;
             type_immediate_DE = `S_immediate;  
         end 
-      else if (op_I_DE ==  `JAL_I)    begin 
-            type_I_DE = `U_Type;
-            type_immediate_DE = `J_immediate; 
-            end 
       else if (op_I_DE == `JAL_I )    
           begin 
             type_I_DE = `U_Type;
@@ -189,18 +185,11 @@ module DE_STAGE(
   reg  [`DBITS-1:0] sxt_imm_DE;
   always @(*) begin 
     case (type_immediate_DE )  
-    `I_immediate: 
-      sxt_imm_DE = {{21{inst_DE[31]}}, inst_DE[30:25], inst_DE[24:21], inst_DE[20]}; 
-      /*
-    `S_immediate: 
-      sxt_imm_DE =  ... */
-    `B_immediate: 
-      sxt_imm_DE = {{20{inst_DE[31]}}, inst_DE[7], inst_DE[30:25], inst_DE[11:8], 1'b0}; 
-    /*`U_immediate: 
-      sxt_imm_DE = ... 
-    `J_immediate: 
-      sxt_imm_DE = ... 
-      */ 
+    `I_immediate: sxt_imm_DE = {{21{inst_DE[31]}}, inst_DE[30:25], inst_DE[24:21], inst_DE[20]}; 
+    `S_immediate: sxt_imm_DE = {{21{inst_DE[31]}}, inst_DE[30:25], inst_DE[11:8], inst_DE[7]};  
+    `B_immediate: sxt_imm_DE = {{20{inst_DE[31]}}, inst_DE[7], inst_DE[30:25], inst_DE[11:8], 1'b0}; 
+    `U_immediate: sxt_imm_DE = {inst_DE[31], inst[30:20], inst_DE[19:12], 12'b0}; 
+    `J_immediate: sxt_imm_DE = {{12{inst_DE[31]}}, inst_DE[19:12], inst_DE[20], inst_DE[30:25], inst_DE[24:21], 1'b0};
     default:
       sxt_imm_DE = 32'b0; 
     endcase  
@@ -214,7 +203,7 @@ module DE_STAGE(
   wire wr_csr_WB; // is this instruction writing into CSR ? 
 
   // signals come from WB stage for register WB 
-  assign { wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB} = from_WB_to_DE;  
+  assign {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB} = from_WB_to_DE;  
 
   wire agex_stall_command;
   wire pipeline_stall_DE; 

@@ -34,6 +34,11 @@ module AGEX_STAGE(
  
   // **TODO: Complete the rest of the pipeline 
  
+ //Signed versions of registers for pipeline math 
+ reg signed [`DBITS-1:0] signed_reg_1_val;
+ reg signed [`DBITS-1:0] signed_reg_2_val;
+ assign signed_reg_1_val = reg_1_val;
+ assign signed_reg_2_val = reg_2_val;
   
   always @ (*) begin
     case (op_I_AGEX)
@@ -41,11 +46,26 @@ module AGEX_STAGE(
         br_cond_AGEX = reg_1_val == reg_2_val; // write correct code to check the branch condition. 
         is_branch = 1;
       end
-      /*`BNE_I : br_cond_AGEX = 29;
-      `BLT_I : br_cond_AGEX = 30;
-      `BGE_I : br_cond_AGEX = 31;
-      `BLTU_I: br_cond_AGEX = 32;
-      `BGEU_I : br_cond_AGEX = 33;*/
+      BNE_I : begin 
+        br_cond_AGEX = reg_1_val != reg_2_val;
+        is_branch = 1; 
+      end
+      `BLT_I : begin
+        br_cond_AGEX = signed_reg_1_val < signed_reg_2_val; 
+        is_branch = 1;
+      end
+      `BGE_I : begin
+        br_cond_AGEX = signed_reg_1_val >= signed_reg_2_val; 
+        is_branch = 1; 
+      end
+      `BLTU_I: begin
+        br_cond_AGEX = reg_1_val < reg_2_val;
+        is_branch = 1;
+      end
+      `BGEU_I : begin
+        br_cond_AGEX = reg_1_val >= reg_2_val;
+        is_branch = 1;
+      end
     
       default : begin 
         br_cond_AGEX = 1'b0;
@@ -67,6 +87,11 @@ module AGEX_STAGE(
     case (op_I_AGEX)
       `ADD_I: result = reg_1_val + reg_2_val;
       `ADDI_I: result = reg_1_val + imm_val;
+      `AUIPC_I: result = imm_val << 12 + PC_AGEX;
+      `SUB_I: result = reg_1_val - reg_2_val;
+      `JAL_I: result = PC_AGEX + 4;
+      `JALR_I: result = reg_1_val + imm_val;
+      `LUI_I: result = imm_val << 12;
        
 
 	  endcase 
@@ -81,6 +106,13 @@ module AGEX_STAGE(
   
     case (op_I_AGEX)
       `BEQ_I: br_target = PC_AGEX + imm_val;
+      `BNE_I: br_target = PC_AGEX + imm_val;
+      `BLT_I: br_target = PC_AGEX + imm_val;
+      `BGE_I: br_target = PC_AGEX + imm_val;
+      `BLTU_I: br_target = PC_AGEX + imm_val;
+      `BGEU_I: br_target = PC_AGEX + imm_val;
+      `JAL_I: br_target = PC_AGEX + imm_val;
+      `JALR_I: br_target = PC_AGEX + 4; 
 
 	  endcase 
 

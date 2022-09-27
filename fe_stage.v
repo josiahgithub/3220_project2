@@ -92,7 +92,7 @@ module FE_STAGE(
     else 
       PC_FE_latch <= PC_FE_latch;
   end
-  
+
 
   always @ (posedge clk) begin
     if (reset) 
