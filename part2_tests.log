@@ -1,0 +1,832 @@
+
+TESTING: /home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/addi.mem
+-- VERILATE ----------------
+/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/addi.mem
+/home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/addi.mem"|g'  /home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/addi.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/addi.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o sim_main.o ../sim_main.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/addi.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated.o /usr/share/verilator/include/verilated.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/addi.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_dpi.o /usr/share/verilator/include/verilated_dpi.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/addi.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_vcd_c.o /usr/share/verilator/include/verilated_vcd_c.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline___024root__DepSet_ha2aed019__0.cpp Vpipeline___024root__DepSet_h0e89545c__0.cpp Vpipeline_pipeline__DepSet_h4d7d4d0b__0.cpp Vpipeline_WB_STAGE__DepSet_h58b40e1e__0.cpp Vpipeline__Dpi.cpp Vpipeline__Trace__0.cpp Vpipeline__ConstPool_0.cpp Vpipeline___024root__Slow.cpp Vpipeline___024root__DepSet_ha2aed019__0__Slow.cpp Vpipeline___024root__DepSet_h0e89545c__0__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_pipeline__DepSet_h4d7d4d0b__0__Slow.cpp Vpipeline_pipeline__DepSet_ha3d9c74e__0__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline_WB_STAGE__DepSet_h79cc6917__0__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__0__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/addi.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+echo "" > Vpipeline__ALL.verilator_deplist.tmp
+Archive ar -rcs Vpipeline__ALL.a Vpipeline__ALL.o
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+rm Vpipeline__ALL.verilator_deplist.tmp
+make[1]: Leaving directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x313 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+[125]  inst_count_WB: 8 PC_WB: 0x21c Inst_WB: 0x413 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:8
+[127]  inst_count_WB: 9 PC_WB: 0x220 Inst_WB: 0x493 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:9
+[129]  inst_count_WB: 10 PC_WB: 0x224 Inst_WB: 0x513 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[132]  inst_count_WB: 11 PC_WB: 0x228 Inst_WB: 0x593 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:11
+[134]  inst_count_WB: 12 PC_WB: 0x22c Inst_WB: 0x613 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:12
+[136]  inst_count_WB: 13 PC_WB: 0x230 Inst_WB: 0x693 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:13
+[138]  inst_count_WB: 14 PC_WB: 0x234 Inst_WB: 0x713 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[141]  inst_count_WB: 15 PC_WB: 0x238 Inst_WB: 0x793 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:15
+[143]  inst_count_WB: 16 PC_WB: 0x23c Inst_WB: 0x813 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:16
+[145]  inst_count_WB: 17 PC_WB: 0x240 Inst_WB: 0x893 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:17
+[147]  inst_count_WB: 18 PC_WB: 0x244 Inst_WB: 0x913 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:18
+[149]  inst_count_WB: 19 PC_WB: 0x248 Inst_WB: 0x993 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:19
+[152]  inst_count_WB: 20 PC_WB: 0x24c Inst_WB: 0xa13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:20
+[154]  inst_count_WB: 21 PC_WB: 0x250 Inst_WB: 0xa93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:21
+[156]  inst_count_WB: 22 PC_WB: 0x254 Inst_WB: 0xb13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:22
+[158]  inst_count_WB: 23 PC_WB: 0x258 Inst_WB: 0xb93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:23
+[161]  inst_count_WB: 24 PC_WB: 0x25c Inst_WB: 0xc13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:24
+[163]  inst_count_WB: 25 PC_WB: 0x260 Inst_WB: 0xc93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:25
+[165]  inst_count_WB: 26 PC_WB: 0x264 Inst_WB: 0xd13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:26
+[167]  inst_count_WB: 27 PC_WB: 0x268 Inst_WB: 0xd93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:27
+[169]  inst_count_WB: 28 PC_WB: 0x26c Inst_WB: 0xe13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:28
+[172]  inst_count_WB: 29 PC_WB: 0x270 Inst_WB: 0xe93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:29
+[174]  inst_count_WB: 30 PC_WB: 0x274 Inst_WB: 0xf13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:30
+[176]  inst_count_WB: 31 PC_WB: 0x278 Inst_WB: 0xf93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:31
+[178]  inst_count_WB: 32 PC_WB: 0x27c Inst_WB: 0x300093 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:1
+[181]  inst_count_WB: 33 PC_WB: 0x280 Inst_WB: 0x708713 Op_I:12 wr_reg_WB:1 regval_WB:7 wregno_WB:14
+[185]  inst_count_WB: 34 PC_WB: 0x284 Inst_WB: 0xa00393 Op_I:12 wr_reg_WB:1 regval_WB:10 wregno_WB:7
+[187]  inst_count_WB: 35 PC_WB: 0x288 Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[189]  inst_count_WB: 36 PC_WB: 0x28c Inst_WB: 0xa771a63 Op_I:29
+[194]  inst_count_WB: 37 PC_WB: 0x340 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[196]  inst_count_WB: 38 PC_WB: 0x344 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[205]  inst_count_WB: 39 PC_WB: 0x348 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[214]  inst_count_WB: 40 PC_WB: 0x34c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[223]  inst_count_WB: 41 PC_WB: 0x350 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[232]  inst_count_WB: 42 PC_WB: 0x354 Inst_WB: 0x180006f Op_I:25
+[234]  inst_count_WB: 43 PC_WB: 0x358 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[236]  inst_count_WB: 44 PC_WB: 0x35c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[245]  inst_count_WB: 45 PC_WB: 0x360 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[254]  inst_count_WB: 46 PC_WB: 0x364 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[263]  inst_count_WB: 47 PC_WB: 0x368 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[272]  inst_count_WB: 48 PC_WB: 0x36c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[281]  inst_count_WB: 49 PC_WB: 0x370 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[289]  inst_count_WB: 50 PC_WB: 0x374 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[298]  inst_count_WB: 51 PC_WB: 0x378 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[307]  inst_count_WB: 52 PC_WB: 0x37c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[316]  inst_count_WB: 53 PC_WB: 0x380 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[325]  inst_count_WB: 54 PC_WB: 0x384 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[334]  inst_count_WB: 55 PC_WB: 0x388 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[343]  inst_count_WB: 56 PC_WB: 0x38c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[352]  inst_count_WB: 57 PC_WB: 0x390 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[361]  inst_count_WB: 58 PC_WB: 0x394 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[369]  inst_count_WB: 59 PC_WB: 0x398 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[378]  inst_count_WB: 60 PC_WB: 0x39c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[387]  inst_count_WB: 61 PC_WB: 0x3a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[396]  inst_count_WB: 62 PC_WB: 0x3a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[405]  inst_count_WB: 63 PC_WB: 0x3a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[414]  inst_count_WB: 64 PC_WB: 0x3ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[423]  inst_count_WB: 65 PC_WB: 0x3b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[432]  inst_count_WB: 66 PC_WB: 0x3b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[441]  inst_count_WB: 67 PC_WB: 0x3b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[449]  inst_count_WB: 68 PC_WB: 0x3bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[458]  inst_count_WB: 69 PC_WB: 0x3c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[467]  inst_count_WB: 70 PC_WB: 0x3c4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[476]  inst_count_WB: 71 PC_WB: 0x3c8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[485]  inst_count_WB: 72 PC_WB: 0x3cc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[494]  inst_count_WB: 73 PC_WB: 0x3d0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[503]  inst_count_WB: 74 PC_WB: 0x3d4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[512]  inst_count_WB: 75 PC_WB: 0x3d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[521]  inst_count_WB: 76 PC_WB: 0x3dc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[529]  inst_count_WB: 77 PC_WB: 0x3e0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[538]  inst_count_WB: 78 PC_WB: 0x3e4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[547]  inst_count_WB: 79 PC_WB: 0x3e8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[556]  inst_count_WB: 80 PC_WB: 0x3ec Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[565]  inst_count_WB: 81 PC_WB: 0x3f0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[574]  inst_count_WB: 82 PC_WB: 0x3f4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[583]  inst_count_WB: 83 PC_WB: 0x3f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[592]  inst_count_WB: 84 PC_WB: 0x3fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[601]  inst_count_WB: 85 PC_WB: 0x400 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[609]  inst_count_WB: 86 PC_WB: 0x404 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[618]  inst_count_WB: 87 PC_WB: 0x408 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[627]  inst_count_WB: 88 PC_WB: 0x40c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[636]  inst_count_WB: 89 PC_WB: 0x410 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[645]  inst_count_WB: 90 PC_WB: 0x414 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[654]  inst_count_WB: 91 PC_WB: 0x418 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[663]  inst_count_WB: 92 PC_WB: 0x41c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[672]  inst_count_WB: 93 PC_WB: 0x420 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[681]  inst_count_WB: 94 PC_WB: 0x424 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[689]  inst_count_WB: 95 PC_WB: 0x428 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[698]  inst_count_WB: 96 PC_WB: 0x42c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[707]  inst_count_WB: 97 PC_WB: 0x430 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[716]  inst_count_WB: 98 PC_WB: 0x434 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[725]  inst_count_WB: 99 PC_WB: 0x438 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[734]  inst_count_WB: 100 PC_WB: 0x43c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[743]  inst_count_WB: 101 PC_WB: 0x440 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[752]  inst_count_WB: 102 PC_WB: 0x444 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[761]  inst_count_WB: 103 PC_WB: 0x448 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[769]  inst_count_WB: 104 PC_WB: 0x44c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[778]  inst_count_WB: 105 PC_WB: 0x450 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[787]  inst_count_WB: 106 PC_WB: 0x454 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[796]  inst_count_WB: 107 PC_WB: 0x458 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[805]  inst_count_WB: 108 PC_WB: 0x45c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[814]  inst_count_WB: 109 PC_WB: 0x460 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[823]  inst_count_WB: 110 PC_WB: 0x464 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[832]  inst_count_WB: 111 PC_WB: 0x468 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[841]  inst_count_WB: 112 PC_WB: 0x46c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[849]  inst_count_WB: 113 PC_WB: 0x470 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[858]  inst_count_WB: 114 PC_WB: 0x474 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[867]  inst_count_WB: 115 PC_WB: 0x478 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[876]  inst_count_WB: 116 PC_WB: 0x47c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[885]  inst_count_WB: 117 PC_WB: 0x480 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[894]  inst_count_WB: 118 PC_WB: 0x484 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[903]  inst_count_WB: 119 PC_WB: 0x488 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[912]  inst_count_WB: 120 PC_WB: 0x48c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[921]  inst_count_WB: 121 PC_WB: 0x490 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[929]  inst_count_WB: 122 PC_WB: 0x494 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[938]  inst_count_WB: 123 PC_WB: 0x498 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[947]  inst_count_WB: 124 PC_WB: 0x49c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[956]  inst_count_WB: 125 PC_WB: 0x4a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[965]  inst_count_WB: 126 PC_WB: 0x4a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[974]  inst_count_WB: 127 PC_WB: 0x4a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[983]  inst_count_WB: 128 PC_WB: 0x4ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[992]  inst_count_WB: 129 PC_WB: 0x4b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+Passed!
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/add.mem
+-- VERILATE ----------------
+/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/add.mem
+/home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/add.mem"|g'  /home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/add.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/add.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o sim_main.o ../sim_main.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/add.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated.o /usr/share/verilator/include/verilated.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/add.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_dpi.o /usr/share/verilator/include/verilated_dpi.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/add.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_vcd_c.o /usr/share/verilator/include/verilated_vcd_c.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline___024root__DepSet_ha2aed019__0.cpp Vpipeline___024root__DepSet_h0e89545c__0.cpp Vpipeline_pipeline__DepSet_h4d7d4d0b__0.cpp Vpipeline_WB_STAGE__DepSet_h58b40e1e__0.cpp Vpipeline__Dpi.cpp Vpipeline__Trace__0.cpp Vpipeline__ConstPool_0.cpp Vpipeline___024root__Slow.cpp Vpipeline___024root__DepSet_ha2aed019__0__Slow.cpp Vpipeline___024root__DepSet_h0e89545c__0__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_pipeline__DepSet_h4d7d4d0b__0__Slow.cpp Vpipeline_pipeline__DepSet_ha3d9c74e__0__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline_WB_STAGE__DepSet_h79cc6917__0__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__0__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/add.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+echo "" > Vpipeline__ALL.verilator_deplist.tmp
+Archive ar -rcs Vpipeline__ALL.a Vpipeline__ALL.o
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+rm Vpipeline__ALL.verilator_deplist.tmp
+make[1]: Leaving directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x313 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+[125]  inst_count_WB: 8 PC_WB: 0x21c Inst_WB: 0x413 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:8
+[127]  inst_count_WB: 9 PC_WB: 0x220 Inst_WB: 0x493 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:9
+[129]  inst_count_WB: 10 PC_WB: 0x224 Inst_WB: 0x513 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[132]  inst_count_WB: 11 PC_WB: 0x228 Inst_WB: 0x593 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:11
+[134]  inst_count_WB: 12 PC_WB: 0x22c Inst_WB: 0x613 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:12
+[136]  inst_count_WB: 13 PC_WB: 0x230 Inst_WB: 0x693 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:13
+[138]  inst_count_WB: 14 PC_WB: 0x234 Inst_WB: 0x713 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[141]  inst_count_WB: 15 PC_WB: 0x238 Inst_WB: 0x793 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:15
+[143]  inst_count_WB: 16 PC_WB: 0x23c Inst_WB: 0x813 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:16
+[145]  inst_count_WB: 17 PC_WB: 0x240 Inst_WB: 0x893 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:17
+[147]  inst_count_WB: 18 PC_WB: 0x244 Inst_WB: 0x913 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:18
+[149]  inst_count_WB: 19 PC_WB: 0x248 Inst_WB: 0x993 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:19
+[152]  inst_count_WB: 20 PC_WB: 0x24c Inst_WB: 0xa13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:20
+[154]  inst_count_WB: 21 PC_WB: 0x250 Inst_WB: 0xa93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:21
+[156]  inst_count_WB: 22 PC_WB: 0x254 Inst_WB: 0xb13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:22
+[158]  inst_count_WB: 23 PC_WB: 0x258 Inst_WB: 0xb93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:23
+[161]  inst_count_WB: 24 PC_WB: 0x25c Inst_WB: 0xc13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:24
+[163]  inst_count_WB: 25 PC_WB: 0x260 Inst_WB: 0xc93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:25
+[165]  inst_count_WB: 26 PC_WB: 0x264 Inst_WB: 0xd13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:26
+[167]  inst_count_WB: 27 PC_WB: 0x268 Inst_WB: 0xd93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:27
+[169]  inst_count_WB: 28 PC_WB: 0x26c Inst_WB: 0xe13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:28
+[172]  inst_count_WB: 29 PC_WB: 0x270 Inst_WB: 0xe93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:29
+[174]  inst_count_WB: 30 PC_WB: 0x274 Inst_WB: 0xf13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:30
+[176]  inst_count_WB: 31 PC_WB: 0x278 Inst_WB: 0xf93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:31
+[178]  inst_count_WB: 32 PC_WB: 0x27c Inst_WB: 0x300093 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:1
+[181]  inst_count_WB: 33 PC_WB: 0x280 Inst_WB: 0x700113 Op_I:12 wr_reg_WB:1 regval_WB:7 wregno_WB:2
+[183]  inst_count_WB: 34 PC_WB: 0x284 Inst_WB: 0x208733 Op_I:1 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[187]  inst_count_WB: 35 PC_WB: 0x288 Inst_WB: 0xa00393 Op_I:12 wr_reg_WB:1 regval_WB:10 wregno_WB:7
+[189]  inst_count_WB: 36 PC_WB: 0x28c Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[192]  inst_count_WB: 37 PC_WB: 0x290 Inst_WB: 0x2771a63 Op_I:29
+[201]  inst_count_WB: 38 PC_WB: 0x2c4 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[203]  inst_count_WB: 39 PC_WB: 0x2c8 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[212]  inst_count_WB: 40 PC_WB: 0x2cc Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[221]  inst_count_WB: 41 PC_WB: 0x2d0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[229]  inst_count_WB: 42 PC_WB: 0x2d4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[238]  inst_count_WB: 43 PC_WB: 0x2d8 Inst_WB: 0x180006f Op_I:25
+[241]  inst_count_WB: 44 PC_WB: 0x2dc Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[243]  inst_count_WB: 45 PC_WB: 0x2e0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[252]  inst_count_WB: 46 PC_WB: 0x2e4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[261]  inst_count_WB: 47 PC_WB: 0x2e8 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[269]  inst_count_WB: 48 PC_WB: 0x2ec Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[278]  inst_count_WB: 49 PC_WB: 0x2f0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[287]  inst_count_WB: 50 PC_WB: 0x2f4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[296]  inst_count_WB: 51 PC_WB: 0x2f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[305]  inst_count_WB: 52 PC_WB: 0x2fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[314]  inst_count_WB: 53 PC_WB: 0x300 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[323]  inst_count_WB: 54 PC_WB: 0x304 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[332]  inst_count_WB: 55 PC_WB: 0x308 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[341]  inst_count_WB: 56 PC_WB: 0x30c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[349]  inst_count_WB: 57 PC_WB: 0x310 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[358]  inst_count_WB: 58 PC_WB: 0x314 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[367]  inst_count_WB: 59 PC_WB: 0x318 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[376]  inst_count_WB: 60 PC_WB: 0x31c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[385]  inst_count_WB: 61 PC_WB: 0x320 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[394]  inst_count_WB: 62 PC_WB: 0x324 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[403]  inst_count_WB: 63 PC_WB: 0x328 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[412]  inst_count_WB: 64 PC_WB: 0x32c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[421]  inst_count_WB: 65 PC_WB: 0x330 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[429]  inst_count_WB: 66 PC_WB: 0x334 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[438]  inst_count_WB: 67 PC_WB: 0x338 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[447]  inst_count_WB: 68 PC_WB: 0x33c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[456]  inst_count_WB: 69 PC_WB: 0x340 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[465]  inst_count_WB: 70 PC_WB: 0x344 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[474]  inst_count_WB: 71 PC_WB: 0x348 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[483]  inst_count_WB: 72 PC_WB: 0x34c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[492]  inst_count_WB: 73 PC_WB: 0x350 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[501]  inst_count_WB: 74 PC_WB: 0x354 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[509]  inst_count_WB: 75 PC_WB: 0x358 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[518]  inst_count_WB: 76 PC_WB: 0x35c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[527]  inst_count_WB: 77 PC_WB: 0x360 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[536]  inst_count_WB: 78 PC_WB: 0x364 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[545]  inst_count_WB: 79 PC_WB: 0x368 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[554]  inst_count_WB: 80 PC_WB: 0x36c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[563]  inst_count_WB: 81 PC_WB: 0x370 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[572]  inst_count_WB: 82 PC_WB: 0x374 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[581]  inst_count_WB: 83 PC_WB: 0x378 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[589]  inst_count_WB: 84 PC_WB: 0x37c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[598]  inst_count_WB: 85 PC_WB: 0x380 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[607]  inst_count_WB: 86 PC_WB: 0x384 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[616]  inst_count_WB: 87 PC_WB: 0x388 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[625]  inst_count_WB: 88 PC_WB: 0x38c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[634]  inst_count_WB: 89 PC_WB: 0x390 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[643]  inst_count_WB: 90 PC_WB: 0x394 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[652]  inst_count_WB: 91 PC_WB: 0x398 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[661]  inst_count_WB: 92 PC_WB: 0x39c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[669]  inst_count_WB: 93 PC_WB: 0x3a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[678]  inst_count_WB: 94 PC_WB: 0x3a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[687]  inst_count_WB: 95 PC_WB: 0x3a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[696]  inst_count_WB: 96 PC_WB: 0x3ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[705]  inst_count_WB: 97 PC_WB: 0x3b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[714]  inst_count_WB: 98 PC_WB: 0x3b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[723]  inst_count_WB: 99 PC_WB: 0x3b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[732]  inst_count_WB: 100 PC_WB: 0x3bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[741]  inst_count_WB: 101 PC_WB: 0x3c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[749]  inst_count_WB: 102 PC_WB: 0x3c4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[758]  inst_count_WB: 103 PC_WB: 0x3c8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[767]  inst_count_WB: 104 PC_WB: 0x3cc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[776]  inst_count_WB: 105 PC_WB: 0x3d0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[785]  inst_count_WB: 106 PC_WB: 0x3d4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[794]  inst_count_WB: 107 PC_WB: 0x3d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[803]  inst_count_WB: 108 PC_WB: 0x3dc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[812]  inst_count_WB: 109 PC_WB: 0x3e0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[821]  inst_count_WB: 110 PC_WB: 0x3e4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[829]  inst_count_WB: 111 PC_WB: 0x3e8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[838]  inst_count_WB: 112 PC_WB: 0x3ec Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[847]  inst_count_WB: 113 PC_WB: 0x3f0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[856]  inst_count_WB: 114 PC_WB: 0x3f4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[865]  inst_count_WB: 115 PC_WB: 0x3f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[874]  inst_count_WB: 116 PC_WB: 0x3fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[883]  inst_count_WB: 117 PC_WB: 0x400 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[892]  inst_count_WB: 118 PC_WB: 0x404 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[901]  inst_count_WB: 119 PC_WB: 0x408 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[909]  inst_count_WB: 120 PC_WB: 0x40c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[918]  inst_count_WB: 121 PC_WB: 0x410 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[927]  inst_count_WB: 122 PC_WB: 0x414 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[936]  inst_count_WB: 123 PC_WB: 0x418 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[945]  inst_count_WB: 124 PC_WB: 0x41c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[954]  inst_count_WB: 125 PC_WB: 0x420 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[963]  inst_count_WB: 126 PC_WB: 0x424 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[972]  inst_count_WB: 127 PC_WB: 0x428 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[981]  inst_count_WB: 128 PC_WB: 0x42c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[989]  inst_count_WB: 129 PC_WB: 0x430 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[998]  inst_count_WB: 130 PC_WB: 0x434 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+Passed!
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/auipc.mem
+-- VERILATE ----------------
+/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/auipc.mem
+/home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/auipc.mem"|g'  /home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/auipc.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/auipc.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o sim_main.o ../sim_main.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/auipc.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated.o /usr/share/verilator/include/verilated.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/auipc.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_dpi.o /usr/share/verilator/include/verilated_dpi.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/auipc.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_vcd_c.o /usr/share/verilator/include/verilated_vcd_c.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline___024root__DepSet_ha2aed019__0.cpp Vpipeline___024root__DepSet_h0e89545c__0.cpp Vpipeline_pipeline__DepSet_h4d7d4d0b__0.cpp Vpipeline_WB_STAGE__DepSet_h58b40e1e__0.cpp Vpipeline__Dpi.cpp Vpipeline__Trace__0.cpp Vpipeline__ConstPool_0.cpp Vpipeline___024root__Slow.cpp Vpipeline___024root__DepSet_ha2aed019__0__Slow.cpp Vpipeline___024root__DepSet_h0e89545c__0__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_pipeline__DepSet_h4d7d4d0b__0__Slow.cpp Vpipeline_pipeline__DepSet_ha3d9c74e__0__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline_WB_STAGE__DepSet_h79cc6917__0__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__0__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/auipc.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+echo "" > Vpipeline__ALL.verilator_deplist.tmp
+Archive ar -rcs Vpipeline__ALL.a Vpipeline__ALL.o
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+rm Vpipeline__ALL.verilator_deplist.tmp
+make[1]: Leaving directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x313 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+[125]  inst_count_WB: 8 PC_WB: 0x21c Inst_WB: 0x413 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:8
+[127]  inst_count_WB: 9 PC_WB: 0x220 Inst_WB: 0x493 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:9
+[129]  inst_count_WB: 10 PC_WB: 0x224 Inst_WB: 0x513 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[132]  inst_count_WB: 11 PC_WB: 0x228 Inst_WB: 0x593 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:11
+[134]  inst_count_WB: 12 PC_WB: 0x22c Inst_WB: 0x613 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:12
+[136]  inst_count_WB: 13 PC_WB: 0x230 Inst_WB: 0x693 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:13
+[138]  inst_count_WB: 14 PC_WB: 0x234 Inst_WB: 0x713 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[141]  inst_count_WB: 15 PC_WB: 0x238 Inst_WB: 0x793 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:15
+[143]  inst_count_WB: 16 PC_WB: 0x23c Inst_WB: 0x813 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:16
+[145]  inst_count_WB: 17 PC_WB: 0x240 Inst_WB: 0x893 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:17
+[147]  inst_count_WB: 18 PC_WB: 0x244 Inst_WB: 0x913 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:18
+[149]  inst_count_WB: 19 PC_WB: 0x248 Inst_WB: 0x993 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:19
+[152]  inst_count_WB: 20 PC_WB: 0x24c Inst_WB: 0xa13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:20
+[154]  inst_count_WB: 21 PC_WB: 0x250 Inst_WB: 0xa93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:21
+[156]  inst_count_WB: 22 PC_WB: 0x254 Inst_WB: 0xb13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:22
+[158]  inst_count_WB: 23 PC_WB: 0x258 Inst_WB: 0xb93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:23
+[161]  inst_count_WB: 24 PC_WB: 0x25c Inst_WB: 0xc13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:24
+[163]  inst_count_WB: 25 PC_WB: 0x260 Inst_WB: 0xc93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:25
+[165]  inst_count_WB: 26 PC_WB: 0x264 Inst_WB: 0xd13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:26
+[167]  inst_count_WB: 27 PC_WB: 0x268 Inst_WB: 0xd93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:27
+[169]  inst_count_WB: 28 PC_WB: 0x26c Inst_WB: 0xe13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:28
+[172]  inst_count_WB: 29 PC_WB: 0x270 Inst_WB: 0xe93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:29
+[174]  inst_count_WB: 30 PC_WB: 0x274 Inst_WB: 0xf13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:30
+[176]  inst_count_WB: 31 PC_WB: 0x278 Inst_WB: 0xf93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:31
+[178]  inst_count_WB: 32 PC_WB: 0x27c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[187]  inst_count_WB: 33 PC_WB: 0x280 Inst_WB: 0x2517 Op_I:22 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[189]  inst_count_WB: 34 PC_WB: 0x284 Inst_WB: 0x71c50513 Op_I:12 wr_reg_WB:1 regval_WB:1820 wregno_WB:10
+[194]  inst_count_WB: 35 PC_WB: 0x288 Inst_WB: 0x4005ef Op_I:25
+[196]  inst_count_WB: 36 PC_WB: 0x28c Inst_WB: 0x40b50533 Op_I:2 wr_reg_WB:1 regval_WB:1820 wregno_WB:10
+[201]  inst_count_WB: 37 PC_WB: 0x290 Inst_WB: 0x23b7 Op_I:21 wr_reg_WB:1 regval_WB:33554432 wregno_WB:7
+[203]  inst_count_WB: 38 PC_WB: 0x294 Inst_WB: 0x71038393 Op_I:12 wr_reg_WB:1 regval_WB:1808 wregno_WB:7
+[207]  inst_count_WB: 39 PC_WB: 0x298 Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[209]  inst_count_WB: 40 PC_WB: 0x29c Inst_WB: 0x2751463 Op_I:29
+[214]  inst_count_WB: 41 PC_WB: 0x2c4 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[216]  inst_count_WB: 42 PC_WB: 0x2c8 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[225]  inst_count_WB: 43 PC_WB: 0x2cc Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[234]  inst_count_WB: 44 PC_WB: 0x2d0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[243]  inst_count_WB: 45 PC_WB: 0x2d4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[252]  inst_count_WB: 46 PC_WB: 0x2d8 Inst_WB: 0x180006f Op_I:25
+[254]  inst_count_WB: 47 PC_WB: 0x2dc Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[256]  inst_count_WB: 48 PC_WB: 0x2e0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[265]  inst_count_WB: 49 PC_WB: 0x2e4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[274]  inst_count_WB: 50 PC_WB: 0x2e8 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[283]  inst_count_WB: 51 PC_WB: 0x2ec Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[292]  inst_count_WB: 52 PC_WB: 0x2f0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[301]  inst_count_WB: 53 PC_WB: 0x2f4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[309]  inst_count_WB: 54 PC_WB: 0x2f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[318]  inst_count_WB: 55 PC_WB: 0x2fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[327]  inst_count_WB: 56 PC_WB: 0x300 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[336]  inst_count_WB: 57 PC_WB: 0x304 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[345]  inst_count_WB: 58 PC_WB: 0x308 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[354]  inst_count_WB: 59 PC_WB: 0x30c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[363]  inst_count_WB: 60 PC_WB: 0x310 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[372]  inst_count_WB: 61 PC_WB: 0x314 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[381]  inst_count_WB: 62 PC_WB: 0x318 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[389]  inst_count_WB: 63 PC_WB: 0x31c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[398]  inst_count_WB: 64 PC_WB: 0x320 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[407]  inst_count_WB: 65 PC_WB: 0x324 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[416]  inst_count_WB: 66 PC_WB: 0x328 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[425]  inst_count_WB: 67 PC_WB: 0x32c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[434]  inst_count_WB: 68 PC_WB: 0x330 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[443]  inst_count_WB: 69 PC_WB: 0x334 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[452]  inst_count_WB: 70 PC_WB: 0x338 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[461]  inst_count_WB: 71 PC_WB: 0x33c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[469]  inst_count_WB: 72 PC_WB: 0x340 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[478]  inst_count_WB: 73 PC_WB: 0x344 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[487]  inst_count_WB: 74 PC_WB: 0x348 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[496]  inst_count_WB: 75 PC_WB: 0x34c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[505]  inst_count_WB: 76 PC_WB: 0x350 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[514]  inst_count_WB: 77 PC_WB: 0x354 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[523]  inst_count_WB: 78 PC_WB: 0x358 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[532]  inst_count_WB: 79 PC_WB: 0x35c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[541]  inst_count_WB: 80 PC_WB: 0x360 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[549]  inst_count_WB: 81 PC_WB: 0x364 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[558]  inst_count_WB: 82 PC_WB: 0x368 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[567]  inst_count_WB: 83 PC_WB: 0x36c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[576]  inst_count_WB: 84 PC_WB: 0x370 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[585]  inst_count_WB: 85 PC_WB: 0x374 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[594]  inst_count_WB: 86 PC_WB: 0x378 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[603]  inst_count_WB: 87 PC_WB: 0x37c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[612]  inst_count_WB: 88 PC_WB: 0x380 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[621]  inst_count_WB: 89 PC_WB: 0x384 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[629]  inst_count_WB: 90 PC_WB: 0x388 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[638]  inst_count_WB: 91 PC_WB: 0x38c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[647]  inst_count_WB: 92 PC_WB: 0x390 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[656]  inst_count_WB: 93 PC_WB: 0x394 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[665]  inst_count_WB: 94 PC_WB: 0x398 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[674]  inst_count_WB: 95 PC_WB: 0x39c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[683]  inst_count_WB: 96 PC_WB: 0x3a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[692]  inst_count_WB: 97 PC_WB: 0x3a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[701]  inst_count_WB: 98 PC_WB: 0x3a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[709]  inst_count_WB: 99 PC_WB: 0x3ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[718]  inst_count_WB: 100 PC_WB: 0x3b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[727]  inst_count_WB: 101 PC_WB: 0x3b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[736]  inst_count_WB: 102 PC_WB: 0x3b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[745]  inst_count_WB: 103 PC_WB: 0x3bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[754]  inst_count_WB: 104 PC_WB: 0x3c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[763]  inst_count_WB: 105 PC_WB: 0x3c4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[772]  inst_count_WB: 106 PC_WB: 0x3c8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[781]  inst_count_WB: 107 PC_WB: 0x3cc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[789]  inst_count_WB: 108 PC_WB: 0x3d0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[798]  inst_count_WB: 109 PC_WB: 0x3d4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[807]  inst_count_WB: 110 PC_WB: 0x3d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[816]  inst_count_WB: 111 PC_WB: 0x3dc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[825]  inst_count_WB: 112 PC_WB: 0x3e0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[834]  inst_count_WB: 113 PC_WB: 0x3e4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[843]  inst_count_WB: 114 PC_WB: 0x3e8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[852]  inst_count_WB: 115 PC_WB: 0x3ec Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[861]  inst_count_WB: 116 PC_WB: 0x3f0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[869]  inst_count_WB: 117 PC_WB: 0x3f4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[878]  inst_count_WB: 118 PC_WB: 0x3f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[887]  inst_count_WB: 119 PC_WB: 0x3fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[896]  inst_count_WB: 120 PC_WB: 0x400 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[905]  inst_count_WB: 121 PC_WB: 0x404 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[914]  inst_count_WB: 122 PC_WB: 0x408 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[923]  inst_count_WB: 123 PC_WB: 0x40c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[932]  inst_count_WB: 124 PC_WB: 0x410 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[941]  inst_count_WB: 125 PC_WB: 0x414 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[949]  inst_count_WB: 126 PC_WB: 0x418 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[958]  inst_count_WB: 127 PC_WB: 0x41c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[967]  inst_count_WB: 128 PC_WB: 0x420 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[976]  inst_count_WB: 129 PC_WB: 0x424 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[985]  inst_count_WB: 130 PC_WB: 0x428 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[994]  inst_count_WB: 131 PC_WB: 0x42c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+Passed!
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/beq.mem
+-- VERILATE ----------------
+/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/beq.mem
+/home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/beq.mem"|g'  /home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/beq.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/beq.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o sim_main.o ../sim_main.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/beq.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated.o /usr/share/verilator/include/verilated.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/beq.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_dpi.o /usr/share/verilator/include/verilated_dpi.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/beq.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_vcd_c.o /usr/share/verilator/include/verilated_vcd_c.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline___024root__DepSet_ha2aed019__0.cpp Vpipeline___024root__DepSet_h0e89545c__0.cpp Vpipeline_pipeline__DepSet_h4d7d4d0b__0.cpp Vpipeline_WB_STAGE__DepSet_h58b40e1e__0.cpp Vpipeline__Dpi.cpp Vpipeline__Trace__0.cpp Vpipeline__ConstPool_0.cpp Vpipeline___024root__Slow.cpp Vpipeline___024root__DepSet_ha2aed019__0__Slow.cpp Vpipeline___024root__DepSet_h0e89545c__0__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_pipeline__DepSet_h4d7d4d0b__0__Slow.cpp Vpipeline_pipeline__DepSet_ha3d9c74e__0__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline_WB_STAGE__DepSet_h79cc6917__0__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__0__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/beq.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+echo "" > Vpipeline__ALL.verilator_deplist.tmp
+Archive ar -rcs Vpipeline__ALL.a Vpipeline__ALL.o
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+rm Vpipeline__ALL.verilator_deplist.tmp
+make[1]: Leaving directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x313 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+[125]  inst_count_WB: 8 PC_WB: 0x21c Inst_WB: 0x413 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:8
+[127]  inst_count_WB: 9 PC_WB: 0x220 Inst_WB: 0x493 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:9
+[129]  inst_count_WB: 10 PC_WB: 0x224 Inst_WB: 0x513 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[132]  inst_count_WB: 11 PC_WB: 0x228 Inst_WB: 0x593 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:11
+[134]  inst_count_WB: 12 PC_WB: 0x22c Inst_WB: 0x613 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:12
+[136]  inst_count_WB: 13 PC_WB: 0x230 Inst_WB: 0x693 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:13
+[138]  inst_count_WB: 14 PC_WB: 0x234 Inst_WB: 0x713 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[141]  inst_count_WB: 15 PC_WB: 0x238 Inst_WB: 0x793 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:15
+[143]  inst_count_WB: 16 PC_WB: 0x23c Inst_WB: 0x813 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:16
+[145]  inst_count_WB: 17 PC_WB: 0x240 Inst_WB: 0x893 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:17
+[147]  inst_count_WB: 18 PC_WB: 0x244 Inst_WB: 0x913 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:18
+[149]  inst_count_WB: 19 PC_WB: 0x248 Inst_WB: 0x993 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:19
+[152]  inst_count_WB: 20 PC_WB: 0x24c Inst_WB: 0xa13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:20
+[154]  inst_count_WB: 21 PC_WB: 0x250 Inst_WB: 0xa93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:21
+[156]  inst_count_WB: 22 PC_WB: 0x254 Inst_WB: 0xb13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:22
+[158]  inst_count_WB: 23 PC_WB: 0x258 Inst_WB: 0xb93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:23
+[161]  inst_count_WB: 24 PC_WB: 0x25c Inst_WB: 0xc13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:24
+[163]  inst_count_WB: 25 PC_WB: 0x260 Inst_WB: 0xc93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:25
+[165]  inst_count_WB: 26 PC_WB: 0x264 Inst_WB: 0xd13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:26
+[167]  inst_count_WB: 27 PC_WB: 0x268 Inst_WB: 0xd93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:27
+[169]  inst_count_WB: 28 PC_WB: 0x26c Inst_WB: 0xe13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:28
+[172]  inst_count_WB: 29 PC_WB: 0x270 Inst_WB: 0xe93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:29
+[174]  inst_count_WB: 30 PC_WB: 0x274 Inst_WB: 0xf13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:30
+[176]  inst_count_WB: 31 PC_WB: 0x278 Inst_WB: 0xf93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:31
+[178]  inst_count_WB: 32 PC_WB: 0x27c Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[181]  inst_count_WB: 33 PC_WB: 0x280 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[183]  inst_count_WB: 34 PC_WB: 0x284 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[185]  inst_count_WB: 35 PC_WB: 0x288 Inst_WB: 0x208663 Op_I:28
+[192]  inst_count_WB: 36 PC_WB: 0x294 Inst_WB: 0xfe208ee3 Op_I:28
+[196]  inst_count_WB: 37 PC_WB: 0x290 Inst_WB: 0x301663 Op_I:29
+[201]  inst_count_WB: 38 PC_WB: 0x29c Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[203]  inst_count_WB: 39 PC_WB: 0x2a0 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[205]  inst_count_WB: 40 PC_WB: 0x2a4 Inst_WB: 0x100113 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:2
+[214]  inst_count_WB: 41 PC_WB: 0x2a8 Inst_WB: 0x208463 Op_I:28
+Failed. exitcode: 2
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/bge.mem
+-- VERILATE ----------------
+/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/bge.mem
+/home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/bge.mem"|g'  /home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/bge.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/bge.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o sim_main.o ../sim_main.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/bge.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated.o /usr/share/verilator/include/verilated.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/bge.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_dpi.o /usr/share/verilator/include/verilated_dpi.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/bge.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_vcd_c.o /usr/share/verilator/include/verilated_vcd_c.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline___024root__DepSet_ha2aed019__0.cpp Vpipeline___024root__DepSet_h0e89545c__0.cpp Vpipeline_pipeline__DepSet_h4d7d4d0b__0.cpp Vpipeline_WB_STAGE__DepSet_h58b40e1e__0.cpp Vpipeline__Dpi.cpp Vpipeline__Trace__0.cpp Vpipeline__ConstPool_0.cpp Vpipeline___024root__Slow.cpp Vpipeline___024root__DepSet_ha2aed019__0__Slow.cpp Vpipeline___024root__DepSet_h0e89545c__0__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_pipeline__DepSet_h4d7d4d0b__0__Slow.cpp Vpipeline_pipeline__DepSet_ha3d9c74e__0__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline_WB_STAGE__DepSet_h79cc6917__0__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__0__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/bge.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+echo "" > Vpipeline__ALL.verilator_deplist.tmp
+Archive ar -rcs Vpipeline__ALL.a Vpipeline__ALL.o
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+rm Vpipeline__ALL.verilator_deplist.tmp
+make[1]: Leaving directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x313 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+[125]  inst_count_WB: 8 PC_WB: 0x21c Inst_WB: 0x413 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:8
+[127]  inst_count_WB: 9 PC_WB: 0x220 Inst_WB: 0x493 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:9
+[129]  inst_count_WB: 10 PC_WB: 0x224 Inst_WB: 0x513 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[132]  inst_count_WB: 11 PC_WB: 0x228 Inst_WB: 0x593 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:11
+[134]  inst_count_WB: 12 PC_WB: 0x22c Inst_WB: 0x613 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:12
+[136]  inst_count_WB: 13 PC_WB: 0x230 Inst_WB: 0x693 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:13
+[138]  inst_count_WB: 14 PC_WB: 0x234 Inst_WB: 0x713 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[141]  inst_count_WB: 15 PC_WB: 0x238 Inst_WB: 0x793 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:15
+[143]  inst_count_WB: 16 PC_WB: 0x23c Inst_WB: 0x813 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:16
+[145]  inst_count_WB: 17 PC_WB: 0x240 Inst_WB: 0x893 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:17
+[147]  inst_count_WB: 18 PC_WB: 0x244 Inst_WB: 0x913 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:18
+[149]  inst_count_WB: 19 PC_WB: 0x248 Inst_WB: 0x993 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:19
+[152]  inst_count_WB: 20 PC_WB: 0x24c Inst_WB: 0xa13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:20
+[154]  inst_count_WB: 21 PC_WB: 0x250 Inst_WB: 0xa93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:21
+[156]  inst_count_WB: 22 PC_WB: 0x254 Inst_WB: 0xb13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:22
+[158]  inst_count_WB: 23 PC_WB: 0x258 Inst_WB: 0xb93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:23
+[161]  inst_count_WB: 24 PC_WB: 0x25c Inst_WB: 0xc13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:24
+[163]  inst_count_WB: 25 PC_WB: 0x260 Inst_WB: 0xc93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:25
+[165]  inst_count_WB: 26 PC_WB: 0x264 Inst_WB: 0xd13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:26
+[167]  inst_count_WB: 27 PC_WB: 0x268 Inst_WB: 0xd93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:27
+[169]  inst_count_WB: 28 PC_WB: 0x26c Inst_WB: 0xe13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:28
+[172]  inst_count_WB: 29 PC_WB: 0x270 Inst_WB: 0xe93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:29
+[174]  inst_count_WB: 30 PC_WB: 0x274 Inst_WB: 0xf13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:30
+[176]  inst_count_WB: 31 PC_WB: 0x278 Inst_WB: 0xf93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:31
+[178]  inst_count_WB: 32 PC_WB: 0x27c Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[181]  inst_count_WB: 33 PC_WB: 0x280 Inst_WB: 0xfff00093 Op_I:12 wr_reg_WB:1 regval_WB:-1 wregno_WB:1
+[185]  inst_count_WB: 34 PC_WB: 0x284 Inst_WB: 0xfff00113 Op_I:12 wr_reg_WB:1 regval_WB:-1 wregno_WB:2
+[187]  inst_count_WB: 35 PC_WB: 0x288 Inst_WB: 0x20d663 Op_I:31
+[198]  inst_count_WB: 36 PC_WB: 0x294 Inst_WB: 0xfe20dee3 Op_I:31
+[203]  inst_count_WB: 37 PC_WB: 0x290 Inst_WB: 0x301663 Op_I:29
+[207]  inst_count_WB: 38 PC_WB: 0x29c Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[209]  inst_count_WB: 39 PC_WB: 0x2a0 Inst_WB: 0xffe00093 Op_I:12 wr_reg_WB:1 regval_WB:-2 wregno_WB:1
+[212]  inst_count_WB: 40 PC_WB: 0x2a4 Inst_WB: 0x100113 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:2
+[221]  inst_count_WB: 41 PC_WB: 0x2a8 Inst_WB: 0x20d463 Op_I:31
+Failed. exitcode: 2
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jal.mem
+-- VERILATE ----------------
+/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jal.mem
+/home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jal.mem"|g'  /home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jal.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jal.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o sim_main.o ../sim_main.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jal.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated.o /usr/share/verilator/include/verilated.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jal.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_dpi.o /usr/share/verilator/include/verilated_dpi.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jal.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_vcd_c.o /usr/share/verilator/include/verilated_vcd_c.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline___024root__DepSet_ha2aed019__0.cpp Vpipeline___024root__DepSet_h0e89545c__0.cpp Vpipeline_pipeline__DepSet_h4d7d4d0b__0.cpp Vpipeline_WB_STAGE__DepSet_h58b40e1e__0.cpp Vpipeline__Dpi.cpp Vpipeline__Trace__0.cpp Vpipeline__ConstPool_0.cpp Vpipeline___024root__Slow.cpp Vpipeline___024root__DepSet_ha2aed019__0__Slow.cpp Vpipeline___024root__DepSet_h0e89545c__0__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_pipeline__DepSet_h4d7d4d0b__0__Slow.cpp Vpipeline_pipeline__DepSet_ha3d9c74e__0__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline_WB_STAGE__DepSet_h79cc6917__0__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__0__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jal.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+echo "" > Vpipeline__ALL.verilator_deplist.tmp
+Archive ar -rcs Vpipeline__ALL.a Vpipeline__ALL.o
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+rm Vpipeline__ALL.verilator_deplist.tmp
+make[1]: Leaving directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x313 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+[125]  inst_count_WB: 8 PC_WB: 0x21c Inst_WB: 0x413 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:8
+[127]  inst_count_WB: 9 PC_WB: 0x220 Inst_WB: 0x493 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:9
+[129]  inst_count_WB: 10 PC_WB: 0x224 Inst_WB: 0x513 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[132]  inst_count_WB: 11 PC_WB: 0x228 Inst_WB: 0x593 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:11
+[134]  inst_count_WB: 12 PC_WB: 0x22c Inst_WB: 0x613 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:12
+[136]  inst_count_WB: 13 PC_WB: 0x230 Inst_WB: 0x693 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:13
+[138]  inst_count_WB: 14 PC_WB: 0x234 Inst_WB: 0x713 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[141]  inst_count_WB: 15 PC_WB: 0x238 Inst_WB: 0x793 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:15
+[143]  inst_count_WB: 16 PC_WB: 0x23c Inst_WB: 0x813 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:16
+[145]  inst_count_WB: 17 PC_WB: 0x240 Inst_WB: 0x893 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:17
+[147]  inst_count_WB: 18 PC_WB: 0x244 Inst_WB: 0x913 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:18
+[149]  inst_count_WB: 19 PC_WB: 0x248 Inst_WB: 0x993 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:19
+[152]  inst_count_WB: 20 PC_WB: 0x24c Inst_WB: 0xa13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:20
+[154]  inst_count_WB: 21 PC_WB: 0x250 Inst_WB: 0xa93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:21
+[156]  inst_count_WB: 22 PC_WB: 0x254 Inst_WB: 0xb13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:22
+[158]  inst_count_WB: 23 PC_WB: 0x258 Inst_WB: 0xb93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:23
+[161]  inst_count_WB: 24 PC_WB: 0x25c Inst_WB: 0xc13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:24
+[163]  inst_count_WB: 25 PC_WB: 0x260 Inst_WB: 0xc93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:25
+[165]  inst_count_WB: 26 PC_WB: 0x264 Inst_WB: 0xd13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:26
+[167]  inst_count_WB: 27 PC_WB: 0x268 Inst_WB: 0xd93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:27
+[169]  inst_count_WB: 28 PC_WB: 0x26c Inst_WB: 0xe13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:28
+[172]  inst_count_WB: 29 PC_WB: 0x270 Inst_WB: 0xe93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:29
+[174]  inst_count_WB: 30 PC_WB: 0x274 Inst_WB: 0xf13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:30
+[176]  inst_count_WB: 31 PC_WB: 0x278 Inst_WB: 0xf93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:31
+[178]  inst_count_WB: 32 PC_WB: 0x27c Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[181]  inst_count_WB: 33 PC_WB: 0x280 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[183]  inst_count_WB: 34 PC_WB: 0x284 Inst_WB: 0x100026f Op_I:25
+[185]  inst_count_WB: 35 PC_WB: 0x288 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[194]  inst_count_WB: 36 PC_WB: 0x28c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[203]  inst_count_WB: 37 PC_WB: 0x290 Inst_WB: 0x140006f Op_I:25
+[205]  inst_count_WB: 38 PC_WB: 0x294 Inst_WB: 0x117 Op_I:22 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[207]  inst_count_WB: 39 PC_WB: 0x298 Inst_WB: 0xff410113 Op_I:12 wr_reg_WB:1 regval_WB:-12 wregno_WB:2
+[216]  inst_count_WB: 40 PC_WB: 0x29c Inst_WB: 0x2410063 Op_I:28
+Failed. exitcode: 2
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jalr.mem
+-- VERILATE ----------------
+/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jalr.mem
+/home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jalr.mem"|g'  /home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jalr.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jalr.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o sim_main.o ../sim_main.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jalr.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated.o /usr/share/verilator/include/verilated.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jalr.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_dpi.o /usr/share/verilator/include/verilated_dpi.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jalr.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_vcd_c.o /usr/share/verilator/include/verilated_vcd_c.cpp
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline___024root__DepSet_ha2aed019__0.cpp Vpipeline___024root__DepSet_h0e89545c__0.cpp Vpipeline_pipeline__DepSet_h4d7d4d0b__0.cpp Vpipeline_WB_STAGE__DepSet_h58b40e1e__0.cpp Vpipeline__Dpi.cpp Vpipeline__Trace__0.cpp Vpipeline__ConstPool_0.cpp Vpipeline___024root__Slow.cpp Vpipeline___024root__DepSet_ha2aed019__0__Slow.cpp Vpipeline___024root__DepSet_h0e89545c__0__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_pipeline__DepSet_h4d7d4d0b__0__Slow.cpp Vpipeline_pipeline__DepSet_ha3d9c74e__0__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline_WB_STAGE__DepSet_h79cc6917__0__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__0__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/jalr.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+echo "" > Vpipeline__ALL.verilator_deplist.tmp
+Archive ar -rcs Vpipeline__ALL.a Vpipeline__ALL.o
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+rm Vpipeline__ALL.verilator_deplist.tmp
+make[1]: Leaving directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x313 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+[125]  inst_count_WB: 8 PC_WB: 0x21c Inst_WB: 0x413 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:8
+[127]  inst_count_WB: 9 PC_WB: 0x220 Inst_WB: 0x493 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:9
+[129]  inst_count_WB: 10 PC_WB: 0x224 Inst_WB: 0x513 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[132]  inst_count_WB: 11 PC_WB: 0x228 Inst_WB: 0x593 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:11
+[134]  inst_count_WB: 12 PC_WB: 0x22c Inst_WB: 0x613 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:12
+[136]  inst_count_WB: 13 PC_WB: 0x230 Inst_WB: 0x693 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:13
+[138]  inst_count_WB: 14 PC_WB: 0x234 Inst_WB: 0x713 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[141]  inst_count_WB: 15 PC_WB: 0x238 Inst_WB: 0x793 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:15
+[143]  inst_count_WB: 16 PC_WB: 0x23c Inst_WB: 0x813 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:16
+[145]  inst_count_WB: 17 PC_WB: 0x240 Inst_WB: 0x893 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:17
+[147]  inst_count_WB: 18 PC_WB: 0x244 Inst_WB: 0x913 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:18
+[149]  inst_count_WB: 19 PC_WB: 0x248 Inst_WB: 0x993 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:19
+[152]  inst_count_WB: 20 PC_WB: 0x24c Inst_WB: 0xa13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:20
+[154]  inst_count_WB: 21 PC_WB: 0x250 Inst_WB: 0xa93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:21
+[156]  inst_count_WB: 22 PC_WB: 0x254 Inst_WB: 0xb13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:22
+[158]  inst_count_WB: 23 PC_WB: 0x258 Inst_WB: 0xb93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:23
+[161]  inst_count_WB: 24 PC_WB: 0x25c Inst_WB: 0xc13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:24
+[163]  inst_count_WB: 25 PC_WB: 0x260 Inst_WB: 0xc93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:25
+[165]  inst_count_WB: 26 PC_WB: 0x264 Inst_WB: 0xd13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:26
+[167]  inst_count_WB: 27 PC_WB: 0x268 Inst_WB: 0xd93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:27
+[169]  inst_count_WB: 28 PC_WB: 0x26c Inst_WB: 0xe13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:28
+[172]  inst_count_WB: 29 PC_WB: 0x270 Inst_WB: 0xe93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:29
+[174]  inst_count_WB: 30 PC_WB: 0x274 Inst_WB: 0xf13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:30
+[176]  inst_count_WB: 31 PC_WB: 0x278 Inst_WB: 0xf93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:31
+[178]  inst_count_WB: 32 PC_WB: 0x27c Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[181]  inst_count_WB: 33 PC_WB: 0x280 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[183]  inst_count_WB: 34 PC_WB: 0x284 Inst_WB: 0x317 Op_I:22 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[185]  inst_count_WB: 35 PC_WB: 0x288 Inst_WB: 0x1030313 Op_I:12 wr_reg_WB:1 regval_WB:16 wregno_WB:6
+[194]  inst_count_WB: 36 PC_WB: 0x28c Inst_WB: 0x302e7 Op_I:27 wr_reg_WB:1 regval_WB:16 wregno_WB:5
+[196]  inst_count_WB: 37 PC_WB: 0x290 Inst_WB: 0xe00006f Op_I:25
+[198]  inst_count_WB: 38 PC_WB: 0x294 Inst_WB: 0x317 Op_I:22 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[201]  inst_count_WB: 39 PC_WB: 0x298 Inst_WB: 0xffc30313 Op_I:12 wr_reg_WB:1 regval_WB:12 wregno_WB:6
+[209]  inst_count_WB: 40 PC_WB: 0x29c Inst_WB: 0xc629a63 Op_I:29
+[214]  inst_count_WB: 41 PC_WB: 0x370 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[216]  inst_count_WB: 42 PC_WB: 0x374 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[225]  inst_count_WB: 43 PC_WB: 0x378 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[234]  inst_count_WB: 44 PC_WB: 0x37c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[243]  inst_count_WB: 45 PC_WB: 0x380 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[252]  inst_count_WB: 46 PC_WB: 0x384 Inst_WB: 0x180006f Op_I:25
+[254]  inst_count_WB: 47 PC_WB: 0x388 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[256]  inst_count_WB: 48 PC_WB: 0x38c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[265]  inst_count_WB: 49 PC_WB: 0x390 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[274]  inst_count_WB: 50 PC_WB: 0x394 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[283]  inst_count_WB: 51 PC_WB: 0x398 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[292]  inst_count_WB: 52 PC_WB: 0x39c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[301]  inst_count_WB: 53 PC_WB: 0x3a0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[309]  inst_count_WB: 54 PC_WB: 0x3a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[318]  inst_count_WB: 55 PC_WB: 0x3a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[327]  inst_count_WB: 56 PC_WB: 0x3ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[336]  inst_count_WB: 57 PC_WB: 0x3b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[345]  inst_count_WB: 58 PC_WB: 0x3b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[354]  inst_count_WB: 59 PC_WB: 0x3b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[363]  inst_count_WB: 60 PC_WB: 0x3bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[372]  inst_count_WB: 61 PC_WB: 0x3c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[381]  inst_count_WB: 62 PC_WB: 0x3c4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[389]  inst_count_WB: 63 PC_WB: 0x3c8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[398]  inst_count_WB: 64 PC_WB: 0x3cc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[407]  inst_count_WB: 65 PC_WB: 0x3d0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[416]  inst_count_WB: 66 PC_WB: 0x3d4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[425]  inst_count_WB: 67 PC_WB: 0x3d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[434]  inst_count_WB: 68 PC_WB: 0x3dc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[443]  inst_count_WB: 69 PC_WB: 0x3e0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[452]  inst_count_WB: 70 PC_WB: 0x3e4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[461]  inst_count_WB: 71 PC_WB: 0x3e8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[469]  inst_count_WB: 72 PC_WB: 0x3ec Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[478]  inst_count_WB: 73 PC_WB: 0x3f0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[487]  inst_count_WB: 74 PC_WB: 0x3f4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[496]  inst_count_WB: 75 PC_WB: 0x3f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[505]  inst_count_WB: 76 PC_WB: 0x3fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[514]  inst_count_WB: 77 PC_WB: 0x400 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[523]  inst_count_WB: 78 PC_WB: 0x404 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[532]  inst_count_WB: 79 PC_WB: 0x408 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[541]  inst_count_WB: 80 PC_WB: 0x40c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[549]  inst_count_WB: 81 PC_WB: 0x410 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[558]  inst_count_WB: 82 PC_WB: 0x414 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[567]  inst_count_WB: 83 PC_WB: 0x418 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[576]  inst_count_WB: 84 PC_WB: 0x41c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[585]  inst_count_WB: 85 PC_WB: 0x420 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[594]  inst_count_WB: 86 PC_WB: 0x424 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[603]  inst_count_WB: 87 PC_WB: 0x428 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[612]  inst_count_WB: 88 PC_WB: 0x42c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[621]  inst_count_WB: 89 PC_WB: 0x430 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[629]  inst_count_WB: 90 PC_WB: 0x434 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[638]  inst_count_WB: 91 PC_WB: 0x438 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[647]  inst_count_WB: 92 PC_WB: 0x43c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[656]  inst_count_WB: 93 PC_WB: 0x440 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[665]  inst_count_WB: 94 PC_WB: 0x444 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[674]  inst_count_WB: 95 PC_WB: 0x448 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[683]  inst_count_WB: 96 PC_WB: 0x44c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[692]  inst_count_WB: 97 PC_WB: 0x450 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[701]  inst_count_WB: 98 PC_WB: 0x454 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[709]  inst_count_WB: 99 PC_WB: 0x458 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[718]  inst_count_WB: 100 PC_WB: 0x45c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[727]  inst_count_WB: 101 PC_WB: 0x460 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[736]  inst_count_WB: 102 PC_WB: 0x464 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[745]  inst_count_WB: 103 PC_WB: 0x468 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[754]  inst_count_WB: 104 PC_WB: 0x46c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[763]  inst_count_WB: 105 PC_WB: 0x470 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[772]  inst_count_WB: 106 PC_WB: 0x474 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[781]  inst_count_WB: 107 PC_WB: 0x478 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[789]  inst_count_WB: 108 PC_WB: 0x47c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[798]  inst_count_WB: 109 PC_WB: 0x480 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[807]  inst_count_WB: 110 PC_WB: 0x484 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[816]  inst_count_WB: 111 PC_WB: 0x488 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[825]  inst_count_WB: 112 PC_WB: 0x48c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[834]  inst_count_WB: 113 PC_WB: 0x490 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[843]  inst_count_WB: 114 PC_WB: 0x494 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[852]  inst_count_WB: 115 PC_WB: 0x498 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[861]  inst_count_WB: 116 PC_WB: 0x49c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[869]  inst_count_WB: 117 PC_WB: 0x4a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[878]  inst_count_WB: 118 PC_WB: 0x4a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[887]  inst_count_WB: 119 PC_WB: 0x4a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[896]  inst_count_WB: 120 PC_WB: 0x4ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[905]  inst_count_WB: 121 PC_WB: 0x4b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[914]  inst_count_WB: 122 PC_WB: 0x4b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[923]  inst_count_WB: 123 PC_WB: 0x4b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[932]  inst_count_WB: 124 PC_WB: 0x4bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[941]  inst_count_WB: 125 PC_WB: 0x4c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[949]  inst_count_WB: 126 PC_WB: 0x4c4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[958]  inst_count_WB: 127 PC_WB: 0x4c8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[967]  inst_count_WB: 128 PC_WB: 0x4cc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[976]  inst_count_WB: 129 PC_WB: 0x4d0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[985]  inst_count_WB: 130 PC_WB: 0x4d4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[994]  inst_count_WB: 131 PC_WB: 0x4d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+Passed!
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/test7.mem
+-- VERILATE ----------------
+/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/test7.mem
+/home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/test7.mem"|g'  /home/joe/Documents/cs3220/project_2_1/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/test7.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/cs3220/project_2_1/3220_project2/obj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/test7.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o sim_main.o ../sim_main.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/test7.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated.o /usr/share/verilator/include/verilated.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/test7.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_dpi.o /usr/share/verilator/include/verilated_dpi.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/cs3220/project_2_1/3220_project2/tests/part2/test7.mem -DVCD_OUTPUT -DDPRINTF  -std=gnu++17 -Os -c -o verilated_vcd_c.o /usr/share/verilator/include/verilated_vcd_c.cpp
