@@ -1,0 +1,1440 @@
+
+TESTING: /home/joe/Documents/3220/3220_project2/tests/part2/addi.mem
+-- VERILATE ----------------
+/home/joe/Documents/3220/3220_project2/tests/part2/addi.mem
+/home/joe/Documents/3220/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/3220/3220_project2/tests/part2/addi.mem"|g'  /home/joe/Documents/3220/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/addi.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/addi.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALL.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x313 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+[125]  inst_count_WB: 8 PC_WB: 0x21c Inst_WB: 0x413 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:8
+[127]  inst_count_WB: 9 PC_WB: 0x220 Inst_WB: 0x493 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:9
+[129]  inst_count_WB: 10 PC_WB: 0x224 Inst_WB: 0x513 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[132]  inst_count_WB: 11 PC_WB: 0x228 Inst_WB: 0x593 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:11
+[134]  inst_count_WB: 12 PC_WB: 0x22c Inst_WB: 0x613 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:12
+[136]  inst_count_WB: 13 PC_WB: 0x230 Inst_WB: 0x693 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:13
+[138]  inst_count_WB: 14 PC_WB: 0x234 Inst_WB: 0x713 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[141]  inst_count_WB: 15 PC_WB: 0x238 Inst_WB: 0x793 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:15
+[143]  inst_count_WB: 16 PC_WB: 0x23c Inst_WB: 0x813 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:16
+[145]  inst_count_WB: 17 PC_WB: 0x240 Inst_WB: 0x893 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:17
+[147]  inst_count_WB: 18 PC_WB: 0x244 Inst_WB: 0x913 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:18
+[149]  inst_count_WB: 19 PC_WB: 0x248 Inst_WB: 0x993 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:19
+[152]  inst_count_WB: 20 PC_WB: 0x24c Inst_WB: 0xa13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:20
+[154]  inst_count_WB: 21 PC_WB: 0x250 Inst_WB: 0xa93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:21
+[156]  inst_count_WB: 22 PC_WB: 0x254 Inst_WB: 0xb13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:22
+[158]  inst_count_WB: 23 PC_WB: 0x258 Inst_WB: 0xb93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:23
+[161]  inst_count_WB: 24 PC_WB: 0x25c Inst_WB: 0xc13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:24
+[163]  inst_count_WB: 25 PC_WB: 0x260 Inst_WB: 0xc93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:25
+[165]  inst_count_WB: 26 PC_WB: 0x264 Inst_WB: 0xd13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:26
+[167]  inst_count_WB: 27 PC_WB: 0x268 Inst_WB: 0xd93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:27
+[169]  inst_count_WB: 28 PC_WB: 0x26c Inst_WB: 0xe13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:28
+[172]  inst_count_WB: 29 PC_WB: 0x270 Inst_WB: 0xe93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:29
+[174]  inst_count_WB: 30 PC_WB: 0x274 Inst_WB: 0xf13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:30
+[176]  inst_count_WB: 31 PC_WB: 0x278 Inst_WB: 0xf93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:31
+[178]  inst_count_WB: 32 PC_WB: 0x27c Inst_WB: 0x300093 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:1
+[187]  inst_count_WB: 33 PC_WB: 0x280 Inst_WB: 0x708713 Op_I:12 wr_reg_WB:1 regval_WB:10 wregno_WB:14
+[189]  inst_count_WB: 34 PC_WB: 0x284 Inst_WB: 0xa00393 Op_I:12 wr_reg_WB:1 regval_WB:10 wregno_WB:7
+pc 0000028c, reg1         10, reg2        10
+[192]  inst_count_WB: 35 PC_WB: 0x288 Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[198]  inst_count_WB: 36 PC_WB: 0x28c Inst_WB: 0xa771a63 Op_I:29
+[203]  inst_count_WB: 37 PC_WB: 0x290 Inst_WB: 0x800000b7 Op_I:21 wr_reg_WB:1 regval_WB:-2147483648 wregno_WB:1
+[212]  inst_count_WB: 38 PC_WB: 0x294 Inst_WB: 0xfff08093 Op_I:12 wr_reg_WB:1 regval_WB:2147483647 wregno_WB:1
+[221]  inst_count_WB: 39 PC_WB: 0x298 Inst_WB: 0x7ff08713 Op_I:12 wr_reg_WB:1 regval_WB:-2147481602 wregno_WB:14
+[223]  inst_count_WB: 40 PC_WB: 0x29c Inst_WB: 0x800003b7 Op_I:21 wr_reg_WB:1 regval_WB:-2147483648 wregno_WB:7
+[232]  inst_count_WB: 41 PC_WB: 0x2a0 Inst_WB: 0x7fe38393 Op_I:12 wr_reg_WB:1 regval_WB:-2147481602 wregno_WB:7
+pc 000002a8, reg1 2147485694, reg22147485694
+[234]  inst_count_WB: 42 PC_WB: 0x2a4 Inst_WB: 0x300193 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:3
+[241]  inst_count_WB: 43 PC_WB: 0x2a8 Inst_WB: 0x8771c63 Op_I:29
+[245]  inst_count_WB: 44 PC_WB: 0x2ac Inst_WB: 0x800000b7 Op_I:21 wr_reg_WB:1 regval_WB:-2147483648 wregno_WB:1
+[254]  inst_count_WB: 45 PC_WB: 0x2b0 Inst_WB: 0xfff08093 Op_I:12 wr_reg_WB:1 regval_WB:2147483647 wregno_WB:1
+[263]  inst_count_WB: 46 PC_WB: 0x2b4 Inst_WB: 0x108713 Op_I:12 wr_reg_WB:1 regval_WB:-2147483648 wregno_WB:14
+[265]  inst_count_WB: 47 PC_WB: 0x2b8 Inst_WB: 0x800003b7 Op_I:21 wr_reg_WB:1 regval_WB:-2147483648 wregno_WB:7
+pc 000002c0, reg1 2147483648, reg22147483648
+[267]  inst_count_WB: 48 PC_WB: 0x2bc Inst_WB: 0x400193 Op_I:12 wr_reg_WB:1 regval_WB:4 wregno_WB:3
+[274]  inst_count_WB: 49 PC_WB: 0x2c0 Inst_WB: 0x8771063 Op_I:29
+[278]  inst_count_WB: 50 PC_WB: 0x2c4 Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[281]  inst_count_WB: 51 PC_WB: 0x2c8 Inst_WB: 0xd00093 Op_I:12 wr_reg_WB:1 regval_WB:13 wregno_WB:1
+[289]  inst_count_WB: 52 PC_WB: 0x2cc Inst_WB: 0x908713 Op_I:12 wr_reg_WB:1 regval_WB:22 wregno_WB:14
+[292]  inst_count_WB: 53 PC_WB: 0x2d0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[301]  inst_count_WB: 54 PC_WB: 0x2d4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[309]  inst_count_WB: 55 PC_WB: 0x2d8 Inst_WB: 0x70313 Op_I:12 wr_reg_WB:1 regval_WB:22 wregno_WB:6
+[312]  inst_count_WB: 56 PC_WB: 0x2dc Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:4
+[314]  inst_count_WB: 57 PC_WB: 0x2e0 Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 000002e4, reg1          1, reg2         1
+[323]  inst_count_WB: 58 PC_WB: 0x2e4 Inst_WB: 0xfe5212e3 Op_I:29
+[327]  inst_count_WB: 59 PC_WB: 0x2c8 Inst_WB: 0xd00093 Op_I:12 wr_reg_WB:1 regval_WB:13 wregno_WB:1
+[336]  inst_count_WB: 60 PC_WB: 0x2cc Inst_WB: 0x908713 Op_I:12 wr_reg_WB:1 regval_WB:22 wregno_WB:14
+[338]  inst_count_WB: 61 PC_WB: 0x2d0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[347]  inst_count_WB: 62 PC_WB: 0x2d4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[356]  inst_count_WB: 63 PC_WB: 0x2d8 Inst_WB: 0x70313 Op_I:12 wr_reg_WB:1 regval_WB:22 wregno_WB:6
+[358]  inst_count_WB: 64 PC_WB: 0x2dc Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:4
+[361]  inst_count_WB: 65 PC_WB: 0x2e0 Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 000002e4, reg1          2, reg2         2
+[369]  inst_count_WB: 66 PC_WB: 0x2e4 Inst_WB: 0xfe5212e3 Op_I:29
+[374]  inst_count_WB: 67 PC_WB: 0x2e8 Inst_WB: 0x1600393 Op_I:12 wr_reg_WB:1 regval_WB:22 wregno_WB:7
+pc 000002f0, reg1         22, reg2        22
+[376]  inst_count_WB: 68 PC_WB: 0x2ec Inst_WB: 0x500193 Op_I:12 wr_reg_WB:1 regval_WB:5 wregno_WB:3
+[383]  inst_count_WB: 69 PC_WB: 0x2f0 Inst_WB: 0x4731863 Op_I:29
+[387]  inst_count_WB: 70 PC_WB: 0x2f4 Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[389]  inst_count_WB: 71 PC_WB: 0x2f8 Inst_WB: 0xd00093 Op_I:12 wr_reg_WB:1 regval_WB:13 wregno_WB:1
+[398]  inst_count_WB: 72 PC_WB: 0x2fc Inst_WB: 0xb08713 Op_I:12 wr_reg_WB:1 regval_WB:24 wregno_WB:14
+[401]  inst_count_WB: 73 PC_WB: 0x300 Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:4
+[403]  inst_count_WB: 74 PC_WB: 0x304 Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 00000308, reg1          1, reg2         1
+[412]  inst_count_WB: 75 PC_WB: 0x308 Inst_WB: 0xfe5218e3 Op_I:29
+[416]  inst_count_WB: 76 PC_WB: 0x2f8 Inst_WB: 0xd00093 Op_I:12 wr_reg_WB:1 regval_WB:13 wregno_WB:1
+[425]  inst_count_WB: 77 PC_WB: 0x2fc Inst_WB: 0xb08713 Op_I:12 wr_reg_WB:1 regval_WB:24 wregno_WB:14
+[427]  inst_count_WB: 78 PC_WB: 0x300 Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:4
+[429]  inst_count_WB: 79 PC_WB: 0x304 Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 00000308, reg1          2, reg2         2
+[438]  inst_count_WB: 80 PC_WB: 0x308 Inst_WB: 0xfe5218e3 Op_I:29
+[443]  inst_count_WB: 81 PC_WB: 0x30c Inst_WB: 0x1800393 Op_I:12 wr_reg_WB:1 regval_WB:24 wregno_WB:7
+pc 00000314, reg1         24, reg2        24
+[445]  inst_count_WB: 82 PC_WB: 0x310 Inst_WB: 0x600193 Op_I:12 wr_reg_WB:1 regval_WB:6 wregno_WB:3
+[452]  inst_count_WB: 83 PC_WB: 0x314 Inst_WB: 0x2771663 Op_I:29
+[456]  inst_count_WB: 84 PC_WB: 0x318 Inst_WB: 0x2000093 Op_I:12 wr_reg_WB:1 regval_WB:32 wregno_WB:1
+[458]  inst_count_WB: 85 PC_WB: 0x31c Inst_WB: 0x2000393 Op_I:12 wr_reg_WB:1 regval_WB:32 wregno_WB:7
+pc 00000324, reg1         32, reg2        32
+[467]  inst_count_WB: 86 PC_WB: 0x320 Inst_WB: 0x700193 Op_I:12 wr_reg_WB:1 regval_WB:7 wregno_WB:3
+[469]  inst_count_WB: 87 PC_WB: 0x324 Inst_WB: 0x709e63 Op_I:29
+[474]  inst_count_WB: 88 PC_WB: 0x328 Inst_WB: 0x2100093 Op_I:12 wr_reg_WB:1 regval_WB:33 wregno_WB:1
+[483]  inst_count_WB: 89 PC_WB: 0x32c Inst_WB: 0x3208013 Op_I:12 wr_reg_WB:1 regval_WB:83 wregno_WB:0
+[492]  inst_count_WB: 90 PC_WB: 0x330 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+pc 00000338, reg1          0, reg2         0
+[494]  inst_count_WB: 91 PC_WB: 0x334 Inst_WB: 0x800193 Op_I:12 wr_reg_WB:1 regval_WB:8 wregno_WB:3
+pc 0000033c, reg1          0, reg2         0
+[501]  inst_count_WB: 92 PC_WB: 0x338 Inst_WB: 0x701463 Op_I:29
+[505]  inst_count_WB: 93 PC_WB: 0x33c Inst_WB: 0x301e63 Op_I:29
+[509]  inst_count_WB: 94 PC_WB: 0x358 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[512]  inst_count_WB: 95 PC_WB: 0x35c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[521]  inst_count_WB: 96 PC_WB: 0x360 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[529]  inst_count_WB: 97 PC_WB: 0x364 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[538]  inst_count_WB: 98 PC_WB: 0x368 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[547]  inst_count_WB: 99 PC_WB: 0x36c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[556]  inst_count_WB: 100 PC_WB: 0x370 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[565]  inst_count_WB: 101 PC_WB: 0x374 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[574]  inst_count_WB: 102 PC_WB: 0x378 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[583]  inst_count_WB: 103 PC_WB: 0x37c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[592]  inst_count_WB: 104 PC_WB: 0x380 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[601]  inst_count_WB: 105 PC_WB: 0x384 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[609]  inst_count_WB: 106 PC_WB: 0x388 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[618]  inst_count_WB: 107 PC_WB: 0x38c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[627]  inst_count_WB: 108 PC_WB: 0x390 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[636]  inst_count_WB: 109 PC_WB: 0x394 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[645]  inst_count_WB: 110 PC_WB: 0x398 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[654]  inst_count_WB: 111 PC_WB: 0x39c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[663]  inst_count_WB: 112 PC_WB: 0x3a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[672]  inst_count_WB: 113 PC_WB: 0x3a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[681]  inst_count_WB: 114 PC_WB: 0x3a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[689]  inst_count_WB: 115 PC_WB: 0x3ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[698]  inst_count_WB: 116 PC_WB: 0x3b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[707]  inst_count_WB: 117 PC_WB: 0x3b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[716]  inst_count_WB: 118 PC_WB: 0x3b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[725]  inst_count_WB: 119 PC_WB: 0x3bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[734]  inst_count_WB: 120 PC_WB: 0x3c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[743]  inst_count_WB: 121 PC_WB: 0x3c4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[752]  inst_count_WB: 122 PC_WB: 0x3c8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[761]  inst_count_WB: 123 PC_WB: 0x3cc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[769]  inst_count_WB: 124 PC_WB: 0x3d0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[778]  inst_count_WB: 125 PC_WB: 0x3d4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[787]  inst_count_WB: 126 PC_WB: 0x3d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[796]  inst_count_WB: 127 PC_WB: 0x3dc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[805]  inst_count_WB: 128 PC_WB: 0x3e0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[814]  inst_count_WB: 129 PC_WB: 0x3e4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[823]  inst_count_WB: 130 PC_WB: 0x3e8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[832]  inst_count_WB: 131 PC_WB: 0x3ec Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[841]  inst_count_WB: 132 PC_WB: 0x3f0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[849]  inst_count_WB: 133 PC_WB: 0x3f4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[858]  inst_count_WB: 134 PC_WB: 0x3f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[867]  inst_count_WB: 135 PC_WB: 0x3fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[876]  inst_count_WB: 136 PC_WB: 0x400 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[885]  inst_count_WB: 137 PC_WB: 0x404 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[894]  inst_count_WB: 138 PC_WB: 0x408 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[903]  inst_count_WB: 139 PC_WB: 0x40c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[912]  inst_count_WB: 140 PC_WB: 0x410 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[921]  inst_count_WB: 141 PC_WB: 0x414 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[929]  inst_count_WB: 142 PC_WB: 0x418 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[938]  inst_count_WB: 143 PC_WB: 0x41c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[947]  inst_count_WB: 144 PC_WB: 0x420 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[956]  inst_count_WB: 145 PC_WB: 0x424 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[965]  inst_count_WB: 146 PC_WB: 0x428 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[974]  inst_count_WB: 147 PC_WB: 0x42c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[983]  inst_count_WB: 148 PC_WB: 0x430 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[992]  inst_count_WB: 149 PC_WB: 0x434 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+Passed!
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/3220/3220_project2/tests/part2/add.mem
+-- VERILATE ----------------
+/home/joe/Documents/3220/3220_project2/tests/part2/add.mem
+/home/joe/Documents/3220/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/3220/3220_project2/tests/part2/add.mem"|g'  /home/joe/Documents/3220/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/add.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/add.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALL.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x313 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+[125]  inst_count_WB: 8 PC_WB: 0x21c Inst_WB: 0x413 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:8
+[127]  inst_count_WB: 9 PC_WB: 0x220 Inst_WB: 0x493 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:9
+[129]  inst_count_WB: 10 PC_WB: 0x224 Inst_WB: 0x513 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[132]  inst_count_WB: 11 PC_WB: 0x228 Inst_WB: 0x593 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:11
+[134]  inst_count_WB: 12 PC_WB: 0x22c Inst_WB: 0x613 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:12
+[136]  inst_count_WB: 13 PC_WB: 0x230 Inst_WB: 0x693 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:13
+[138]  inst_count_WB: 14 PC_WB: 0x234 Inst_WB: 0x713 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[141]  inst_count_WB: 15 PC_WB: 0x238 Inst_WB: 0x793 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:15
+[143]  inst_count_WB: 16 PC_WB: 0x23c Inst_WB: 0x813 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:16
+[145]  inst_count_WB: 17 PC_WB: 0x240 Inst_WB: 0x893 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:17
+[147]  inst_count_WB: 18 PC_WB: 0x244 Inst_WB: 0x913 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:18
+[149]  inst_count_WB: 19 PC_WB: 0x248 Inst_WB: 0x993 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:19
+[152]  inst_count_WB: 20 PC_WB: 0x24c Inst_WB: 0xa13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:20
+[154]  inst_count_WB: 21 PC_WB: 0x250 Inst_WB: 0xa93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:21
+[156]  inst_count_WB: 22 PC_WB: 0x254 Inst_WB: 0xb13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:22
+[158]  inst_count_WB: 23 PC_WB: 0x258 Inst_WB: 0xb93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:23
+[161]  inst_count_WB: 24 PC_WB: 0x25c Inst_WB: 0xc13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:24
+[163]  inst_count_WB: 25 PC_WB: 0x260 Inst_WB: 0xc93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:25
+[165]  inst_count_WB: 26 PC_WB: 0x264 Inst_WB: 0xd13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:26
+[167]  inst_count_WB: 27 PC_WB: 0x268 Inst_WB: 0xd93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:27
+[169]  inst_count_WB: 28 PC_WB: 0x26c Inst_WB: 0xe13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:28
+[172]  inst_count_WB: 29 PC_WB: 0x270 Inst_WB: 0xe93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:29
+[174]  inst_count_WB: 30 PC_WB: 0x274 Inst_WB: 0xf13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:30
+[176]  inst_count_WB: 31 PC_WB: 0x278 Inst_WB: 0xf93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:31
+[178]  inst_count_WB: 32 PC_WB: 0x27c Inst_WB: 0x300093 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:1
+[181]  inst_count_WB: 33 PC_WB: 0x280 Inst_WB: 0x700113 Op_I:12 wr_reg_WB:1 regval_WB:7 wregno_WB:2
+[189]  inst_count_WB: 34 PC_WB: 0x284 Inst_WB: 0x208733 Op_I:1 wr_reg_WB:1 regval_WB:10 wregno_WB:14
+[192]  inst_count_WB: 35 PC_WB: 0x288 Inst_WB: 0xa00393 Op_I:12 wr_reg_WB:1 regval_WB:10 wregno_WB:7
+pc 00000290, reg1         10, reg2        10
+[194]  inst_count_WB: 36 PC_WB: 0x28c Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[201]  inst_count_WB: 37 PC_WB: 0x290 Inst_WB: 0x2771a63 Op_I:29
+[205]  inst_count_WB: 38 PC_WB: 0x294 Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[207]  inst_count_WB: 39 PC_WB: 0x298 Inst_WB: 0x1900093 Op_I:12 wr_reg_WB:1 regval_WB:25 wregno_WB:1
+[209]  inst_count_WB: 40 PC_WB: 0x29c Inst_WB: 0x4b00113 Op_I:12 wr_reg_WB:1 regval_WB:75 wregno_WB:2
+[218]  inst_count_WB: 41 PC_WB: 0x2a0 Inst_WB: 0x208733 Op_I:1 wr_reg_WB:1 regval_WB:100 wregno_WB:14
+[227]  inst_count_WB: 42 PC_WB: 0x2a4 Inst_WB: 0x70313 Op_I:12 wr_reg_WB:1 regval_WB:100 wregno_WB:6
+[229]  inst_count_WB: 43 PC_WB: 0x2a8 Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:4
+[232]  inst_count_WB: 44 PC_WB: 0x2ac Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 000002b0, reg1          1, reg2         1
+[241]  inst_count_WB: 45 PC_WB: 0x2b0 Inst_WB: 0xfe5214e3 Op_I:29
+[245]  inst_count_WB: 46 PC_WB: 0x298 Inst_WB: 0x1900093 Op_I:12 wr_reg_WB:1 regval_WB:25 wregno_WB:1
+[247]  inst_count_WB: 47 PC_WB: 0x29c Inst_WB: 0x4b00113 Op_I:12 wr_reg_WB:1 regval_WB:75 wregno_WB:2
+[256]  inst_count_WB: 48 PC_WB: 0x2a0 Inst_WB: 0x208733 Op_I:1 wr_reg_WB:1 regval_WB:100 wregno_WB:14
+[265]  inst_count_WB: 49 PC_WB: 0x2a4 Inst_WB: 0x70313 Op_I:12 wr_reg_WB:1 regval_WB:100 wregno_WB:6
+[267]  inst_count_WB: 50 PC_WB: 0x2a8 Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:4
+[269]  inst_count_WB: 51 PC_WB: 0x2ac Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 000002b0, reg1          2, reg2         2
+[278]  inst_count_WB: 52 PC_WB: 0x2b0 Inst_WB: 0xfe5214e3 Op_I:29
+[283]  inst_count_WB: 53 PC_WB: 0x2b4 Inst_WB: 0x6400393 Op_I:12 wr_reg_WB:1 regval_WB:100 wregno_WB:7
+pc 000002bc, reg1        100, reg2       100
+[285]  inst_count_WB: 54 PC_WB: 0x2b8 Inst_WB: 0x300193 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:3
+pc 000002c0, reg1          0, reg2         0
+[292]  inst_count_WB: 55 PC_WB: 0x2bc Inst_WB: 0x731463 Op_I:29
+[296]  inst_count_WB: 56 PC_WB: 0x2c0 Inst_WB: 0x301e63 Op_I:29
+[301]  inst_count_WB: 57 PC_WB: 0x2dc Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[303]  inst_count_WB: 58 PC_WB: 0x2e0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[312]  inst_count_WB: 59 PC_WB: 0x2e4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[321]  inst_count_WB: 60 PC_WB: 0x2e8 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[329]  inst_count_WB: 61 PC_WB: 0x2ec Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[338]  inst_count_WB: 62 PC_WB: 0x2f0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[347]  inst_count_WB: 63 PC_WB: 0x2f4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[356]  inst_count_WB: 64 PC_WB: 0x2f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[365]  inst_count_WB: 65 PC_WB: 0x2fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[374]  inst_count_WB: 66 PC_WB: 0x300 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[383]  inst_count_WB: 67 PC_WB: 0x304 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[392]  inst_count_WB: 68 PC_WB: 0x308 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[401]  inst_count_WB: 69 PC_WB: 0x30c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[409]  inst_count_WB: 70 PC_WB: 0x310 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[418]  inst_count_WB: 71 PC_WB: 0x314 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[427]  inst_count_WB: 72 PC_WB: 0x318 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[436]  inst_count_WB: 73 PC_WB: 0x31c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[445]  inst_count_WB: 74 PC_WB: 0x320 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[454]  inst_count_WB: 75 PC_WB: 0x324 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[463]  inst_count_WB: 76 PC_WB: 0x328 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[472]  inst_count_WB: 77 PC_WB: 0x32c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[481]  inst_count_WB: 78 PC_WB: 0x330 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[489]  inst_count_WB: 79 PC_WB: 0x334 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[498]  inst_count_WB: 80 PC_WB: 0x338 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[507]  inst_count_WB: 81 PC_WB: 0x33c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[516]  inst_count_WB: 82 PC_WB: 0x340 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[525]  inst_count_WB: 83 PC_WB: 0x344 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[534]  inst_count_WB: 84 PC_WB: 0x348 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[543]  inst_count_WB: 85 PC_WB: 0x34c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[552]  inst_count_WB: 86 PC_WB: 0x350 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[561]  inst_count_WB: 87 PC_WB: 0x354 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[569]  inst_count_WB: 88 PC_WB: 0x358 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[578]  inst_count_WB: 89 PC_WB: 0x35c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[587]  inst_count_WB: 90 PC_WB: 0x360 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[596]  inst_count_WB: 91 PC_WB: 0x364 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[605]  inst_count_WB: 92 PC_WB: 0x368 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[614]  inst_count_WB: 93 PC_WB: 0x36c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[623]  inst_count_WB: 94 PC_WB: 0x370 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[632]  inst_count_WB: 95 PC_WB: 0x374 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[641]  inst_count_WB: 96 PC_WB: 0x378 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[649]  inst_count_WB: 97 PC_WB: 0x37c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[658]  inst_count_WB: 98 PC_WB: 0x380 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[667]  inst_count_WB: 99 PC_WB: 0x384 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[676]  inst_count_WB: 100 PC_WB: 0x388 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[685]  inst_count_WB: 101 PC_WB: 0x38c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[694]  inst_count_WB: 102 PC_WB: 0x390 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[703]  inst_count_WB: 103 PC_WB: 0x394 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[712]  inst_count_WB: 104 PC_WB: 0x398 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[721]  inst_count_WB: 105 PC_WB: 0x39c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[729]  inst_count_WB: 106 PC_WB: 0x3a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[738]  inst_count_WB: 107 PC_WB: 0x3a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[747]  inst_count_WB: 108 PC_WB: 0x3a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[756]  inst_count_WB: 109 PC_WB: 0x3ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[765]  inst_count_WB: 110 PC_WB: 0x3b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[774]  inst_count_WB: 111 PC_WB: 0x3b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[783]  inst_count_WB: 112 PC_WB: 0x3b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[792]  inst_count_WB: 113 PC_WB: 0x3bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[801]  inst_count_WB: 114 PC_WB: 0x3c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[809]  inst_count_WB: 115 PC_WB: 0x3c4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[818]  inst_count_WB: 116 PC_WB: 0x3c8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[827]  inst_count_WB: 117 PC_WB: 0x3cc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[836]  inst_count_WB: 118 PC_WB: 0x3d0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[845]  inst_count_WB: 119 PC_WB: 0x3d4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[854]  inst_count_WB: 120 PC_WB: 0x3d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[863]  inst_count_WB: 121 PC_WB: 0x3dc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[872]  inst_count_WB: 122 PC_WB: 0x3e0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[881]  inst_count_WB: 123 PC_WB: 0x3e4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[889]  inst_count_WB: 124 PC_WB: 0x3e8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[898]  inst_count_WB: 125 PC_WB: 0x3ec Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[907]  inst_count_WB: 126 PC_WB: 0x3f0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[916]  inst_count_WB: 127 PC_WB: 0x3f4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[925]  inst_count_WB: 128 PC_WB: 0x3f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[934]  inst_count_WB: 129 PC_WB: 0x3fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[943]  inst_count_WB: 130 PC_WB: 0x400 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[952]  inst_count_WB: 131 PC_WB: 0x404 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[961]  inst_count_WB: 132 PC_WB: 0x408 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[969]  inst_count_WB: 133 PC_WB: 0x40c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[978]  inst_count_WB: 134 PC_WB: 0x410 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[987]  inst_count_WB: 135 PC_WB: 0x414 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[996]  inst_count_WB: 136 PC_WB: 0x418 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+Passed!
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/3220/3220_project2/tests/part2/auipc.mem
+-- VERILATE ----------------
+/home/joe/Documents/3220/3220_project2/tests/part2/auipc.mem
+/home/joe/Documents/3220/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/3220/3220_project2/tests/part2/auipc.mem"|g'  /home/joe/Documents/3220/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/auipc.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/auipc.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALL.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x313 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+[125]  inst_count_WB: 8 PC_WB: 0x21c Inst_WB: 0x413 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:8
+[127]  inst_count_WB: 9 PC_WB: 0x220 Inst_WB: 0x493 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:9
+[129]  inst_count_WB: 10 PC_WB: 0x224 Inst_WB: 0x513 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[132]  inst_count_WB: 11 PC_WB: 0x228 Inst_WB: 0x593 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:11
+[134]  inst_count_WB: 12 PC_WB: 0x22c Inst_WB: 0x613 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:12
+[136]  inst_count_WB: 13 PC_WB: 0x230 Inst_WB: 0x693 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:13
+[138]  inst_count_WB: 14 PC_WB: 0x234 Inst_WB: 0x713 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[141]  inst_count_WB: 15 PC_WB: 0x238 Inst_WB: 0x793 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:15
+[143]  inst_count_WB: 16 PC_WB: 0x23c Inst_WB: 0x813 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:16
+[145]  inst_count_WB: 17 PC_WB: 0x240 Inst_WB: 0x893 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:17
+[147]  inst_count_WB: 18 PC_WB: 0x244 Inst_WB: 0x913 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:18
+[149]  inst_count_WB: 19 PC_WB: 0x248 Inst_WB: 0x993 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:19
+[152]  inst_count_WB: 20 PC_WB: 0x24c Inst_WB: 0xa13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:20
+[154]  inst_count_WB: 21 PC_WB: 0x250 Inst_WB: 0xa93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:21
+[156]  inst_count_WB: 22 PC_WB: 0x254 Inst_WB: 0xb13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:22
+[158]  inst_count_WB: 23 PC_WB: 0x258 Inst_WB: 0xb93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:23
+[161]  inst_count_WB: 24 PC_WB: 0x25c Inst_WB: 0xc13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:24
+[163]  inst_count_WB: 25 PC_WB: 0x260 Inst_WB: 0xc93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:25
+[165]  inst_count_WB: 26 PC_WB: 0x264 Inst_WB: 0xd13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:26
+[167]  inst_count_WB: 27 PC_WB: 0x268 Inst_WB: 0xd93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:27
+[169]  inst_count_WB: 28 PC_WB: 0x26c Inst_WB: 0xe13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:28
+[172]  inst_count_WB: 29 PC_WB: 0x270 Inst_WB: 0xe93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:29
+[174]  inst_count_WB: 30 PC_WB: 0x274 Inst_WB: 0xf13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:30
+[176]  inst_count_WB: 31 PC_WB: 0x278 Inst_WB: 0xf93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:31
+[178]  inst_count_WB: 32 PC_WB: 0x27c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[187]  inst_count_WB: 33 PC_WB: 0x280 Inst_WB: 0x2517 Op_I:22 wr_reg_WB:1 regval_WB:8832 wregno_WB:10
+[196]  inst_count_WB: 34 PC_WB: 0x284 Inst_WB: 0x71c50513 Op_I:12 wr_reg_WB:1 regval_WB:10652 wregno_WB:10
+[198]  inst_count_WB: 35 PC_WB: 0x288 Inst_WB: 0x4005ef Op_I:25 wr_reg_WB:1 regval_WB:652 wregno_WB:11
+[207]  inst_count_WB: 36 PC_WB: 0x28c Inst_WB: 0x40b50533 Op_I:2 wr_reg_WB:1 regval_WB:10000 wregno_WB:10
+[209]  inst_count_WB: 37 PC_WB: 0x290 Inst_WB: 0x23b7 Op_I:21 wr_reg_WB:1 regval_WB:8192 wregno_WB:7
+[218]  inst_count_WB: 38 PC_WB: 0x294 Inst_WB: 0x71038393 Op_I:12 wr_reg_WB:1 regval_WB:10000 wregno_WB:7
+pc 0000029c, reg1      10000, reg2     10000
+[221]  inst_count_WB: 39 PC_WB: 0x298 Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[227]  inst_count_WB: 40 PC_WB: 0x29c Inst_WB: 0x2751463 Op_I:29
+[232]  inst_count_WB: 41 PC_WB: 0x2a0 Inst_WB: 0xffffe517 Op_I:22 wr_reg_WB:1 regval_WB:-7520 wregno_WB:10
+[241]  inst_count_WB: 42 PC_WB: 0x2a4 Inst_WB: 0x8fc50513 Op_I:12 wr_reg_WB:1 regval_WB:-9316 wregno_WB:10
+[243]  inst_count_WB: 43 PC_WB: 0x2a8 Inst_WB: 0x4005ef Op_I:25 wr_reg_WB:1 regval_WB:684 wregno_WB:11
+[252]  inst_count_WB: 44 PC_WB: 0x2ac Inst_WB: 0x40b50533 Op_I:2 wr_reg_WB:1 regval_WB:-10000 wregno_WB:10
+[254]  inst_count_WB: 45 PC_WB: 0x2b0 Inst_WB: 0xffffe3b7 Op_I:21 wr_reg_WB:1 regval_WB:-8192 wregno_WB:7
+[263]  inst_count_WB: 46 PC_WB: 0x2b4 Inst_WB: 0x8f038393 Op_I:12 wr_reg_WB:1 regval_WB:-10000 wregno_WB:7
+pc 000002bc, reg1 4294957296, reg24294957296
+[265]  inst_count_WB: 47 PC_WB: 0x2b8 Inst_WB: 0x300193 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:3
+pc 000002c0, reg1          0, reg2         0
+[272]  inst_count_WB: 48 PC_WB: 0x2bc Inst_WB: 0x751463 Op_I:29
+[276]  inst_count_WB: 49 PC_WB: 0x2c0 Inst_WB: 0x301e63 Op_I:29
+[281]  inst_count_WB: 50 PC_WB: 0x2dc Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[283]  inst_count_WB: 51 PC_WB: 0x2e0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[292]  inst_count_WB: 52 PC_WB: 0x2e4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[301]  inst_count_WB: 53 PC_WB: 0x2e8 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[309]  inst_count_WB: 54 PC_WB: 0x2ec Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[318]  inst_count_WB: 55 PC_WB: 0x2f0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[327]  inst_count_WB: 56 PC_WB: 0x2f4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[336]  inst_count_WB: 57 PC_WB: 0x2f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[345]  inst_count_WB: 58 PC_WB: 0x2fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[354]  inst_count_WB: 59 PC_WB: 0x300 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[363]  inst_count_WB: 60 PC_WB: 0x304 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[372]  inst_count_WB: 61 PC_WB: 0x308 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[381]  inst_count_WB: 62 PC_WB: 0x30c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[389]  inst_count_WB: 63 PC_WB: 0x310 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[398]  inst_count_WB: 64 PC_WB: 0x314 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[407]  inst_count_WB: 65 PC_WB: 0x318 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[416]  inst_count_WB: 66 PC_WB: 0x31c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[425]  inst_count_WB: 67 PC_WB: 0x320 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[434]  inst_count_WB: 68 PC_WB: 0x324 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[443]  inst_count_WB: 69 PC_WB: 0x328 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[452]  inst_count_WB: 70 PC_WB: 0x32c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[461]  inst_count_WB: 71 PC_WB: 0x330 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[469]  inst_count_WB: 72 PC_WB: 0x334 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[478]  inst_count_WB: 73 PC_WB: 0x338 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[487]  inst_count_WB: 74 PC_WB: 0x33c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[496]  inst_count_WB: 75 PC_WB: 0x340 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[505]  inst_count_WB: 76 PC_WB: 0x344 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[514]  inst_count_WB: 77 PC_WB: 0x348 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[523]  inst_count_WB: 78 PC_WB: 0x34c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[532]  inst_count_WB: 79 PC_WB: 0x350 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[541]  inst_count_WB: 80 PC_WB: 0x354 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[549]  inst_count_WB: 81 PC_WB: 0x358 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[558]  inst_count_WB: 82 PC_WB: 0x35c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[567]  inst_count_WB: 83 PC_WB: 0x360 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[576]  inst_count_WB: 84 PC_WB: 0x364 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[585]  inst_count_WB: 85 PC_WB: 0x368 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[594]  inst_count_WB: 86 PC_WB: 0x36c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[603]  inst_count_WB: 87 PC_WB: 0x370 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[612]  inst_count_WB: 88 PC_WB: 0x374 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[621]  inst_count_WB: 89 PC_WB: 0x378 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[629]  inst_count_WB: 90 PC_WB: 0x37c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[638]  inst_count_WB: 91 PC_WB: 0x380 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[647]  inst_count_WB: 92 PC_WB: 0x384 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[656]  inst_count_WB: 93 PC_WB: 0x388 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[665]  inst_count_WB: 94 PC_WB: 0x38c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[674]  inst_count_WB: 95 PC_WB: 0x390 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[683]  inst_count_WB: 96 PC_WB: 0x394 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[692]  inst_count_WB: 97 PC_WB: 0x398 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[701]  inst_count_WB: 98 PC_WB: 0x39c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[709]  inst_count_WB: 99 PC_WB: 0x3a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[718]  inst_count_WB: 100 PC_WB: 0x3a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[727]  inst_count_WB: 101 PC_WB: 0x3a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[736]  inst_count_WB: 102 PC_WB: 0x3ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[745]  inst_count_WB: 103 PC_WB: 0x3b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[754]  inst_count_WB: 104 PC_WB: 0x3b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[763]  inst_count_WB: 105 PC_WB: 0x3b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[772]  inst_count_WB: 106 PC_WB: 0x3bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[781]  inst_count_WB: 107 PC_WB: 0x3c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[789]  inst_count_WB: 108 PC_WB: 0x3c4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[798]  inst_count_WB: 109 PC_WB: 0x3c8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[807]  inst_count_WB: 110 PC_WB: 0x3cc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[816]  inst_count_WB: 111 PC_WB: 0x3d0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[825]  inst_count_WB: 112 PC_WB: 0x3d4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[834]  inst_count_WB: 113 PC_WB: 0x3d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[843]  inst_count_WB: 114 PC_WB: 0x3dc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[852]  inst_count_WB: 115 PC_WB: 0x3e0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[861]  inst_count_WB: 116 PC_WB: 0x3e4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[869]  inst_count_WB: 117 PC_WB: 0x3e8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[878]  inst_count_WB: 118 PC_WB: 0x3ec Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[887]  inst_count_WB: 119 PC_WB: 0x3f0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[896]  inst_count_WB: 120 PC_WB: 0x3f4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[905]  inst_count_WB: 121 PC_WB: 0x3f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[914]  inst_count_WB: 122 PC_WB: 0x3fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[923]  inst_count_WB: 123 PC_WB: 0x400 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[932]  inst_count_WB: 124 PC_WB: 0x404 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[941]  inst_count_WB: 125 PC_WB: 0x408 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[949]  inst_count_WB: 126 PC_WB: 0x40c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[958]  inst_count_WB: 127 PC_WB: 0x410 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[967]  inst_count_WB: 128 PC_WB: 0x414 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[976]  inst_count_WB: 129 PC_WB: 0x418 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[985]  inst_count_WB: 130 PC_WB: 0x41c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[994]  inst_count_WB: 131 PC_WB: 0x420 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+Passed!
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/3220/3220_project2/tests/part2/beq.mem
+-- VERILATE ----------------
+/home/joe/Documents/3220/3220_project2/tests/part2/beq.mem
+/home/joe/Documents/3220/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/3220/3220_project2/tests/part2/beq.mem"|g'  /home/joe/Documents/3220/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/beq.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/beq.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALL.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x313 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+[125]  inst_count_WB: 8 PC_WB: 0x21c Inst_WB: 0x413 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:8
+[127]  inst_count_WB: 9 PC_WB: 0x220 Inst_WB: 0x493 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:9
+[129]  inst_count_WB: 10 PC_WB: 0x224 Inst_WB: 0x513 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[132]  inst_count_WB: 11 PC_WB: 0x228 Inst_WB: 0x593 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:11
+[134]  inst_count_WB: 12 PC_WB: 0x22c Inst_WB: 0x613 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:12
+[136]  inst_count_WB: 13 PC_WB: 0x230 Inst_WB: 0x693 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:13
+[138]  inst_count_WB: 14 PC_WB: 0x234 Inst_WB: 0x713 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[141]  inst_count_WB: 15 PC_WB: 0x238 Inst_WB: 0x793 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:15
+[143]  inst_count_WB: 16 PC_WB: 0x23c Inst_WB: 0x813 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:16
+[145]  inst_count_WB: 17 PC_WB: 0x240 Inst_WB: 0x893 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:17
+[147]  inst_count_WB: 18 PC_WB: 0x244 Inst_WB: 0x913 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:18
+[149]  inst_count_WB: 19 PC_WB: 0x248 Inst_WB: 0x993 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:19
+[152]  inst_count_WB: 20 PC_WB: 0x24c Inst_WB: 0xa13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:20
+[154]  inst_count_WB: 21 PC_WB: 0x250 Inst_WB: 0xa93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:21
+[156]  inst_count_WB: 22 PC_WB: 0x254 Inst_WB: 0xb13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:22
+[158]  inst_count_WB: 23 PC_WB: 0x258 Inst_WB: 0xb93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:23
+[161]  inst_count_WB: 24 PC_WB: 0x25c Inst_WB: 0xc13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:24
+[163]  inst_count_WB: 25 PC_WB: 0x260 Inst_WB: 0xc93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:25
+[165]  inst_count_WB: 26 PC_WB: 0x264 Inst_WB: 0xd13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:26
+[167]  inst_count_WB: 27 PC_WB: 0x268 Inst_WB: 0xd93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:27
+[169]  inst_count_WB: 28 PC_WB: 0x26c Inst_WB: 0xe13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:28
+[172]  inst_count_WB: 29 PC_WB: 0x270 Inst_WB: 0xe93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:29
+[174]  inst_count_WB: 30 PC_WB: 0x274 Inst_WB: 0xf13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:30
+[176]  inst_count_WB: 31 PC_WB: 0x278 Inst_WB: 0xf93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:31
+[178]  inst_count_WB: 32 PC_WB: 0x27c Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[181]  inst_count_WB: 33 PC_WB: 0x280 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[183]  inst_count_WB: 34 PC_WB: 0x284 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[192]  inst_count_WB: 35 PC_WB: 0x288 Inst_WB: 0x208663 Op_I:28
+pc 00000290, reg1          0, reg2         0
+[196]  inst_count_WB: 36 PC_WB: 0x294 Inst_WB: 0xfe208ee3 Op_I:28
+[201]  inst_count_WB: 37 PC_WB: 0x290 Inst_WB: 0x301663 Op_I:29
+[205]  inst_count_WB: 38 PC_WB: 0x29c Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[207]  inst_count_WB: 39 PC_WB: 0x2a0 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[216]  inst_count_WB: 40 PC_WB: 0x2a4 Inst_WB: 0x100113 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:2
+pc 000002ac, reg1          0, reg2         0
+[225]  inst_count_WB: 41 PC_WB: 0x2a8 Inst_WB: 0x208463 Op_I:28
+[229]  inst_count_WB: 42 PC_WB: 0x2ac Inst_WB: 0x301463 Op_I:29
+[234]  inst_count_WB: 43 PC_WB: 0x2b4 Inst_WB: 0xfe208ee3 Op_I:28
+[238]  inst_count_WB: 44 PC_WB: 0x2b8 Inst_WB: 0x300193 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:3
+[241]  inst_count_WB: 45 PC_WB: 0x2bc Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[243]  inst_count_WB: 46 PC_WB: 0x2c0 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[245]  inst_count_WB: 47 PC_WB: 0x2c4 Inst_WB: 0xfff00113 Op_I:12 wr_reg_WB:1 regval_WB:-1 wregno_WB:2
+[254]  inst_count_WB: 48 PC_WB: 0x2c8 Inst_WB: 0x4208063 Op_I:28
+[258]  inst_count_WB: 49 PC_WB: 0x2cc Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:4
+[261]  inst_count_WB: 50 PC_WB: 0x2d0 Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 000002d4, reg1          1, reg2         1
+[269]  inst_count_WB: 51 PC_WB: 0x2d4 Inst_WB: 0xfe5216e3 Op_I:29
+[274]  inst_count_WB: 52 PC_WB: 0x2c0 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[276]  inst_count_WB: 53 PC_WB: 0x2c4 Inst_WB: 0xfff00113 Op_I:12 wr_reg_WB:1 regval_WB:-1 wregno_WB:2
+[285]  inst_count_WB: 54 PC_WB: 0x2c8 Inst_WB: 0x4208063 Op_I:28
+[289]  inst_count_WB: 55 PC_WB: 0x2cc Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:4
+[292]  inst_count_WB: 56 PC_WB: 0x2d0 Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 000002d4, reg1          2, reg2         2
+[301]  inst_count_WB: 57 PC_WB: 0x2d4 Inst_WB: 0xfe5216e3 Op_I:29
+[305]  inst_count_WB: 58 PC_WB: 0x2d8 Inst_WB: 0x100093 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:1
+[307]  inst_count_WB: 59 PC_WB: 0x2dc Inst_WB: 0xa63 Op_I:28
+[314]  inst_count_WB: 60 PC_WB: 0x2f0 Inst_WB: 0x108093 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:1
+[323]  inst_count_WB: 61 PC_WB: 0x2f4 Inst_WB: 0x108093 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:1
+[325]  inst_count_WB: 62 PC_WB: 0x2f8 Inst_WB: 0x300393 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:7
+pc 00000300, reg1          3, reg2         3
+[327]  inst_count_WB: 63 PC_WB: 0x2fc Inst_WB: 0x400193 Op_I:12 wr_reg_WB:1 regval_WB:4 wregno_WB:3
+pc 00000304, reg1          0, reg2         0
+[334]  inst_count_WB: 64 PC_WB: 0x300 Inst_WB: 0x709463 Op_I:29
+[338]  inst_count_WB: 65 PC_WB: 0x304 Inst_WB: 0x301e63 Op_I:29
+[343]  inst_count_WB: 66 PC_WB: 0x320 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[345]  inst_count_WB: 67 PC_WB: 0x324 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[354]  inst_count_WB: 68 PC_WB: 0x328 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[363]  inst_count_WB: 69 PC_WB: 0x32c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[372]  inst_count_WB: 70 PC_WB: 0x330 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[381]  inst_count_WB: 71 PC_WB: 0x334 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[389]  inst_count_WB: 72 PC_WB: 0x338 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[398]  inst_count_WB: 73 PC_WB: 0x33c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[407]  inst_count_WB: 74 PC_WB: 0x340 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[416]  inst_count_WB: 75 PC_WB: 0x344 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[425]  inst_count_WB: 76 PC_WB: 0x348 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[434]  inst_count_WB: 77 PC_WB: 0x34c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[443]  inst_count_WB: 78 PC_WB: 0x350 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[452]  inst_count_WB: 79 PC_WB: 0x354 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[461]  inst_count_WB: 80 PC_WB: 0x358 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[469]  inst_count_WB: 81 PC_WB: 0x35c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[478]  inst_count_WB: 82 PC_WB: 0x360 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[487]  inst_count_WB: 83 PC_WB: 0x364 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[496]  inst_count_WB: 84 PC_WB: 0x368 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[505]  inst_count_WB: 85 PC_WB: 0x36c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[514]  inst_count_WB: 86 PC_WB: 0x370 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[523]  inst_count_WB: 87 PC_WB: 0x374 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[532]  inst_count_WB: 88 PC_WB: 0x378 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[541]  inst_count_WB: 89 PC_WB: 0x37c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[549]  inst_count_WB: 90 PC_WB: 0x380 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[558]  inst_count_WB: 91 PC_WB: 0x384 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[567]  inst_count_WB: 92 PC_WB: 0x388 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[576]  inst_count_WB: 93 PC_WB: 0x38c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[585]  inst_count_WB: 94 PC_WB: 0x390 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[594]  inst_count_WB: 95 PC_WB: 0x394 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[603]  inst_count_WB: 96 PC_WB: 0x398 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[612]  inst_count_WB: 97 PC_WB: 0x39c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[621]  inst_count_WB: 98 PC_WB: 0x3a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[629]  inst_count_WB: 99 PC_WB: 0x3a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[638]  inst_count_WB: 100 PC_WB: 0x3a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[647]  inst_count_WB: 101 PC_WB: 0x3ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[656]  inst_count_WB: 102 PC_WB: 0x3b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[665]  inst_count_WB: 103 PC_WB: 0x3b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[674]  inst_count_WB: 104 PC_WB: 0x3b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[683]  inst_count_WB: 105 PC_WB: 0x3bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[692]  inst_count_WB: 106 PC_WB: 0x3c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[701]  inst_count_WB: 107 PC_WB: 0x3c4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[709]  inst_count_WB: 108 PC_WB: 0x3c8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[718]  inst_count_WB: 109 PC_WB: 0x3cc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[727]  inst_count_WB: 110 PC_WB: 0x3d0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[736]  inst_count_WB: 111 PC_WB: 0x3d4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[745]  inst_count_WB: 112 PC_WB: 0x3d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[754]  inst_count_WB: 113 PC_WB: 0x3dc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[763]  inst_count_WB: 114 PC_WB: 0x3e0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[772]  inst_count_WB: 115 PC_WB: 0x3e4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[781]  inst_count_WB: 116 PC_WB: 0x3e8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[789]  inst_count_WB: 117 PC_WB: 0x3ec Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[798]  inst_count_WB: 118 PC_WB: 0x3f0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[807]  inst_count_WB: 119 PC_WB: 0x3f4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[816]  inst_count_WB: 120 PC_WB: 0x3f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[825]  inst_count_WB: 121 PC_WB: 0x3fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[834]  inst_count_WB: 122 PC_WB: 0x400 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[843]  inst_count_WB: 123 PC_WB: 0x404 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[852]  inst_count_WB: 124 PC_WB: 0x408 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[861]  inst_count_WB: 125 PC_WB: 0x40c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[869]  inst_count_WB: 126 PC_WB: 0x410 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[878]  inst_count_WB: 127 PC_WB: 0x414 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[887]  inst_count_WB: 128 PC_WB: 0x418 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[896]  inst_count_WB: 129 PC_WB: 0x41c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[905]  inst_count_WB: 130 PC_WB: 0x420 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[914]  inst_count_WB: 131 PC_WB: 0x424 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[923]  inst_count_WB: 132 PC_WB: 0x428 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[932]  inst_count_WB: 133 PC_WB: 0x42c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[941]  inst_count_WB: 134 PC_WB: 0x430 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[949]  inst_count_WB: 135 PC_WB: 0x434 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[958]  inst_count_WB: 136 PC_WB: 0x438 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[967]  inst_count_WB: 137 PC_WB: 0x43c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[976]  inst_count_WB: 138 PC_WB: 0x440 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[985]  inst_count_WB: 139 PC_WB: 0x444 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[994]  inst_count_WB: 140 PC_WB: 0x448 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+Passed!
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/3220/3220_project2/tests/part2/bge.mem
+-- VERILATE ----------------
+/home/joe/Documents/3220/3220_project2/tests/part2/bge.mem
+/home/joe/Documents/3220/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/3220/3220_project2/tests/part2/bge.mem"|g'  /home/joe/Documents/3220/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/bge.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/bge.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALL.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x313 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+[125]  inst_count_WB: 8 PC_WB: 0x21c Inst_WB: 0x413 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:8
+[127]  inst_count_WB: 9 PC_WB: 0x220 Inst_WB: 0x493 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:9
+[129]  inst_count_WB: 10 PC_WB: 0x224 Inst_WB: 0x513 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[132]  inst_count_WB: 11 PC_WB: 0x228 Inst_WB: 0x593 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:11
+[134]  inst_count_WB: 12 PC_WB: 0x22c Inst_WB: 0x613 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:12
+[136]  inst_count_WB: 13 PC_WB: 0x230 Inst_WB: 0x693 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:13
+[138]  inst_count_WB: 14 PC_WB: 0x234 Inst_WB: 0x713 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[141]  inst_count_WB: 15 PC_WB: 0x238 Inst_WB: 0x793 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:15
+[143]  inst_count_WB: 16 PC_WB: 0x23c Inst_WB: 0x813 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:16
+[145]  inst_count_WB: 17 PC_WB: 0x240 Inst_WB: 0x893 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:17
+[147]  inst_count_WB: 18 PC_WB: 0x244 Inst_WB: 0x913 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:18
+[149]  inst_count_WB: 19 PC_WB: 0x248 Inst_WB: 0x993 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:19
+[152]  inst_count_WB: 20 PC_WB: 0x24c Inst_WB: 0xa13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:20
+[154]  inst_count_WB: 21 PC_WB: 0x250 Inst_WB: 0xa93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:21
+[156]  inst_count_WB: 22 PC_WB: 0x254 Inst_WB: 0xb13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:22
+[158]  inst_count_WB: 23 PC_WB: 0x258 Inst_WB: 0xb93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:23
+[161]  inst_count_WB: 24 PC_WB: 0x25c Inst_WB: 0xc13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:24
+[163]  inst_count_WB: 25 PC_WB: 0x260 Inst_WB: 0xc93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:25
+[165]  inst_count_WB: 26 PC_WB: 0x264 Inst_WB: 0xd13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:26
+[167]  inst_count_WB: 27 PC_WB: 0x268 Inst_WB: 0xd93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:27
+[169]  inst_count_WB: 28 PC_WB: 0x26c Inst_WB: 0xe13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:28
+[172]  inst_count_WB: 29 PC_WB: 0x270 Inst_WB: 0xe93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:29
+[174]  inst_count_WB: 30 PC_WB: 0x274 Inst_WB: 0xf13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:30
+[176]  inst_count_WB: 31 PC_WB: 0x278 Inst_WB: 0xf93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:31
+[178]  inst_count_WB: 32 PC_WB: 0x27c Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[185]  inst_count_WB: 33 PC_WB: 0x280 Inst_WB: 0xfff00093 Op_I:12 wr_reg_WB:1 regval_WB:-1 wregno_WB:1
+[187]  inst_count_WB: 34 PC_WB: 0x284 Inst_WB: 0xfff00113 Op_I:12 wr_reg_WB:1 regval_WB:-1 wregno_WB:2
+[196]  inst_count_WB: 35 PC_WB: 0x288 Inst_WB: 0x20d663 Op_I:31
+pc 00000290, reg1          0, reg2         0
+[201]  inst_count_WB: 36 PC_WB: 0x294 Inst_WB: 0xfe20dee3 Op_I:31
+[205]  inst_count_WB: 37 PC_WB: 0x290 Inst_WB: 0x301663 Op_I:29
+[209]  inst_count_WB: 38 PC_WB: 0x29c Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[212]  inst_count_WB: 39 PC_WB: 0x2a0 Inst_WB: 0xffe00093 Op_I:12 wr_reg_WB:1 regval_WB:-2 wregno_WB:1
+[221]  inst_count_WB: 40 PC_WB: 0x2a4 Inst_WB: 0x100113 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:2
+pc 000002ac, reg1          0, reg2         0
+[229]  inst_count_WB: 41 PC_WB: 0x2a8 Inst_WB: 0x20d463 Op_I:31
+[234]  inst_count_WB: 42 PC_WB: 0x2ac Inst_WB: 0x301463 Op_I:29
+[238]  inst_count_WB: 43 PC_WB: 0x2b4 Inst_WB: 0xfe20dee3 Op_I:31
+[243]  inst_count_WB: 44 PC_WB: 0x2b8 Inst_WB: 0x300193 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:3
+[245]  inst_count_WB: 45 PC_WB: 0x2bc Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[247]  inst_count_WB: 46 PC_WB: 0x2c0 Inst_WB: 0xfff00093 Op_I:12 wr_reg_WB:1 regval_WB:-1 wregno_WB:1
+[249]  inst_count_WB: 47 PC_WB: 0x2c4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[258]  inst_count_WB: 48 PC_WB: 0x2c8 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[267]  inst_count_WB: 49 PC_WB: 0x2cc Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[276]  inst_count_WB: 50 PC_WB: 0x2d0 Inst_WB: 0x420d063 Op_I:31
+[281]  inst_count_WB: 51 PC_WB: 0x2d4 Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:4
+[283]  inst_count_WB: 52 PC_WB: 0x2d8 Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 000002dc, reg1          1, reg2         1
+[292]  inst_count_WB: 53 PC_WB: 0x2dc Inst_WB: 0xfe5212e3 Op_I:29
+[296]  inst_count_WB: 54 PC_WB: 0x2c0 Inst_WB: 0xfff00093 Op_I:12 wr_reg_WB:1 regval_WB:-1 wregno_WB:1
+[298]  inst_count_WB: 55 PC_WB: 0x2c4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[307]  inst_count_WB: 56 PC_WB: 0x2c8 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[316]  inst_count_WB: 57 PC_WB: 0x2cc Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[325]  inst_count_WB: 58 PC_WB: 0x2d0 Inst_WB: 0x420d063 Op_I:31
+[329]  inst_count_WB: 59 PC_WB: 0x2d4 Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:4
+[332]  inst_count_WB: 60 PC_WB: 0x2d8 Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 000002dc, reg1          2, reg2         2
+[341]  inst_count_WB: 61 PC_WB: 0x2dc Inst_WB: 0xfe5212e3 Op_I:29
+[345]  inst_count_WB: 62 PC_WB: 0x2e0 Inst_WB: 0x100093 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:1
+[354]  inst_count_WB: 63 PC_WB: 0x2e4 Inst_WB: 0xda63 Op_I:31
+[358]  inst_count_WB: 64 PC_WB: 0x2f8 Inst_WB: 0x108093 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:1
+[367]  inst_count_WB: 65 PC_WB: 0x2fc Inst_WB: 0x108093 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:1
+[369]  inst_count_WB: 66 PC_WB: 0x300 Inst_WB: 0x300393 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:7
+pc 00000308, reg1          3, reg2         3
+[372]  inst_count_WB: 67 PC_WB: 0x304 Inst_WB: 0x400193 Op_I:12 wr_reg_WB:1 regval_WB:4 wregno_WB:3
+pc 0000030c, reg1          0, reg2         0
+[378]  inst_count_WB: 68 PC_WB: 0x308 Inst_WB: 0x709463 Op_I:29
+[383]  inst_count_WB: 69 PC_WB: 0x30c Inst_WB: 0x301e63 Op_I:29
+[387]  inst_count_WB: 70 PC_WB: 0x328 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[389]  inst_count_WB: 71 PC_WB: 0x32c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[398]  inst_count_WB: 72 PC_WB: 0x330 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[407]  inst_count_WB: 73 PC_WB: 0x334 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[416]  inst_count_WB: 74 PC_WB: 0x338 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[425]  inst_count_WB: 75 PC_WB: 0x33c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[434]  inst_count_WB: 76 PC_WB: 0x340 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[443]  inst_count_WB: 77 PC_WB: 0x344 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[452]  inst_count_WB: 78 PC_WB: 0x348 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[461]  inst_count_WB: 79 PC_WB: 0x34c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[469]  inst_count_WB: 80 PC_WB: 0x350 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[478]  inst_count_WB: 81 PC_WB: 0x354 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[487]  inst_count_WB: 82 PC_WB: 0x358 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[496]  inst_count_WB: 83 PC_WB: 0x35c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[505]  inst_count_WB: 84 PC_WB: 0x360 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[514]  inst_count_WB: 85 PC_WB: 0x364 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[523]  inst_count_WB: 86 PC_WB: 0x368 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[532]  inst_count_WB: 87 PC_WB: 0x36c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[541]  inst_count_WB: 88 PC_WB: 0x370 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[549]  inst_count_WB: 89 PC_WB: 0x374 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[558]  inst_count_WB: 90 PC_WB: 0x378 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[567]  inst_count_WB: 91 PC_WB: 0x37c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[576]  inst_count_WB: 92 PC_WB: 0x380 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[585]  inst_count_WB: 93 PC_WB: 0x384 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[594]  inst_count_WB: 94 PC_WB: 0x388 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[603]  inst_count_WB: 95 PC_WB: 0x38c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[612]  inst_count_WB: 96 PC_WB: 0x390 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[621]  inst_count_WB: 97 PC_WB: 0x394 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[629]  inst_count_WB: 98 PC_WB: 0x398 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[638]  inst_count_WB: 99 PC_WB: 0x39c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[647]  inst_count_WB: 100 PC_WB: 0x3a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[656]  inst_count_WB: 101 PC_WB: 0x3a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[665]  inst_count_WB: 102 PC_WB: 0x3a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[674]  inst_count_WB: 103 PC_WB: 0x3ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[683]  inst_count_WB: 104 PC_WB: 0x3b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[692]  inst_count_WB: 105 PC_WB: 0x3b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[701]  inst_count_WB: 106 PC_WB: 0x3b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[709]  inst_count_WB: 107 PC_WB: 0x3bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[718]  inst_count_WB: 108 PC_WB: 0x3c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[727]  inst_count_WB: 109 PC_WB: 0x3c4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[736]  inst_count_WB: 110 PC_WB: 0x3c8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[745]  inst_count_WB: 111 PC_WB: 0x3cc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[754]  inst_count_WB: 112 PC_WB: 0x3d0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[763]  inst_count_WB: 113 PC_WB: 0x3d4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[772]  inst_count_WB: 114 PC_WB: 0x3d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[781]  inst_count_WB: 115 PC_WB: 0x3dc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[789]  inst_count_WB: 116 PC_WB: 0x3e0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[798]  inst_count_WB: 117 PC_WB: 0x3e4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[807]  inst_count_WB: 118 PC_WB: 0x3e8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[816]  inst_count_WB: 119 PC_WB: 0x3ec Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[825]  inst_count_WB: 120 PC_WB: 0x3f0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[834]  inst_count_WB: 121 PC_WB: 0x3f4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[843]  inst_count_WB: 122 PC_WB: 0x3f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[852]  inst_count_WB: 123 PC_WB: 0x3fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[861]  inst_count_WB: 124 PC_WB: 0x400 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[869]  inst_count_WB: 125 PC_WB: 0x404 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[878]  inst_count_WB: 126 PC_WB: 0x408 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[887]  inst_count_WB: 127 PC_WB: 0x40c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[896]  inst_count_WB: 128 PC_WB: 0x410 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[905]  inst_count_WB: 129 PC_WB: 0x414 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[914]  inst_count_WB: 130 PC_WB: 0x418 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[923]  inst_count_WB: 131 PC_WB: 0x41c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[932]  inst_count_WB: 132 PC_WB: 0x420 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[941]  inst_count_WB: 133 PC_WB: 0x424 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[949]  inst_count_WB: 134 PC_WB: 0x428 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[958]  inst_count_WB: 135 PC_WB: 0x42c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[967]  inst_count_WB: 136 PC_WB: 0x430 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[976]  inst_count_WB: 137 PC_WB: 0x434 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[985]  inst_count_WB: 138 PC_WB: 0x438 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[994]  inst_count_WB: 139 PC_WB: 0x43c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+Passed!
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/3220/3220_project2/tests/part2/jal.mem
+-- VERILATE ----------------
+/home/joe/Documents/3220/3220_project2/tests/part2/jal.mem
+/home/joe/Documents/3220/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/3220/3220_project2/tests/part2/jal.mem"|g'  /home/joe/Documents/3220/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/jal.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/jal.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALL.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x313 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+[125]  inst_count_WB: 8 PC_WB: 0x21c Inst_WB: 0x413 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:8
+[127]  inst_count_WB: 9 PC_WB: 0x220 Inst_WB: 0x493 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:9
+[129]  inst_count_WB: 10 PC_WB: 0x224 Inst_WB: 0x513 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[132]  inst_count_WB: 11 PC_WB: 0x228 Inst_WB: 0x593 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:11
+[134]  inst_count_WB: 12 PC_WB: 0x22c Inst_WB: 0x613 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:12
+[136]  inst_count_WB: 13 PC_WB: 0x230 Inst_WB: 0x693 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:13
+[138]  inst_count_WB: 14 PC_WB: 0x234 Inst_WB: 0x713 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[141]  inst_count_WB: 15 PC_WB: 0x238 Inst_WB: 0x793 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:15
+[143]  inst_count_WB: 16 PC_WB: 0x23c Inst_WB: 0x813 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:16
+[145]  inst_count_WB: 17 PC_WB: 0x240 Inst_WB: 0x893 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:17
+[147]  inst_count_WB: 18 PC_WB: 0x244 Inst_WB: 0x913 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:18
+[149]  inst_count_WB: 19 PC_WB: 0x248 Inst_WB: 0x993 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:19
+[152]  inst_count_WB: 20 PC_WB: 0x24c Inst_WB: 0xa13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:20
+[154]  inst_count_WB: 21 PC_WB: 0x250 Inst_WB: 0xa93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:21
+[156]  inst_count_WB: 22 PC_WB: 0x254 Inst_WB: 0xb13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:22
+[158]  inst_count_WB: 23 PC_WB: 0x258 Inst_WB: 0xb93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:23
+[161]  inst_count_WB: 24 PC_WB: 0x25c Inst_WB: 0xc13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:24
+[163]  inst_count_WB: 25 PC_WB: 0x260 Inst_WB: 0xc93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:25
+[165]  inst_count_WB: 26 PC_WB: 0x264 Inst_WB: 0xd13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:26
+[167]  inst_count_WB: 27 PC_WB: 0x268 Inst_WB: 0xd93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:27
+[169]  inst_count_WB: 28 PC_WB: 0x26c Inst_WB: 0xe13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:28
+[172]  inst_count_WB: 29 PC_WB: 0x270 Inst_WB: 0xe93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:29
+[174]  inst_count_WB: 30 PC_WB: 0x274 Inst_WB: 0xf13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:30
+[176]  inst_count_WB: 31 PC_WB: 0x278 Inst_WB: 0xf93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:31
+[178]  inst_count_WB: 32 PC_WB: 0x27c Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[181]  inst_count_WB: 33 PC_WB: 0x280 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[183]  inst_count_WB: 34 PC_WB: 0x284 Inst_WB: 0x100026f Op_I:25 wr_reg_WB:1 regval_WB:648 wregno_WB:4
+[187]  inst_count_WB: 35 PC_WB: 0x294 Inst_WB: 0x117 Op_I:22 wr_reg_WB:1 regval_WB:660 wregno_WB:2
+[196]  inst_count_WB: 36 PC_WB: 0x298 Inst_WB: 0xff410113 Op_I:12 wr_reg_WB:1 regval_WB:648 wregno_WB:2
+[205]  inst_count_WB: 37 PC_WB: 0x29c Inst_WB: 0x2410063 Op_I:28
+[209]  inst_count_WB: 38 PC_WB: 0x2bc Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[212]  inst_count_WB: 39 PC_WB: 0x2c0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[221]  inst_count_WB: 40 PC_WB: 0x2c4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[229]  inst_count_WB: 41 PC_WB: 0x2c8 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[238]  inst_count_WB: 42 PC_WB: 0x2cc Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[247]  inst_count_WB: 43 PC_WB: 0x2d0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[256]  inst_count_WB: 44 PC_WB: 0x2d4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[265]  inst_count_WB: 45 PC_WB: 0x2d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[274]  inst_count_WB: 46 PC_WB: 0x2dc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[283]  inst_count_WB: 47 PC_WB: 0x2e0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[292]  inst_count_WB: 48 PC_WB: 0x2e4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[301]  inst_count_WB: 49 PC_WB: 0x2e8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[309]  inst_count_WB: 50 PC_WB: 0x2ec Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[318]  inst_count_WB: 51 PC_WB: 0x2f0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[327]  inst_count_WB: 52 PC_WB: 0x2f4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[336]  inst_count_WB: 53 PC_WB: 0x2f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[345]  inst_count_WB: 54 PC_WB: 0x2fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[354]  inst_count_WB: 55 PC_WB: 0x300 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[363]  inst_count_WB: 56 PC_WB: 0x304 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[372]  inst_count_WB: 57 PC_WB: 0x308 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[381]  inst_count_WB: 58 PC_WB: 0x30c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[389]  inst_count_WB: 59 PC_WB: 0x310 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[398]  inst_count_WB: 60 PC_WB: 0x314 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[407]  inst_count_WB: 61 PC_WB: 0x318 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[416]  inst_count_WB: 62 PC_WB: 0x31c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[425]  inst_count_WB: 63 PC_WB: 0x320 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[434]  inst_count_WB: 64 PC_WB: 0x324 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[443]  inst_count_WB: 65 PC_WB: 0x328 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[452]  inst_count_WB: 66 PC_WB: 0x32c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[461]  inst_count_WB: 67 PC_WB: 0x330 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[469]  inst_count_WB: 68 PC_WB: 0x334 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[478]  inst_count_WB: 69 PC_WB: 0x338 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[487]  inst_count_WB: 70 PC_WB: 0x33c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[496]  inst_count_WB: 71 PC_WB: 0x340 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[505]  inst_count_WB: 72 PC_WB: 0x344 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[514]  inst_count_WB: 73 PC_WB: 0x348 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[523]  inst_count_WB: 74 PC_WB: 0x34c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[532]  inst_count_WB: 75 PC_WB: 0x350 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[541]  inst_count_WB: 76 PC_WB: 0x354 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[549]  inst_count_WB: 77 PC_WB: 0x358 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[558]  inst_count_WB: 78 PC_WB: 0x35c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[567]  inst_count_WB: 79 PC_WB: 0x360 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[576]  inst_count_WB: 80 PC_WB: 0x364 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[585]  inst_count_WB: 81 PC_WB: 0x368 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[594]  inst_count_WB: 82 PC_WB: 0x36c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[603]  inst_count_WB: 83 PC_WB: 0x370 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[612]  inst_count_WB: 84 PC_WB: 0x374 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[621]  inst_count_WB: 85 PC_WB: 0x378 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[629]  inst_count_WB: 86 PC_WB: 0x37c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[638]  inst_count_WB: 87 PC_WB: 0x380 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[647]  inst_count_WB: 88 PC_WB: 0x384 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[656]  inst_count_WB: 89 PC_WB: 0x388 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[665]  inst_count_WB: 90 PC_WB: 0x38c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[674]  inst_count_WB: 91 PC_WB: 0x390 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[683]  inst_count_WB: 92 PC_WB: 0x394 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[692]  inst_count_WB: 93 PC_WB: 0x398 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[701]  inst_count_WB: 94 PC_WB: 0x39c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[709]  inst_count_WB: 95 PC_WB: 0x3a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[718]  inst_count_WB: 96 PC_WB: 0x3a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[727]  inst_count_WB: 97 PC_WB: 0x3a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[736]  inst_count_WB: 98 PC_WB: 0x3ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[745]  inst_count_WB: 99 PC_WB: 0x3b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[754]  inst_count_WB: 100 PC_WB: 0x3b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[763]  inst_count_WB: 101 PC_WB: 0x3b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[772]  inst_count_WB: 102 PC_WB: 0x3bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[781]  inst_count_WB: 103 PC_WB: 0x3c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[789]  inst_count_WB: 104 PC_WB: 0x3c4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[798]  inst_count_WB: 105 PC_WB: 0x3c8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[807]  inst_count_WB: 106 PC_WB: 0x3cc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[816]  inst_count_WB: 107 PC_WB: 0x3d0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[825]  inst_count_WB: 108 PC_WB: 0x3d4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[834]  inst_count_WB: 109 PC_WB: 0x3d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[843]  inst_count_WB: 110 PC_WB: 0x3dc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[852]  inst_count_WB: 111 PC_WB: 0x3e0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[861]  inst_count_WB: 112 PC_WB: 0x3e4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[869]  inst_count_WB: 113 PC_WB: 0x3e8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[878]  inst_count_WB: 114 PC_WB: 0x3ec Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[887]  inst_count_WB: 115 PC_WB: 0x3f0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[896]  inst_count_WB: 116 PC_WB: 0x3f4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[905]  inst_count_WB: 117 PC_WB: 0x3f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[914]  inst_count_WB: 118 PC_WB: 0x3fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[923]  inst_count_WB: 119 PC_WB: 0x400 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[932]  inst_count_WB: 120 PC_WB: 0x404 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[941]  inst_count_WB: 121 PC_WB: 0x408 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[949]  inst_count_WB: 122 PC_WB: 0x40c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[958]  inst_count_WB: 123 PC_WB: 0x410 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[967]  inst_count_WB: 124 PC_WB: 0x414 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[976]  inst_count_WB: 125 PC_WB: 0x418 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[985]  inst_count_WB: 126 PC_WB: 0x41c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[994]  inst_count_WB: 127 PC_WB: 0x420 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+Passed!
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/3220/3220_project2/tests/part2/jalr.mem
+-- VERILATE ----------------
+/home/joe/Documents/3220/3220_project2/tests/part2/jalr.mem
+/home/joe/Documents/3220/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/3220/3220_project2/tests/part2/jalr.mem"|g'  /home/joe/Documents/3220/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/jalr.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/jalr.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALL.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:1
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x113 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:2
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[116]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[118]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[121]  inst_count_WB: 6 PC_WB: 0x214 Inst_WB: 0x313 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:6
+[123]  inst_count_WB: 7 PC_WB: 0x218 Inst_WB: 0x393 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:7
+[125]  inst_count_WB: 8 PC_WB: 0x21c Inst_WB: 0x413 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:8
+[127]  inst_count_WB: 9 PC_WB: 0x220 Inst_WB: 0x493 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:9
+[129]  inst_count_WB: 10 PC_WB: 0x224 Inst_WB: 0x513 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:10
+[132]  inst_count_WB: 11 PC_WB: 0x228 Inst_WB: 0x593 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:11
+[134]  inst_count_WB: 12 PC_WB: 0x22c Inst_WB: 0x613 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:12
+[136]  inst_count_WB: 13 PC_WB: 0x230 Inst_WB: 0x693 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:13
+[138]  inst_count_WB: 14 PC_WB: 0x234 Inst_WB: 0x713 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:14
+[141]  inst_count_WB: 15 PC_WB: 0x238 Inst_WB: 0x793 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:15
+[143]  inst_count_WB: 16 PC_WB: 0x23c Inst_WB: 0x813 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:16
+[145]  inst_count_WB: 17 PC_WB: 0x240 Inst_WB: 0x893 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:17
+[147]  inst_count_WB: 18 PC_WB: 0x244 Inst_WB: 0x913 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:18
+[149]  inst_count_WB: 19 PC_WB: 0x248 Inst_WB: 0x993 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:19
+[152]  inst_count_WB: 20 PC_WB: 0x24c Inst_WB: 0xa13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:20
+[154]  inst_count_WB: 21 PC_WB: 0x250 Inst_WB: 0xa93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:21
+[156]  inst_count_WB: 22 PC_WB: 0x254 Inst_WB: 0xb13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:22
+[158]  inst_count_WB: 23 PC_WB: 0x258 Inst_WB: 0xb93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:23
+[161]  inst_count_WB: 24 PC_WB: 0x25c Inst_WB: 0xc13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:24
+[163]  inst_count_WB: 25 PC_WB: 0x260 Inst_WB: 0xc93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:25
+[165]  inst_count_WB: 26 PC_WB: 0x264 Inst_WB: 0xd13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:26
+[167]  inst_count_WB: 27 PC_WB: 0x268 Inst_WB: 0xd93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:27
+[169]  inst_count_WB: 28 PC_WB: 0x26c Inst_WB: 0xe13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:28
+[172]  inst_count_WB: 29 PC_WB: 0x270 Inst_WB: 0xe93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:29
+[174]  inst_count_WB: 30 PC_WB: 0x274 Inst_WB: 0xf13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:30
+[176]  inst_count_WB: 31 PC_WB: 0x278 Inst_WB: 0xf93 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:31
+[178]  inst_count_WB: 32 PC_WB: 0x27c Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[181]  inst_count_WB: 33 PC_WB: 0x280 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[183]  inst_count_WB: 34 PC_WB: 0x284 Inst_WB: 0x317 Op_I:22 wr_reg_WB:1 regval_WB:644 wregno_WB:6
+[192]  inst_count_WB: 35 PC_WB: 0x288 Inst_WB: 0x1030313 Op_I:12 wr_reg_WB:1 regval_WB:660 wregno_WB:6
+pc 0000028c, br_cond_AGEX 1, is_branch 1 br_target 00000294
+[201]  inst_count_WB: 36 PC_WB: 0x28c Inst_WB: 0x302e7 Op_I:27 wr_reg_WB:1 regval_WB:656 wregno_WB:5
+[205]  inst_count_WB: 37 PC_WB: 0x294 Inst_WB: 0x317 Op_I:22 wr_reg_WB:1 regval_WB:660 wregno_WB:6
+[214]  inst_count_WB: 38 PC_WB: 0x298 Inst_WB: 0xffc30313 Op_I:12 wr_reg_WB:1 regval_WB:656 wregno_WB:6
+pc 0000029c, reg1        656, reg2       656
+[223]  inst_count_WB: 39 PC_WB: 0x29c Inst_WB: 0xc629a63 Op_I:29
+[227]  inst_count_WB: 40 PC_WB: 0x2a0 Inst_WB: 0x300193 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:3
+[229]  inst_count_WB: 41 PC_WB: 0x2a4 Inst_WB: 0x297 Op_I:22 wr_reg_WB:1 regval_WB:676 wregno_WB:5
+[238]  inst_count_WB: 42 PC_WB: 0x2a8 Inst_WB: 0x1028293 Op_I:12 wr_reg_WB:1 regval_WB:692 wregno_WB:5
+pc 000002ac, br_cond_AGEX 1, is_branch 1 br_target 000002b4
+[247]  inst_count_WB: 43 PC_WB: 0x2ac Inst_WB: 0x282e7 Op_I:27 wr_reg_WB:1 regval_WB:688 wregno_WB:5
+[252]  inst_count_WB: 44 PC_WB: 0x2b4 Inst_WB: 0x317 Op_I:22 wr_reg_WB:1 regval_WB:692 wregno_WB:6
+[261]  inst_count_WB: 45 PC_WB: 0x2b8 Inst_WB: 0xffc30313 Op_I:12 wr_reg_WB:1 regval_WB:688 wregno_WB:6
+pc 000002bc, reg1        688, reg2       688
+[269]  inst_count_WB: 46 PC_WB: 0x2bc Inst_WB: 0xa629a63 Op_I:29
+[274]  inst_count_WB: 47 PC_WB: 0x2c0 Inst_WB: 0x400193 Op_I:12 wr_reg_WB:1 regval_WB:4 wregno_WB:3
+[276]  inst_count_WB: 48 PC_WB: 0x2c4 Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[278]  inst_count_WB: 49 PC_WB: 0x2c8 Inst_WB: 0x317 Op_I:22 wr_reg_WB:1 regval_WB:712 wregno_WB:6
+[287]  inst_count_WB: 50 PC_WB: 0x2cc Inst_WB: 0x1030313 Op_I:12 wr_reg_WB:1 regval_WB:728 wregno_WB:6
+pc 000002d0, br_cond_AGEX 1, is_branch 1 br_target 000002d8
+[296]  inst_count_WB: 51 PC_WB: 0x2d0 Inst_WB: 0x306e7 Op_I:27 wr_reg_WB:1 regval_WB:724 wregno_WB:13
+[301]  inst_count_WB: 52 PC_WB: 0x2d8 Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:4
+[303]  inst_count_WB: 53 PC_WB: 0x2dc Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 000002e0, reg1          1, reg2         1
+[312]  inst_count_WB: 54 PC_WB: 0x2e0 Inst_WB: 0xfe5214e3 Op_I:29
+[316]  inst_count_WB: 55 PC_WB: 0x2c8 Inst_WB: 0x317 Op_I:22 wr_reg_WB:1 regval_WB:712 wregno_WB:6
+[325]  inst_count_WB: 56 PC_WB: 0x2cc Inst_WB: 0x1030313 Op_I:12 wr_reg_WB:1 regval_WB:728 wregno_WB:6
+pc 000002d0, br_cond_AGEX 1, is_branch 1 br_target 000002d8
+[334]  inst_count_WB: 57 PC_WB: 0x2d0 Inst_WB: 0x306e7 Op_I:27 wr_reg_WB:1 regval_WB:724 wregno_WB:13
+[338]  inst_count_WB: 58 PC_WB: 0x2d8 Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:4
+[341]  inst_count_WB: 59 PC_WB: 0x2dc Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 000002e0, reg1          2, reg2         2
+[349]  inst_count_WB: 60 PC_WB: 0x2e0 Inst_WB: 0xfe5214e3 Op_I:29
+[354]  inst_count_WB: 61 PC_WB: 0x2e4 Inst_WB: 0x500193 Op_I:12 wr_reg_WB:1 regval_WB:5 wregno_WB:3
+[356]  inst_count_WB: 62 PC_WB: 0x2e8 Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[358]  inst_count_WB: 63 PC_WB: 0x2ec Inst_WB: 0x317 Op_I:22 wr_reg_WB:1 regval_WB:748 wregno_WB:6
+[367]  inst_count_WB: 64 PC_WB: 0x2f0 Inst_WB: 0x1430313 Op_I:12 wr_reg_WB:1 regval_WB:768 wregno_WB:6
+[369]  inst_count_WB: 65 PC_WB: 0x2f4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+pc 000002f8, br_cond_AGEX 1, is_branch 1 br_target 00000300
+[378]  inst_count_WB: 66 PC_WB: 0x2f8 Inst_WB: 0x306e7 Op_I:27 wr_reg_WB:1 regval_WB:764 wregno_WB:13
+[383]  inst_count_WB: 67 PC_WB: 0x300 Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:4
+[385]  inst_count_WB: 68 PC_WB: 0x304 Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 00000308, reg1          1, reg2         1
+[394]  inst_count_WB: 69 PC_WB: 0x308 Inst_WB: 0xfe5212e3 Op_I:29
+[398]  inst_count_WB: 70 PC_WB: 0x2ec Inst_WB: 0x317 Op_I:22 wr_reg_WB:1 regval_WB:748 wregno_WB:6
+[407]  inst_count_WB: 71 PC_WB: 0x2f0 Inst_WB: 0x1430313 Op_I:12 wr_reg_WB:1 regval_WB:768 wregno_WB:6
+[409]  inst_count_WB: 72 PC_WB: 0x2f4 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+pc 000002f8, br_cond_AGEX 1, is_branch 1 br_target 00000300
+[418]  inst_count_WB: 73 PC_WB: 0x2f8 Inst_WB: 0x306e7 Op_I:27 wr_reg_WB:1 regval_WB:764 wregno_WB:13
+[423]  inst_count_WB: 74 PC_WB: 0x300 Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:4
+[425]  inst_count_WB: 75 PC_WB: 0x304 Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 00000308, reg1          2, reg2         2
+[434]  inst_count_WB: 76 PC_WB: 0x308 Inst_WB: 0xfe5212e3 Op_I:29
+[438]  inst_count_WB: 77 PC_WB: 0x30c Inst_WB: 0x600193 Op_I:12 wr_reg_WB:1 regval_WB:6 wregno_WB:3
+[441]  inst_count_WB: 78 PC_WB: 0x310 Inst_WB: 0x213 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:4
+[443]  inst_count_WB: 79 PC_WB: 0x314 Inst_WB: 0x317 Op_I:22 wr_reg_WB:1 regval_WB:788 wregno_WB:6
+[452]  inst_count_WB: 80 PC_WB: 0x318 Inst_WB: 0x1830313 Op_I:12 wr_reg_WB:1 regval_WB:812 wregno_WB:6
+[454]  inst_count_WB: 81 PC_WB: 0x31c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[463]  inst_count_WB: 82 PC_WB: 0x320 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+pc 00000324, br_cond_AGEX 1, is_branch 1 br_target 0000032c
+[472]  inst_count_WB: 83 PC_WB: 0x324 Inst_WB: 0x306e7 Op_I:27 wr_reg_WB:1 regval_WB:808 wregno_WB:13
+[476]  inst_count_WB: 84 PC_WB: 0x32c Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:4
+[478]  inst_count_WB: 85 PC_WB: 0x330 Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 00000334, reg1          1, reg2         1
+[487]  inst_count_WB: 86 PC_WB: 0x334 Inst_WB: 0xfe5210e3 Op_I:29
+[492]  inst_count_WB: 87 PC_WB: 0x314 Inst_WB: 0x317 Op_I:22 wr_reg_WB:1 regval_WB:788 wregno_WB:6
+[501]  inst_count_WB: 88 PC_WB: 0x318 Inst_WB: 0x1830313 Op_I:12 wr_reg_WB:1 regval_WB:812 wregno_WB:6
+[503]  inst_count_WB: 89 PC_WB: 0x31c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[512]  inst_count_WB: 90 PC_WB: 0x320 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+pc 00000324, br_cond_AGEX 1, is_branch 1 br_target 0000032c
+[521]  inst_count_WB: 91 PC_WB: 0x324 Inst_WB: 0x306e7 Op_I:27 wr_reg_WB:1 regval_WB:808 wregno_WB:13
+[525]  inst_count_WB: 92 PC_WB: 0x32c Inst_WB: 0x120213 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:4
+[527]  inst_count_WB: 93 PC_WB: 0x330 Inst_WB: 0x200293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+pc 00000334, reg1          2, reg2         2
+[536]  inst_count_WB: 94 PC_WB: 0x334 Inst_WB: 0xfe5210e3 Op_I:29
+[541]  inst_count_WB: 95 PC_WB: 0x338 Inst_WB: 0x100293 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:5
+[543]  inst_count_WB: 96 PC_WB: 0x33c Inst_WB: 0x317 Op_I:22 wr_reg_WB:1 regval_WB:828 wregno_WB:6
+[552]  inst_count_WB: 97 PC_WB: 0x340 Inst_WB: 0x1c30313 Op_I:12 wr_reg_WB:1 regval_WB:856 wregno_WB:6
+pc 00000344, br_cond_AGEX 1, is_branch 1 br_target 00000354
+[561]  inst_count_WB: 98 PC_WB: 0x344 Inst_WB: 0xffc30067 Op_I:27 wr_reg_WB:1 regval_WB:840 wregno_WB:0
+[565]  inst_count_WB: 99 PC_WB: 0x354 Inst_WB: 0x128293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+[574]  inst_count_WB: 100 PC_WB: 0x358 Inst_WB: 0x128293 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:5
+[583]  inst_count_WB: 101 PC_WB: 0x35c Inst_WB: 0x128293 Op_I:12 wr_reg_WB:1 regval_WB:4 wregno_WB:5
+[585]  inst_count_WB: 102 PC_WB: 0x360 Inst_WB: 0x400393 Op_I:12 wr_reg_WB:1 regval_WB:4 wregno_WB:7
+pc 00000368, reg1          4, reg2         4
+[594]  inst_count_WB: 103 PC_WB: 0x364 Inst_WB: 0x700193 Op_I:12 wr_reg_WB:1 regval_WB:7 wregno_WB:3
+pc 0000036c, reg1          0, reg2         0
+[596]  inst_count_WB: 104 PC_WB: 0x368 Inst_WB: 0x729463 Op_I:29
+[603]  inst_count_WB: 105 PC_WB: 0x36c Inst_WB: 0x301e63 Op_I:29
+[607]  inst_count_WB: 106 PC_WB: 0x388 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[609]  inst_count_WB: 107 PC_WB: 0x38c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[618]  inst_count_WB: 108 PC_WB: 0x390 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[627]  inst_count_WB: 109 PC_WB: 0x394 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[636]  inst_count_WB: 110 PC_WB: 0x398 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[645]  inst_count_WB: 111 PC_WB: 0x39c Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[654]  inst_count_WB: 112 PC_WB: 0x3a0 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[663]  inst_count_WB: 113 PC_WB: 0x3a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[672]  inst_count_WB: 114 PC_WB: 0x3a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[681]  inst_count_WB: 115 PC_WB: 0x3ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[689]  inst_count_WB: 116 PC_WB: 0x3b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[698]  inst_count_WB: 117 PC_WB: 0x3b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[707]  inst_count_WB: 118 PC_WB: 0x3b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[716]  inst_count_WB: 119 PC_WB: 0x3bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[725]  inst_count_WB: 120 PC_WB: 0x3c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[734]  inst_count_WB: 121 PC_WB: 0x3c4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[743]  inst_count_WB: 122 PC_WB: 0x3c8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[752]  inst_count_WB: 123 PC_WB: 0x3cc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[761]  inst_count_WB: 124 PC_WB: 0x3d0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[769]  inst_count_WB: 125 PC_WB: 0x3d4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[778]  inst_count_WB: 126 PC_WB: 0x3d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[787]  inst_count_WB: 127 PC_WB: 0x3dc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[796]  inst_count_WB: 128 PC_WB: 0x3e0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[805]  inst_count_WB: 129 PC_WB: 0x3e4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[814]  inst_count_WB: 130 PC_WB: 0x3e8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[823]  inst_count_WB: 131 PC_WB: 0x3ec Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[832]  inst_count_WB: 132 PC_WB: 0x3f0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[841]  inst_count_WB: 133 PC_WB: 0x3f4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[849]  inst_count_WB: 134 PC_WB: 0x3f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[858]  inst_count_WB: 135 PC_WB: 0x3fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[867]  inst_count_WB: 136 PC_WB: 0x400 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[876]  inst_count_WB: 137 PC_WB: 0x404 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[885]  inst_count_WB: 138 PC_WB: 0x408 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[894]  inst_count_WB: 139 PC_WB: 0x40c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[903]  inst_count_WB: 140 PC_WB: 0x410 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[912]  inst_count_WB: 141 PC_WB: 0x414 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[921]  inst_count_WB: 142 PC_WB: 0x418 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[929]  inst_count_WB: 143 PC_WB: 0x41c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[938]  inst_count_WB: 144 PC_WB: 0x420 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[947]  inst_count_WB: 145 PC_WB: 0x424 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[956]  inst_count_WB: 146 PC_WB: 0x428 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[965]  inst_count_WB: 147 PC_WB: 0x42c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[974]  inst_count_WB: 148 PC_WB: 0x430 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[983]  inst_count_WB: 149 PC_WB: 0x434 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[992]  inst_count_WB: 150 PC_WB: 0x438 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+Passed!
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/3220/3220_project2/tests/part2/test7.mem
+-- VERILATE ----------------
+/home/joe/Documents/3220/3220_project2/tests/part2/test7.mem
+/home/joe/Documents/3220/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/3220/3220_project2/tests/part2/test7.mem"|g'  /home/joe/Documents/3220/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/test7.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/test7.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALL.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x317 Op_I:22 wr_reg_WB:1 regval_WB:520 wregno_WB:6
+[123]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x1030313 Op_I:12 wr_reg_WB:1 regval_WB:536 wregno_WB:6
+pc 00000210, br_cond_AGEX 1, is_branch 1 br_target 00000218
+[132]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0x302e7 Op_I:27 wr_reg_WB:1 regval_WB:532 wregno_WB:5
+[136]  inst_count_WB: 6 PC_WB: 0x218 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[138]  inst_count_WB: 7 PC_WB: 0x21c Inst_WB: 0x80006f Op_I:25 wr_reg_WB:1 regval_WB:544 wregno_WB:0
+[147]  inst_count_WB: 8 PC_WB: 0x224 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[156]  inst_count_WB: 9 PC_WB: 0x228 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[165]  inst_count_WB: 10 PC_WB: 0x22c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[174]  inst_count_WB: 11 PC_WB: 0x230 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[183]  inst_count_WB: 12 PC_WB: 0x234 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[192]  inst_count_WB: 13 PC_WB: 0x238 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[201]  inst_count_WB: 14 PC_WB: 0x23c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[209]  inst_count_WB: 15 PC_WB: 0x240 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[218]  inst_count_WB: 16 PC_WB: 0x244 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[227]  inst_count_WB: 17 PC_WB: 0x248 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[236]  inst_count_WB: 18 PC_WB: 0x24c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[245]  inst_count_WB: 19 PC_WB: 0x250 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[254]  inst_count_WB: 20 PC_WB: 0x254 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[263]  inst_count_WB: 21 PC_WB: 0x258 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[272]  inst_count_WB: 22 PC_WB: 0x25c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[281]  inst_count_WB: 23 PC_WB: 0x260 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[289]  inst_count_WB: 24 PC_WB: 0x264 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[298]  inst_count_WB: 25 PC_WB: 0x268 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[307]  inst_count_WB: 26 PC_WB: 0x26c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[316]  inst_count_WB: 27 PC_WB: 0x270 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[325]  inst_count_WB: 28 PC_WB: 0x274 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[334]  inst_count_WB: 29 PC_WB: 0x278 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[343]  inst_count_WB: 30 PC_WB: 0x27c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[352]  inst_count_WB: 31 PC_WB: 0x280 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[361]  inst_count_WB: 32 PC_WB: 0x284 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[369]  inst_count_WB: 33 PC_WB: 0x288 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[378]  inst_count_WB: 34 PC_WB: 0x28c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[387]  inst_count_WB: 35 PC_WB: 0x290 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[396]  inst_count_WB: 36 PC_WB: 0x294 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[405]  inst_count_WB: 37 PC_WB: 0x298 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[414]  inst_count_WB: 38 PC_WB: 0x29c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[423]  inst_count_WB: 39 PC_WB: 0x2a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[432]  inst_count_WB: 40 PC_WB: 0x2a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[441]  inst_count_WB: 41 PC_WB: 0x2a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[449]  inst_count_WB: 42 PC_WB: 0x2ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[458]  inst_count_WB: 43 PC_WB: 0x2b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[467]  inst_count_WB: 44 PC_WB: 0x2b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[476]  inst_count_WB: 45 PC_WB: 0x2b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[485]  inst_count_WB: 46 PC_WB: 0x2bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[494]  inst_count_WB: 47 PC_WB: 0x2c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[503]  inst_count_WB: 48 PC_WB: 0x2c4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[512]  inst_count_WB: 49 PC_WB: 0x2c8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[521]  inst_count_WB: 50 PC_WB: 0x2cc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[529]  inst_count_WB: 51 PC_WB: 0x2d0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[538]  inst_count_WB: 52 PC_WB: 0x2d4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[547]  inst_count_WB: 53 PC_WB: 0x2d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[556]  inst_count_WB: 54 PC_WB: 0x2dc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[565]  inst_count_WB: 55 PC_WB: 0x2e0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[574]  inst_count_WB: 56 PC_WB: 0x2e4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[583]  inst_count_WB: 57 PC_WB: 0x2e8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[592]  inst_count_WB: 58 PC_WB: 0x2ec Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[601]  inst_count_WB: 59 PC_WB: 0x2f0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[609]  inst_count_WB: 60 PC_WB: 0x2f4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[618]  inst_count_WB: 61 PC_WB: 0x2f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[627]  inst_count_WB: 62 PC_WB: 0x2fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[636]  inst_count_WB: 63 PC_WB: 0x300 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[645]  inst_count_WB: 64 PC_WB: 0x304 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[654]  inst_count_WB: 65 PC_WB: 0x308 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[663]  inst_count_WB: 66 PC_WB: 0x30c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[672]  inst_count_WB: 67 PC_WB: 0x310 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[681]  inst_count_WB: 68 PC_WB: 0x314 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[689]  inst_count_WB: 69 PC_WB: 0x318 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[698]  inst_count_WB: 70 PC_WB: 0x31c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[707]  inst_count_WB: 71 PC_WB: 0x320 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[716]  inst_count_WB: 72 PC_WB: 0x324 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[725]  inst_count_WB: 73 PC_WB: 0x328 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[734]  inst_count_WB: 74 PC_WB: 0x32c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[743]  inst_count_WB: 75 PC_WB: 0x330 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[752]  inst_count_WB: 76 PC_WB: 0x334 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[761]  inst_count_WB: 77 PC_WB: 0x338 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[769]  inst_count_WB: 78 PC_WB: 0x33c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[778]  inst_count_WB: 79 PC_WB: 0x340 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[787]  inst_count_WB: 80 PC_WB: 0x344 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[796]  inst_count_WB: 81 PC_WB: 0x348 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[805]  inst_count_WB: 82 PC_WB: 0x34c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[814]  inst_count_WB: 83 PC_WB: 0x350 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[823]  inst_count_WB: 84 PC_WB: 0x354 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[832]  inst_count_WB: 85 PC_WB: 0x358 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[841]  inst_count_WB: 86 PC_WB: 0x35c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[849]  inst_count_WB: 87 PC_WB: 0x360 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[858]  inst_count_WB: 88 PC_WB: 0x364 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[867]  inst_count_WB: 89 PC_WB: 0x368 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[876]  inst_count_WB: 90 PC_WB: 0x36c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[885]  inst_count_WB: 91 PC_WB: 0x370 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[894]  inst_count_WB: 92 PC_WB: 0x374 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[903]  inst_count_WB: 93 PC_WB: 0x378 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[912]  inst_count_WB: 94 PC_WB: 0x37c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[921]  inst_count_WB: 95 PC_WB: 0x380 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[929]  inst_count_WB: 96 PC_WB: 0x384 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[938]  inst_count_WB: 97 PC_WB: 0x388 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[947]  inst_count_WB: 98 PC_WB: 0x38c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[956]  inst_count_WB: 99 PC_WB: 0x390 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[965]  inst_count_WB: 100 PC_WB: 0x394 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[974]  inst_count_WB: 101 PC_WB: 0x398 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[983]  inst_count_WB: 102 PC_WB: 0x39c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[992]  inst_count_WB: 103 PC_WB: 0x3a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+Passed!
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/3220/3220_project2/tests/part2/test8.mem
+-- VERILATE ----------------
+/home/joe/Documents/3220/3220_project2/tests/part2/test8.mem
+/home/joe/Documents/3220/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/3220/3220_project2/tests/part2/test8.mem"|g'  /home/joe/Documents/3220/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/test8.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/test8.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALL.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x200193 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:3
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0x293 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:5
+[114]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x317 Op_I:22 wr_reg_WB:1 regval_WB:520 wregno_WB:6
+[123]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x1c30313 Op_I:12 wr_reg_WB:1 regval_WB:548 wregno_WB:6
+pc 00000210, br_cond_AGEX 1, is_branch 1 br_target 00000220
+[132]  inst_count_WB: 5 PC_WB: 0x210 Inst_WB: 0xffc30067 Op_I:27 wr_reg_WB:1 regval_WB:532 wregno_WB:0
+[136]  inst_count_WB: 6 PC_WB: 0x220 Inst_WB: 0x128293 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:5
+[145]  inst_count_WB: 7 PC_WB: 0x224 Inst_WB: 0x128293 Op_I:12 wr_reg_WB:1 regval_WB:2 wregno_WB:5
+[154]  inst_count_WB: 8 PC_WB: 0x228 Inst_WB: 0x128293 Op_I:12 wr_reg_WB:1 regval_WB:3 wregno_WB:5
+[156]  inst_count_WB: 9 PC_WB: 0x22c Inst_WB: 0x400393 Op_I:12 wr_reg_WB:1 regval_WB:4 wregno_WB:7
+pc 00000234, reg1          3, reg2         3
+[158]  inst_count_WB: 10 PC_WB: 0x230 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[165]  inst_count_WB: 11 PC_WB: 0x234 Inst_WB: 0x729a63 Op_I:29
+[169]  inst_count_WB: 12 PC_WB: 0x248 Inst_WB: 0x193 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:3
+[172]  inst_count_WB: 13 PC_WB: 0x24c Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[174]  inst_count_WB: 14 PC_WB: 0x250 Inst_WB: 0x13 Op_I:12 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[183]  inst_count_WB: 15 PC_WB: 0x254 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[192]  inst_count_WB: 16 PC_WB: 0x258 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[201]  inst_count_WB: 17 PC_WB: 0x25c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[209]  inst_count_WB: 18 PC_WB: 0x260 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[218]  inst_count_WB: 19 PC_WB: 0x264 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[227]  inst_count_WB: 20 PC_WB: 0x268 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[236]  inst_count_WB: 21 PC_WB: 0x26c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[245]  inst_count_WB: 22 PC_WB: 0x270 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[254]  inst_count_WB: 23 PC_WB: 0x274 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[263]  inst_count_WB: 24 PC_WB: 0x278 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[272]  inst_count_WB: 25 PC_WB: 0x27c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[281]  inst_count_WB: 26 PC_WB: 0x280 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[289]  inst_count_WB: 27 PC_WB: 0x284 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[298]  inst_count_WB: 28 PC_WB: 0x288 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[307]  inst_count_WB: 29 PC_WB: 0x28c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[316]  inst_count_WB: 30 PC_WB: 0x290 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[325]  inst_count_WB: 31 PC_WB: 0x294 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[334]  inst_count_WB: 32 PC_WB: 0x298 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[343]  inst_count_WB: 33 PC_WB: 0x29c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[352]  inst_count_WB: 34 PC_WB: 0x2a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[361]  inst_count_WB: 35 PC_WB: 0x2a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[369]  inst_count_WB: 36 PC_WB: 0x2a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[378]  inst_count_WB: 37 PC_WB: 0x2ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[387]  inst_count_WB: 38 PC_WB: 0x2b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[396]  inst_count_WB: 39 PC_WB: 0x2b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[405]  inst_count_WB: 40 PC_WB: 0x2b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[414]  inst_count_WB: 41 PC_WB: 0x2bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[423]  inst_count_WB: 42 PC_WB: 0x2c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[432]  inst_count_WB: 43 PC_WB: 0x2c4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[441]  inst_count_WB: 44 PC_WB: 0x2c8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[449]  inst_count_WB: 45 PC_WB: 0x2cc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[458]  inst_count_WB: 46 PC_WB: 0x2d0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[467]  inst_count_WB: 47 PC_WB: 0x2d4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[476]  inst_count_WB: 48 PC_WB: 0x2d8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[485]  inst_count_WB: 49 PC_WB: 0x2dc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[494]  inst_count_WB: 50 PC_WB: 0x2e0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[503]  inst_count_WB: 51 PC_WB: 0x2e4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[512]  inst_count_WB: 52 PC_WB: 0x2e8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[521]  inst_count_WB: 53 PC_WB: 0x2ec Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[529]  inst_count_WB: 54 PC_WB: 0x2f0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[538]  inst_count_WB: 55 PC_WB: 0x2f4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[547]  inst_count_WB: 56 PC_WB: 0x2f8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[556]  inst_count_WB: 57 PC_WB: 0x2fc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[565]  inst_count_WB: 58 PC_WB: 0x300 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[574]  inst_count_WB: 59 PC_WB: 0x304 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[583]  inst_count_WB: 60 PC_WB: 0x308 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[592]  inst_count_WB: 61 PC_WB: 0x30c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[601]  inst_count_WB: 62 PC_WB: 0x310 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[609]  inst_count_WB: 63 PC_WB: 0x314 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[618]  inst_count_WB: 64 PC_WB: 0x318 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[627]  inst_count_WB: 65 PC_WB: 0x31c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[636]  inst_count_WB: 66 PC_WB: 0x320 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[645]  inst_count_WB: 67 PC_WB: 0x324 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[654]  inst_count_WB: 68 PC_WB: 0x328 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[663]  inst_count_WB: 69 PC_WB: 0x32c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[672]  inst_count_WB: 70 PC_WB: 0x330 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[681]  inst_count_WB: 71 PC_WB: 0x334 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[689]  inst_count_WB: 72 PC_WB: 0x338 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[698]  inst_count_WB: 73 PC_WB: 0x33c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[707]  inst_count_WB: 74 PC_WB: 0x340 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[716]  inst_count_WB: 75 PC_WB: 0x344 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[725]  inst_count_WB: 76 PC_WB: 0x348 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[734]  inst_count_WB: 77 PC_WB: 0x34c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[743]  inst_count_WB: 78 PC_WB: 0x350 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[752]  inst_count_WB: 79 PC_WB: 0x354 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[761]  inst_count_WB: 80 PC_WB: 0x358 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[769]  inst_count_WB: 81 PC_WB: 0x35c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[778]  inst_count_WB: 82 PC_WB: 0x360 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[787]  inst_count_WB: 83 PC_WB: 0x364 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[796]  inst_count_WB: 84 PC_WB: 0x368 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[805]  inst_count_WB: 85 PC_WB: 0x36c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[814]  inst_count_WB: 86 PC_WB: 0x370 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[823]  inst_count_WB: 87 PC_WB: 0x374 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[832]  inst_count_WB: 88 PC_WB: 0x378 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[841]  inst_count_WB: 89 PC_WB: 0x37c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[849]  inst_count_WB: 90 PC_WB: 0x380 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[858]  inst_count_WB: 91 PC_WB: 0x384 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[867]  inst_count_WB: 92 PC_WB: 0x388 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[876]  inst_count_WB: 93 PC_WB: 0x38c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[885]  inst_count_WB: 94 PC_WB: 0x390 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[894]  inst_count_WB: 95 PC_WB: 0x394 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[903]  inst_count_WB: 96 PC_WB: 0x398 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[912]  inst_count_WB: 97 PC_WB: 0x39c Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[921]  inst_count_WB: 98 PC_WB: 0x3a0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[929]  inst_count_WB: 99 PC_WB: 0x3a4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[938]  inst_count_WB: 100 PC_WB: 0x3a8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[947]  inst_count_WB: 101 PC_WB: 0x3ac Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[956]  inst_count_WB: 102 PC_WB: 0x3b0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[965]  inst_count_WB: 103 PC_WB: 0x3b4 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[974]  inst_count_WB: 104 PC_WB: 0x3b8 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[983]  inst_count_WB: 105 PC_WB: 0x3bc Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+[992]  inst_count_WB: 106 PC_WB: 0x3c0 Inst_WB: 0x0 Op_I:37 wr_reg_WB:1 regval_WB:0 wregno_WB:0
+Passed!
+-- DONE --------------------
+
+TESTING: /home/joe/Documents/3220/3220_project2/tests/part2/test9.mem
+-- VERILATE ----------------
+/home/joe/Documents/3220/3220_project2/tests/part2/test9.mem
+/home/joe/Documents/3220/3220_project2/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/joe/Documents/3220/3220_project2/tests/part2/test9.mem"|g'  /home/joe/Documents/3220/3220_project2/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v -CFLAGS '-DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/test9.mem -DVCD_OUTPUT -DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir -f Vpipeline.mk
+make[1]: Entering directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+/usr/bin/perl /usr/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vpipeline.cpp Vpipeline_pipeline.cpp Vpipeline_WB_STAGE.cpp Vpipeline__Dpi.cpp Vpipeline__Trace.cpp Vpipeline__Slow.cpp Vpipeline_pipeline__Slow.cpp Vpipeline_WB_STAGE__Slow.cpp Vpipeline__Syms.cpp Vpipeline__Trace__Slow.cpp > Vpipeline__ALL.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DIDMEMINITFILE=/home/joe/Documents/3220/3220_project2/tests/part2/test9.mem -DVCD_OUTPUT -DDPRINTF  -Os -c -o Vpipeline__ALL.o Vpipeline__ALL.cpp
+ar -cr Vpipeline__ALL.a Vpipeline__ALL.o
+ranlib Vpipeline__ALL.a
+g++    sim_main.o verilated.o verilated_dpi.o verilated_vcd_c.o Vpipeline__ALL.a      -o Vpipeline
+make[1]: Leaving directory '/home/joe/Documents/3220/3220_project2/obj_dir'
+-- RUN ---------------------
+obj_dir/Vpipeline
+[109]  inst_count_WB: 1 PC_WB: 0x200 Inst_WB: 0x100193 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:3
+[112]  inst_count_WB: 2 PC_WB: 0x204 Inst_WB: 0xffe00093 Op_I:12 wr_reg_WB:1 regval_WB:-2 wregno_WB:1
+[121]  inst_count_WB: 3 PC_WB: 0x208 Inst_WB: 0x100113 Op_I:12 wr_reg_WB:1 regval_WB:1 wregno_WB:2
+[129]  inst_count_WB: 4 PC_WB: 0x20c Inst_WB: 0x115463 Op_I:31
+[134]  inst_count_WB: 5 PC_WB: 0x214 Inst_WB: 0x0 Op_I:37
+Passed!
+-- DONE --------------------

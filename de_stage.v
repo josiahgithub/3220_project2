@@ -162,10 +162,6 @@ module DE_STAGE(
             type_I_DE = `S_Type;
             type_immediate_DE = `S_immediate;  
         end 
-      else if (op_I_DE ==  `JAL_I)    begin 
-            type_I_DE = `U_Type;
-            type_immediate_DE = `J_immediate; 
-            end 
       else if (op_I_DE == `JAL_I )    
           begin 
             type_I_DE = `U_Type;
@@ -189,18 +185,11 @@ module DE_STAGE(
   reg  [`DBITS-1:0] sxt_imm_DE;
   always @(*) begin 
     case (type_immediate_DE )  
-    `I_immediate: 
-      sxt_imm_DE = {{21{inst_DE[31]}}, inst_DE[30:25], inst_DE[24:21], inst_DE[20]}; 
-      /*
-    `S_immediate: 
-      sxt_imm_DE =  ... */
-    `B_immediate: 
-      sxt_imm_DE = {{20{inst_DE[31]}}, inst_DE[7], inst_DE[30:25], inst_DE[11:8], 1'b0}; 
-    /*`U_immediate: 
-      sxt_imm_DE = ... 
-    `J_immediate: 
-      sxt_imm_DE = ... 
-      */ 
+    `I_immediate: sxt_imm_DE = {{21{inst_DE[31]}}, inst_DE[30:25], inst_DE[24:21], inst_DE[20]}; 
+    `S_immediate: sxt_imm_DE = {{21{inst_DE[31]}}, inst_DE[30:25], inst_DE[11:8], inst_DE[7]};  
+    `B_immediate: sxt_imm_DE = {{20{inst_DE[31]}}, inst_DE[7], inst_DE[30:25], inst_DE[11:8], 1'b0}; 
+    `U_immediate: sxt_imm_DE = {inst_DE[31], inst_DE[30:20], inst_DE[19:12], 12'b0}; 
+    `J_immediate: sxt_imm_DE = {{12{inst_DE[31]}}, inst_DE[19:12], inst_DE[20], inst_DE[30:25], inst_DE[24:21], 1'b0};
     default:
       sxt_imm_DE = 32'b0; 
     endcase  
@@ -214,7 +203,7 @@ module DE_STAGE(
   wire wr_csr_WB; // is this instruction writing into CSR ? 
 
   // signals come from WB stage for register WB 
-  assign { wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB} = from_WB_to_DE;  
+  assign {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB} = from_WB_to_DE;  
 
   wire agex_stall_command;
   wire pipeline_stall_DE; 
@@ -226,10 +215,19 @@ module DE_STAGE(
   assign {agex_stall_command, agex_reg_dest, is_agex_wr} = from_AGEX_to_DE;
   assign {mem_reg_dest, is_mem_wr} = from_MEM_to_DE;
   assign wb_reg_dest = wregno_WB;
+  
+  reg prev_dest;
+  reg prev_wr;
 
-  assign pipeline_stall_DE = agex_stall_command || ((agex_reg_dest == reg_1_num || agex_reg_dest == reg_2_num) && is_agex_wr)
-    || ((mem_reg_dest == reg_1_num || mem_reg_dest == reg_2_num) && is_mem_wr) || ((wb_reg_dest == reg_1_num || wb_reg_dest == reg_2_num) && wr_reg_WB);
-  assign from_DE_to_FE = {pipeline_stall_DE || type_immediate_DE == `B_immediate}; // pass the DE stage stall signal to FE stage 
+  wire stall_from_agex;
+  assign stall_from_agex = agex_stall_command || ((agex_reg_dest == reg_1_num || agex_reg_dest == reg_2_num) && is_agex_wr);
+  wire stall_from_mem;
+  assign stall_from_mem = ((mem_reg_dest == reg_1_num || mem_reg_dest == reg_2_num) && is_mem_wr);
+  wire stall_from_wb;
+  assign stall_from_wb = ((wb_reg_dest == reg_1_num || wb_reg_dest == reg_2_num) && wr_reg_WB);
+  assign pipeline_stall_DE = stall_from_agex || stall_from_mem || stall_from_wb;
+
+  assign from_DE_to_FE = {pipeline_stall_DE || type_immediate_DE == `B_immediate || op_I_DE == `JALR_I || op_I_DE == `JAL_I}; // pass the DE stage stall signal to FE stage 
 
 
   // decoding the contents of FE latch out. the order should be matched with the fe_stage.v 
@@ -249,15 +247,19 @@ module DE_STAGE(
   reg [4:0] reg_1_num;
   reg [4:0] reg_2_num;
 
-  always @ (posedge clk) begin 
+  always @ (*) begin 
     reg_1_num = inst_DE[19:15];
     reg_2_num = inst_DE[24:20];
     reg_1_val = regs[reg_1_num];
     reg_2_val = regs[reg_2_num];
+    //$display("PC %x agex_dest: %d mem_dest %d wb_dest %d reg1 %d reg2 %d agex_wr %d Stall: %d", PC_DE, agex_reg_dest, mem_reg_dest, wb_reg_dest, reg_1_num, reg_2_num, is_agex_wr, pipeline_stall_DE);
+    //$display("PC %x agex_stall %d wb_stall %d mem_Stall %d", PC_DE, stall_from_agex, stall_from_mem, stall_from_wb);
+    //$display("PC %x Gen stall: %d", PC_DE, type_immediate_DE == `B_immediate);
+    //$display("PC %x wr_en %d", PC_DE, wr_reg);
   end
 
   wire wr_reg;
-  assign wr_reg = type_I_DE == `R_Type || type_I_DE == `I_Type;
+  assign wr_reg = type_I_DE == `R_Type || type_I_DE == `I_Type || type_I_DE == `U_Type;
 // assign wire to send the contents of DE latch to other pipeline stages  
   assign DE_latch_out = DE_latch; 
 
@@ -286,7 +288,7 @@ module DE_STAGE(
 
   // register file and CSRs write
   always @ (negedge clk) begin 
-    if (wr_reg_WB) 
+    if (wr_reg_WB && wregno_WB != 0) 
 		  	regs[wregno_WB] <= regval_WB; 
     else if (wr_csr_WB) 
 		  	csr_regs[wcsrno_WB] <= regval_WB; 
