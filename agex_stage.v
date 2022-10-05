@@ -37,8 +37,10 @@ module AGEX_STAGE(
  //Signed versions of registers for pipeline math 
  reg signed [`DBITS-1:0] signed_reg_1_val;
  reg signed [`DBITS-1:0] signed_reg_2_val;
+ reg signed [`DBITS-1:0] signed_imm;
  assign signed_reg_1_val = reg_1_val;
  assign signed_reg_2_val = reg_2_val;
+ assign signed_imm = imm_val;
 
   always @ (*) begin
     case (op_I_AGEX)
@@ -111,6 +113,42 @@ module AGEX_STAGE(
       `SW_I: begin 
         result = reg_2_val;
         mem_addr = reg_1_val + imm_val;
+      end
+      `ANDI_I: result = reg_1_val & imm_val;
+      `AND_I: result = reg_1_val & reg_2_val;
+      `ORI_I: result = reg_1_val | imm_val;
+      `OR_I: result = reg_1_val | reg_2_val;
+      `XORI_I: result = reg_1_val ^ imm_val;
+      `XOR_I: result = reg_1_val ^ reg_2_val;
+      `SLL_I: result = reg_1_val <&lt reg_2_val[5:0];
+      `SRL_I: result = reg_1_val >> reg_2_val[5:0];
+      `SRA_I: result = reg_1_val >>> reg_2_val[5:0];
+      `SRLI_I: result = reg_1_val <&lt imm_val;
+      `SLTI_I: begin
+        if (signed_imm > signed_reg_1_val)
+          result <= 1;
+        else 
+          result <= 0;
+      end
+      `SLTIU_I: begin
+          if (imm_val > reg_1_val)
+              result <= 1;
+          else 
+              result <= 0;
+      end
+
+      `SLT_I: begin
+          if (signed_reg_2_val > signed_reg_1_val)
+              result <= 1;
+          else 
+              result <= 0;
+      end
+
+      `SLTU_I: begin
+          if (reg_2_val > reg_1_val)
+              result <= 1;
+          else 
+              result <= 0;
       end
 	  endcase 
    
