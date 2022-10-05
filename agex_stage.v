@@ -37,9 +37,10 @@ module AGEX_STAGE(
  //Signed versions of registers for pipeline math 
  reg signed [`DBITS-1:0] signed_reg_1_val;
  reg signed [`DBITS-1:0] signed_reg_2_val;
- reg signed []
+ reg signed [`DBITS-1:0] signed_imm;
  assign signed_reg_1_val = reg_1_val;
  assign signed_reg_2_val = reg_2_val;
+ assign signed_imm = imm_val;
 
   always @ (*) begin
     case (op_I_AGEX)
@@ -114,8 +115,37 @@ module AGEX_STAGE(
       `SLL_I: result = reg_1_val <&lt reg_2_val[5:0];
       `SRL_I: result = reg_1_val >> reg_2_val[5:0];
       `SRA_I: result = reg_1_val >>> reg_2_val[5:0];
-      `SLLI_I: result = reg_1_val <&lt imm_val;
-      `SLLI_I: result = reg_1_val <&lt imm_val;
+      `SRLI_I: result = reg_1_val <&lt imm_val;
+      `SLTI_I: begin
+          if (signed_imm > signed_reg_1_val) begin
+              result <= 1
+          else 
+              result <= 0
+        end
+      end
+      `SLTIU_I: begin
+          if (imm_val > reg_1_val) begin
+              result <= 1
+          else 
+              result <= 0
+        end
+      end
+
+      `SLT_I: begin
+          if (signed_reg_2_val > signed_reg_1_val) begin
+              result <= 1
+          else 
+              result <= 0
+        end
+      end
+      
+      `SLTU_I: begin
+          if (reg_2_val > reg_1_val) begin
+              result <= 1
+          else 
+              result <= 0
+        end
+      end
       
       
 	  endcase 
