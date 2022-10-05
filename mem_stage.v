@@ -54,7 +54,18 @@ module MEM_STAGE(
 
   wire [4:0] reg_dest;
   wire [`DBITS-1:0] result;
+  reg [`DBITS-1:0] result_to_wb;
 
+  always @(*) begin
+    if (op_I_MEM == `LW_I) 
+      result_to_wb = rd_val_MEM;
+    else
+      result_to_wb = result;
+  end
+
+  assign wr_val_MEM = result;
+  assign wr_mem_MEM = op_I_MEM == `SW_I;
+  
   assign MEM_latch_out = MEM_latch; 
   wire wr_reg;
    assign {
@@ -65,11 +76,11 @@ module MEM_STAGE(
                                 reg_dest,
                                 result,
                                 wr_reg,
+                                memaddr_MEM,
                                  // more signals might need
                                  bus_canary_MEM
                                  } = from_AGEX_latch;  
  
-
    
    assign MEM_latch_contents = {
                                 inst_MEM,
@@ -77,7 +88,7 @@ module MEM_STAGE(
                                 op_I_MEM,
                                 inst_count_MEM,
                                 reg_dest,
-                                result,
+                                result_to_wb,
                                 wr_reg,
                                         // more signals might need    
                               bus_canary_MEM                   

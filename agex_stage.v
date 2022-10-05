@@ -77,7 +77,7 @@ module AGEX_STAGE(
         //$display("pc %x, br_cond_AGEX %d, is_branch %d br_target %x", PC_AGEX, br_cond_AGEX, is_branch, br_target);
       end
       default : begin 
-        br_cond_AGEX = 1'b0;
+        br_cond_AGEX = 0'b0;
         is_branch = 0;
       end
     endcase
@@ -91,11 +91,12 @@ module AGEX_STAGE(
   assign stall_de = is_branch;
   assign from_AGEX_to_DE = {stall_de, reg_dest, wr_reg};
 
-  assign from_AGEX_to_FE = {br_cond_AGEX, br_target, move_on_fetch};
+  assign from_AGEX_to_FE = {br_cond_AGEX, br_target, is_branch};
   // compute ALU operations  (alu out or memory addresses)
   reg [`DBITS-1:0] result;
+  reg [`DBITS-1:0] mem_addr;
   always @ (*) begin
-  
+    
     case (op_I_AGEX)
       `ADD_I: result = reg_1_val + reg_2_val;
       `ADDI_I: result = reg_1_val + imm_val;
@@ -106,8 +107,11 @@ module AGEX_STAGE(
       `JAL_I: result = PC_AGEX + 4;
       `JALR_I: result = PC_AGEX + 4;
       `LUI_I: result = imm_val;
-       
-
+      `LW_I: mem_addr = reg_1_val + imm_val;
+      `SW_I: begin 
+        result = reg_2_val;
+        mem_addr = reg_1_val + imm_val;
+      end
 	  endcase 
    
   end 
@@ -156,6 +160,7 @@ module AGEX_STAGE(
     reg_dest,
     result,
     wr_reg,
+    mem_addr,
             // more signals might need
     bus_canary_AGEX     
   }; 
@@ -167,6 +172,7 @@ module AGEX_STAGE(
         end 
     else 
         begin
+          //$display("pc %x inst %x result %d op %d br_target %x", PC_AGEX, inst_AGEX, result, op_I_AGEX, br_target);
       // need to complete 
             AGEX_latch <= AGEX_latch_contents ;
         end 
