@@ -99,6 +99,8 @@ module AGEX_STAGE(
     case (op_I_AGEX)
       `ADD_I: result = reg_1_val + reg_2_val;
       `ADDI_I: result = reg_1_val + imm_val;
+      `AND_I: result = reg_1_val & reg_2_val;
+      `ANDI_I: result = reg_1_val & imm_val;
       `AUIPC_I: result = imm_val + PC_AGEX;
       `SUB_I: result = reg_1_val - reg_2_val;
       `JAL_I: result = PC_AGEX + 4;

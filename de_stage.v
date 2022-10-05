@@ -227,7 +227,7 @@ module DE_STAGE(
   assign stall_from_wb = ((wb_reg_dest == reg_1_num || wb_reg_dest == reg_2_num) && wr_reg_WB);
   assign pipeline_stall_DE = stall_from_agex || stall_from_mem || stall_from_wb;
 
-  assign from_DE_to_FE = {pipeline_stall_DE || type_immediate_DE == `B_immediate || op_I_DE == `JALR_I || op_I_DE == `JAL_I}; // pass the DE stage stall signal to FE stage 
+  assign from_DE_to_FE = {pipeline_stall_DE || op_I_DE == `BEQ_I || op_I_DE == `BLT_I || op_I_DE == `BGE_I || op_I_DE == `BNE_I || op_I_DE == `JALR_I || op_I_DE == `JAL_I}; // pass the DE stage stall signal to FE stage 
 
 
   // decoding the contents of FE latch out. the order should be matched with the fe_stage.v 
