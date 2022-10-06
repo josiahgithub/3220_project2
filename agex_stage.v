@@ -122,8 +122,8 @@ module AGEX_STAGE(
       `SRL_I: result = reg_1_val >> reg_2_val[5:0];
       `SRA_I: result = signed_reg_1_val >>> reg_2_val[5:0];
       `SLLI_I: result = reg_1_val << imm_val[5:0];
-      `SRLI_I: result = reg_1_val >> inst_AGEX[24:20];
-      `SRAI_I: result = signed_reg_1_val >>> inst_AGEX[24:20];
+      `SRLI_I: result = reg_1_val >> signed_shift_val;
+      `SRAI_I: result = signed_reg_1_val >>> signed_shift_val;
       `SLTI_I: begin
         if (signed_imm > signed_reg_1_val)
           result = 1;
