@@ -194,7 +194,8 @@ module DE_STAGE(
       sxt_imm_DE = 32'b0; 
     endcase  
   end 
-  
+  wire [4:0] signed_shift_val;
+  assign signed_shift_val = inst_DE[24:20];
  /* this signal is passed from WB stage */ 
   wire wr_reg_WB; // is this instruction writing into a register file? 
   wire [`REGNOBITS-1:0] wregno_WB; // destination register ID 
@@ -274,6 +275,7 @@ module DE_STAGE(
                                   reg_dest,
                                   sxt_imm_DE,
                                   wr_reg,
+                                  signed_shift_val,
                                   // more signals might need
                                    bus_canary_DE 
                                   }; 

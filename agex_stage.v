@@ -174,7 +174,7 @@ module AGEX_STAGE(
 	  endcase 
 
   end 
-
+  wire [4:0] signed_shift_val;
   wire wr_reg;
   assign  {
     inst_AGEX,
@@ -187,6 +187,7 @@ module AGEX_STAGE(
     reg_dest,
     imm_val,
     wr_reg,
+    signed_shift_val,
             // more signals might need
     bus_canary_AGEX
   } = from_DE_latch;    
