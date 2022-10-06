@@ -102,8 +102,6 @@ module AGEX_STAGE(
     case (op_I_AGEX)
       `ADD_I: result = reg_1_val + reg_2_val;
       `ADDI_I: result = reg_1_val + imm_val;
-      `AND_I: result = reg_1_val & reg_2_val;
-      `ANDI_I: result = reg_1_val & imm_val;
       `AUIPC_I: result = imm_val + PC_AGEX;
       `SUB_I: result = reg_1_val - reg_2_val;
       `JAL_I: result = PC_AGEX + 4;
@@ -120,35 +118,37 @@ module AGEX_STAGE(
       `OR_I: result = reg_1_val | reg_2_val;
       `XORI_I: result = reg_1_val ^ imm_val;
       `XOR_I: result = reg_1_val ^ reg_2_val;
-      `SLL_I: result = reg_1_val <&lt reg_2_val[5:0];
+      `SLL_I: result = reg_1_val << reg_2_val[5:0];
       `SRL_I: result = reg_1_val >> reg_2_val[5:0];
-      `SRA_I: result = reg_1_val >>> reg_2_val[5:0];
-      `SRLI_I: result = reg_1_val <&lt imm_val;
+      `SRA_I: result = signed_reg_1_val >>> reg_2_val[5:0];
+      `SLLI_I: result = reg_1_val << imm_val[5:0];
+      `SRLI_I: result = reg_1_val >> inst_AGEX[24:20];
+      `SRAI_I: result = signed_reg_1_val >>> inst_AGEX[24:20];
       `SLTI_I: begin
         if (signed_imm > signed_reg_1_val)
-          result <= 1;
+          result = 1;
         else 
-          result <= 0;
+          result = 0;
       end
       `SLTIU_I: begin
           if (imm_val > reg_1_val)
-              result <= 1;
+              result = 1;
           else 
-              result <= 0;
+              result = 0;
       end
 
       `SLT_I: begin
           if (signed_reg_2_val > signed_reg_1_val)
-              result <= 1;
+              result = 1;
           else 
-              result <= 0;
+              result = 0;
       end
 
       `SLTU_I: begin
           if (reg_2_val > reg_1_val)
-              result <= 1;
+              result = 1;
           else 
-              result <= 0;
+              result = 0;
       end
 	  endcase 
    
@@ -210,7 +210,8 @@ module AGEX_STAGE(
         end 
     else 
         begin
-          //$display("pc %x inst %x result %d op %d br_target %x", PC_AGEX, inst_AGEX, result, op_I_AGEX, br_target);
+          //$display("pc %x inst %x result %x op %d br_target %x", PC_AGEX, inst_AGEX, result, op_I_AGEX, br_target);
+          $display("pc %x reg1 %b result %b, imm %b", PC_AGEX, reg_1_val, result, imm_val);
       // need to complete 
             AGEX_latch <= AGEX_latch_contents ;
         end 
