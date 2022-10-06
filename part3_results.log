@@ -5,11 +5,11 @@ Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/and.mem
 Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/bgeu.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/blt.mem
 Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/bltu.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/bne.mem
 Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/jal.mem
@@ -17,42 +17,42 @@ Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/jalr.mem
 Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/lui.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/lw.mem
 Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/ori.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/or.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/simple.mem
 Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/slli.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/sll.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/slti.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/sltiu.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/slt.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/sltu.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/srai.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/sra.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/srli.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/srl.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/sub.mem
 Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/sw.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/test10.mem
-Failed. exitcode: -14
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/xori.mem
-Failed. exitcode: 0
+Passed!
 TESTING: /home/joe/Documents/3220/3220_project2/tests/part3/xor.mem
-Failed. exitcode: 0
+Passed!

@@ -150,6 +150,7 @@ module AGEX_STAGE(
           else 
               result = 0;
       end
+      `MUL_I : result = signed_reg_1_val * signed_reg_2_val;
 	  endcase 
    
   end 
@@ -211,7 +212,7 @@ module AGEX_STAGE(
     else 
         begin
           //$display("pc %x inst %x result %x op %d br_target %x", PC_AGEX, inst_AGEX, result, op_I_AGEX, br_target);
-          $display("pc %x reg1 %b result %b, imm %b", PC_AGEX, reg_1_val, result, imm_val);
+          //$display("pc %x reg1 %b result %b, imm %b", PC_AGEX, reg_1_val, result, imm_val);
       // need to complete 
             AGEX_latch <= AGEX_latch_contents ;
         end 
