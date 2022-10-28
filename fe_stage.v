@@ -7,7 +7,9 @@ module FE_STAGE(
   input wire  [`from_AGEX_to_FE_WIDTH-1:0] from_AGEX_to_FE,   
   input wire  [`from_MEM_to_FE_WIDTH-1:0] from_MEM_to_FE,   
   input wire  [`from_WB_to_FE_WIDTH-1:0]  from_WB_to_FE, 
-  output wire [`FE_latch_WIDTH-1:0]       FE_latch_out
+  input wire  [`from_BP_to_FE_WIDTH-1:0]  from_BP_to_FE,
+  output wire [`FE_latch_WIDTH-1:0]       FE_latch_out,
+  output wire [`from_FE_to_BP_WIDTH-1:0] from_FE_to_BP
 );
 
 
@@ -40,7 +42,7 @@ module FE_STAGE(
   wire [`FE_latch_WIDTH-1:0] FE_latch_contents;  // the signals that will be FE latch contents 
   
   // reading instruction from imem 
-  assign inst_FE = should_branch ? imem[br_target[`IMEMADDRBITS-1:`IMEMWORDBITS]] : imem[PC_FE_latch[`IMEMADDRBITS-1:`IMEMWORDBITS]];  // this code works. imem is stored 4B together 
+  assign inst_FE = imem[PC_FE_latch[`IMEMADDRBITS-1:`IMEMWORDBITS]];  // this code works. imem is stored 4B together 
   
   // wire to send the FE latch contents to the DE stage 
   assign FE_latch_out = FE_latch; 
@@ -50,18 +52,15 @@ module FE_STAGE(
   wire [`DBITS-1:0] inst_count_AGEX; /* for debugging purpose. resent the instruction counter */ 
 
   // This is the value of "incremented PC", computed in the FE stage
-  assign pcplus_FE = should_branch ? br_target + `INSTSIZE : PC_FE_latch + `INSTSIZE;
+  assign pcplus_FE = BP_PC;
   
-   
+  assign from_FE_to_BP = PC_FE_latch;
+  
+  wire [`DBITS-1:0] BP_PC;
+  wire flush;
+  assign {flush, BP_PC} = from_BP_to_FE;
    // the order of latch contents should be matched in the decode stage when we extract the contents. 
-  assign FE_latch_contents =  should_branch ? {
-                                inst_FE, 
-                                br_target, 
-                                pcplus_FE, // please feel free to add more signals such as valid bits etc. 
-                                inst_count_FE, 
-                                // if you add more bits here, please increase the width of latch in define.vh 
-                                `BUS_CANARY_VALUE // for an error checking of bus encoding/decoding  
-                                } : {
+  assign FE_latch_contents = {
                                 inst_FE, 
                                 PC_FE_latch, 
                                 pcplus_FE, // please feel free to add more signals such as valid bits etc. 
@@ -86,7 +85,7 @@ module FE_STAGE(
       PC_FE_latch <= `STARTPC;
       inst_count_FE <= 1;  /* inst_count starts from 1 for easy human reading. 1st fetch instructions can have 1 */ 
       end 
-    else if (!stall_pipe_FE || is_branch) begin 
+    else if (!stall_pipe_FE || flush) begin 
       PC_FE_latch <= pcplus_FE;
       inst_count_FE <= inst_count_FE + 1; 
       end 
@@ -104,7 +103,9 @@ module FE_STAGE(
      else  
         begin 
          // this is just an example. you need to expand the contents of if/else
-         if  (!stall_pipe_FE || is_branch)
+         if (flush)
+            FE_latch <= {`FE_latch_WIDTH{1'b0}};
+         else if (!stall_pipe_FE)
             FE_latch <= FE_latch_contents; 
          else
             FE_latch <= FE_latch; 

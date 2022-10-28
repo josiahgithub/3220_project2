@@ -7,8 +7,10 @@ module DE_STAGE(
   input wire [`from_AGEX_to_DE_WIDTH-1:0] from_AGEX_to_DE,  
   input wire [`from_MEM_to_DE_WIDTH-1:0]  from_MEM_to_DE,     
   input wire [`from_WB_to_DE_WIDTH-1:0]   from_WB_to_DE,  
+  input wire [`from_BP_to_DE_WIDTH-1:0]   from_BP_to_DE,
   output wire [`from_DE_to_FE_WIDTH-1:0]  from_DE_to_FE,   
-  output wire [`DE_latch_WIDTH-1:0]       DE_latch_out
+  output wire [`DE_latch_WIDTH-1:0]       DE_latch_out,
+  output wire [`from_DE_to_BP_WIDTH-1:0]  from_DE_to_BP
 );
 
   /* pipeline latch*/ 
@@ -206,6 +208,10 @@ module DE_STAGE(
   // signals come from WB stage for register WB 
   assign {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB} = from_WB_to_DE;  
 
+  wire flush;
+  assign flush = from_BP_to_DE;
+  assign from_DE_to_BP = PC_DE;
+
   wire agex_stall_command;
   wire pipeline_stall_DE; 
   wire [4:0] agex_reg_dest;
@@ -301,7 +307,7 @@ module DE_STAGE(
       DE_latch <= {`DE_latch_WIDTH{1'b0}};
       end
      else begin  
-      if (pipeline_stall_DE) 
+      if (pipeline_stall_DE || flush) 
         DE_latch <= {`DE_latch_WIDTH{1'b0}};
       else
           DE_latch <= DE_latch_contents;

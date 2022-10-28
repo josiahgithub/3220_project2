@@ -27,6 +27,22 @@ module pipeline (
   wire [`from_WB_to_AGEX_WIDTH-1:0] from_WB_to_AGEX;
 
   wire [`from_WB_to_MEM_WIDTH-1:0] from_WB_to_MEM; 
+  
+  wire [`from_FE_to_BP_WIDTH-1:0] from_FE_to_BP;
+  wire [`from_BP_to_FE_WIDTH-1:0] from_BP_to_FE;
+  wire [`from_AGEX_to_BP_WIDTH-1:0] from_AGEX_to_BP;
+  wire [`from_DE_to_BP_WIDTH-1:0] from_DE_to_BP;
+  wire [`from_BP_to_DE_WIDTH-1:0] from_BP_to_DE;
+
+  BRANCH_PREDICTOR branch_predictor(
+    .clk(clk),
+    .reset(reset),
+    .from_FE_to_BP(from_FE_to_BP),
+    .from_AGEX_to_BP(from_AGEX_to_BP),
+    .from_DE_to_BP(from_DE_to_BP),
+    .from_BP_to_FE(from_BP_to_FE),
+    .from_BP_to_DE(from_BP_to_DE)
+  );
 
   FE_STAGE my_FE_stage(
     .clk(clk), 
@@ -35,7 +51,9 @@ module pipeline (
     .from_AGEX_to_FE(from_AGEX_to_FE),
     .from_MEM_to_FE(from_MEM_to_FE),
     .from_WB_to_FE(from_WB_to_FE),
-    .FE_latch_out(FE_latch_out)
+    .from_BP_to_FE(from_BP_to_FE),
+    .FE_latch_out(FE_latch_out),
+    .from_FE_to_BP(from_FE_to_BP)
   ); 
                      
   DE_STAGE my_DE_stage(
@@ -45,8 +63,10 @@ module pipeline (
     .from_AGEX_to_DE(from_AGEX_to_DE),  
     .from_MEM_to_DE(from_MEM_to_DE),     
     .from_WB_to_DE(from_WB_to_DE), 
+    .from_BP_to_DE(from_BP_to_DE),
     .from_DE_to_FE(from_DE_to_FE),   
-    .DE_latch_out(DE_latch_out)
+    .DE_latch_out(DE_latch_out),
+    .from_DE_to_BP(from_DE_to_BP)
   );
 
   AGEX_STAGE my_AGEX_stage(
@@ -57,7 +77,8 @@ module pipeline (
     .from_DE_latch(DE_latch_out),
     .AGEX_latch_out(AGEX_latch_out),
     .from_AGEX_to_FE(from_AGEX_to_FE),
-    .from_AGEX_to_DE(from_AGEX_to_DE)
+    .from_AGEX_to_DE(from_AGEX_to_DE),
+    .from_AGEX_to_BP(from_AGEX_to_BP)
   );
 
   MEM_STAGE my_MEM_stage(

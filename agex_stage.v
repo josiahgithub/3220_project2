@@ -8,7 +8,8 @@ module AGEX_STAGE(
   input  wire [`DE_latch_WIDTH-1:0]         from_DE_latch,
   output wire [`AGEX_latch_WIDTH-1:0]       AGEX_latch_out,
   output wire [`from_AGEX_to_FE_WIDTH-1:0]  from_AGEX_to_FE,
-  output wire [`from_AGEX_to_DE_WIDTH-1:0]  from_AGEX_to_DE
+  output wire [`from_AGEX_to_DE_WIDTH-1:0]  from_AGEX_to_DE,
+  output wire [`from_AGEX_to_BP_WIDTH-1:0] from_AGEX_to_BP
 );
 
   reg [`AGEX_latch_WIDTH-1:0] AGEX_latch; 
@@ -174,6 +175,10 @@ module AGEX_STAGE(
 	  endcase 
 
   end 
+  reg [`DBITS-1:0] br_next_addr;
+  assign br_next_addr = br_cond_AGEX ? br_target : PC_AGEX + `INSTSIZE;
+  assign from_AGEX_to_BP = {is_branch, br_next_addr};
+
   wire [4:0] signed_shift_val;
   wire wr_reg;
   assign  {
