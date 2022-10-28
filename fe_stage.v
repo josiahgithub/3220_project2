@@ -58,13 +58,15 @@ module FE_STAGE(
   
   wire [`DBITS-1:0] BP_PC;
   wire flush;
-  assign {flush, BP_PC} = from_BP_to_FE;
+  wire [7:0] BHR;
+  assign {flush, BP_PC, BHR} = from_BP_to_FE;
    // the order of latch contents should be matched in the decode stage when we extract the contents. 
   assign FE_latch_contents = {
                                 inst_FE, 
                                 PC_FE_latch, 
                                 pcplus_FE, // please feel free to add more signals such as valid bits etc. 
                                 inst_count_FE, 
+                                BHR,
                                 // if you add more bits here, please increase the width of latch in define.vh 
                                 `BUS_CANARY_VALUE // for an error checking of bus encoding/decoding  
                                 };

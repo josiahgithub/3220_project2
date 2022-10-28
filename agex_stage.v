@@ -177,7 +177,8 @@ module AGEX_STAGE(
   end 
   reg [`DBITS-1:0] br_next_addr;
   assign br_next_addr = br_cond_AGEX ? br_target : PC_AGEX + `INSTSIZE;
-  assign from_AGEX_to_BP = {is_branch, br_next_addr};
+  wire[7:0] BHR;
+  assign from_AGEX_to_BP = {is_branch, br_cond_AGEX, br_next_addr, BHR, PC_AGEX};
 
   wire [4:0] signed_shift_val;
   wire wr_reg;
@@ -193,6 +194,7 @@ module AGEX_STAGE(
     imm_val,
     wr_reg,
     signed_shift_val,
+    BHR,
             // more signals might need
     bus_canary_AGEX
   } = from_DE_latch;    

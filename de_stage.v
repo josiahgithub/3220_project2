@@ -242,8 +242,9 @@ module DE_STAGE(
             inst_DE,
             PC_DE, 
             pcplus_DE,
-            inst_count_DE, 
-            bus_canary_DE 
+            inst_count_DE,
+            BHR, 
+            bus_canary_DE
   }  = from_FE_latch;  // based on the contents of the latch, you can decode the content 
 
 
@@ -269,7 +270,7 @@ module DE_STAGE(
   assign wr_reg = type_I_DE == `R_Type || type_I_DE == `I_Type || type_I_DE == `U_Type;
 // assign wire to send the contents of DE latch to other pipeline stages  
   assign DE_latch_out = DE_latch; 
-
+  wire [7:0] BHR;
    assign DE_latch_contents = {
                                   inst_DE,
                                   PC_DE,
@@ -282,6 +283,7 @@ module DE_STAGE(
                                   sxt_imm_DE,
                                   wr_reg,
                                   signed_shift_val,
+                                  BHR,
                                   // more signals might need
                                    bus_canary_DE 
                                   }; 
