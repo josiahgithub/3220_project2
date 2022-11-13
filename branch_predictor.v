@@ -51,6 +51,15 @@ module BRANCH_PREDICTOR(
 		end
 	end
 	
+	initial begin
+		for (integer i = 0; i < 60; i = i + 1) begin
+			BTB[i] = 0;
+		end
+		for (integer i = 0; i < 256; i = i + 1) begin
+			PHT[i] = 0;
+		end
+		BHR = 0;
+	end
 
 	wire [7:0] pht_index_agex;
 	wire [3:0] btb_index_agex;

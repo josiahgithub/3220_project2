@@ -2,7 +2,9 @@
 
 module pipeline (
   input wire clk,
-  input wire reset
+  input wire reset,
+  output[31:0] out1,
+  output[31:0] out2
 );
   
   reg [`DBITS-1:0] cycle_count; /* for debugging purpose */ 
@@ -91,7 +93,7 @@ module pipeline (
     .from_MEM_to_DE(from_MEM_to_DE),
     .from_MEM_to_AGEX(from_MEM_to_AGEX)
   );     
-       
+  wire[31:0] reg10_val;
   WB_STAGE my_WB_stage(
     .clk(clk),
     .reset(reset),  
@@ -99,7 +101,8 @@ module pipeline (
     .from_WB_to_FE(from_WB_to_FE),
     .from_WB_to_DE(from_WB_to_DE),  
     .from_WB_to_AGEX(from_WB_to_AGEX),
-    .from_WB_to_MEM(from_WB_to_MEM)
+    .from_WB_to_MEM(from_WB_to_MEM),
+    .reg10_val(reg10_val)
   );
 
   always @ (posedge clk) begin
@@ -109,6 +112,9 @@ module pipeline (
       cycle_count <= cycle_count + 1;    
     
   end
+
+  assign out1 = cycle_count;
+  assign out2 = reg10_val;
 
 endmodule
 

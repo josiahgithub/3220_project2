@@ -7,7 +7,8 @@ module WB_STAGE(
   output wire [`from_WB_to_FE_WIDTH-1:0]  from_WB_to_FE,
   output wire [`from_WB_to_DE_WIDTH-1:0]  from_WB_to_DE,  
   output wire [`from_WB_to_AGEX_WIDTH-1:0] from_WB_to_AGEX,
-  output wire [`from_WB_to_MEM_WIDTH-1:0] from_WB_to_MEM
+  output wire [`from_WB_to_MEM_WIDTH-1:0] from_WB_to_MEM,
+  output[31:0] reg10_val
 );
 
 
@@ -72,5 +73,16 @@ assign from_WB_to_DE = {wr_reg_WB, wregno_WB, regval_WB, wcsrno_WB, wr_csr_WB} ;
     WB_counters[6] <= {26'b0, op_I_WB}; 
     WB_counters[7] <= {27'b0, wregno_WB};   
   end 
+  reg [31:0] reg10_val_latch; 
+  assign reg10_val = reg10_val_latch;
 
+  always @(posedge clk) begin 
+   if (reset) begin
+     reg10_val_latch <= 0;
+   end else begin
+      // uncomment lines below to write 0xhff
+      if (wr_reg_WB && wregno_WB == 10 && reg10_val_latch == 0)
+        reg10_val_latch <= 32'hff;
+   end
+ end   
 endmodule 

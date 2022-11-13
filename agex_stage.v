@@ -36,9 +36,9 @@ module AGEX_STAGE(
   // **TODO: Complete the rest of the pipeline 
  
  //Signed versions of registers for pipeline math 
- reg signed [`DBITS-1:0] signed_reg_1_val;
- reg signed [`DBITS-1:0] signed_reg_2_val;
- reg signed [`DBITS-1:0] signed_imm;
+ wire signed [`DBITS-1:0] signed_reg_1_val;
+ wire signed [`DBITS-1:0] signed_reg_2_val;
+ wire signed [`DBITS-1:0] signed_imm;
  assign signed_reg_1_val = reg_1_val;
  assign signed_reg_2_val = reg_2_val;
  assign signed_imm = imm_val;
@@ -175,7 +175,7 @@ module AGEX_STAGE(
 	  endcase 
 
   end 
-  reg [`DBITS-1:0] br_next_addr;
+  wire [`DBITS-1:0] br_next_addr;
   assign br_next_addr = br_cond_AGEX ? br_target : PC_AGEX + `INSTSIZE;
   wire[7:0] BHR;
   assign from_AGEX_to_BP = {is_branch, br_cond_AGEX, br_next_addr, BHR, PC_AGEX};
@@ -211,7 +211,9 @@ module AGEX_STAGE(
             // more signals might need
     bus_canary_AGEX     
   }; 
- 
+  initial begin
+    mem_addr = 0;
+  end
   always @ (posedge clk) begin
     if (reset) begin
       AGEX_latch <= {`AGEX_latch_WIDTH{1'b0}};
